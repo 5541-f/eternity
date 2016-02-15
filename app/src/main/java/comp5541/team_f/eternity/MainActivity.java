@@ -15,10 +15,14 @@ public class MainActivity extends AppCompatActivity {
 
     StringBuilder previous, current;
 
+    int parenthesesDepth;
+
     TextView tvPrevious, tvCurrent;
 
-    Button btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn10x, btnAdd, btnBS, btnCA,
-            btnCE, btnDiv, btnDot, btnEqu, btnEx, btnLog, btnMul, btnNeg, btnSin, btnSqrt, btnSub;
+    Button btn0, btn1, btn2, btn3, btn4, btn5, btn6,
+            btn7, btn8, btn9, btnAdd, btnBS, btnCA, btnCE,
+            btnDiv, btnDot, btnEqu, btnLog, btnMod, btnMul, btnNeg,
+            btnP10, btnParL, btnParR, btnPE, btnSin, btnSqrt, btnSub;
 
 
     @Override
@@ -31,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         tvPrevious = (TextView) findViewById(R.id.tvPrevious);
         tvCurrent = (TextView) findViewById(R.id.tvCurrent);
         tvCurrent.setText("0");
+
         btn0 = (Button) findViewById(R.id.btn0);
         btn1 = (Button) findViewById(R.id.btn1);
         btn2 = (Button) findViewById(R.id.btn2);
@@ -41,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
         btn7 = (Button) findViewById(R.id.btn7);
         btn8 = (Button) findViewById(R.id.btn8);
         btn9 = (Button) findViewById(R.id.btn9);
-        btn10x = (Button) findViewById(R.id.btn10x);
         btnAdd = (Button) findViewById(R.id.btnAdd);
         btnBS = (Button) findViewById(R.id.btnBS);
         btnCA = (Button) findViewById(R.id.btnCA);
@@ -49,10 +53,14 @@ public class MainActivity extends AppCompatActivity {
         btnDiv = (Button) findViewById(R.id.btnDiv);
         btnDot = (Button) findViewById(R.id.btnDot);
         btnEqu = (Button) findViewById(R.id.btnEqu);
-        btnEx = (Button) findViewById(R.id.btnEx);
         btnLog = (Button) findViewById(R.id.btnLog);
+        btnMod = (Button) findViewById(R.id.btnMod);
         btnMul = (Button) findViewById(R.id.btnMul);
         btnNeg = (Button) findViewById(R.id.btnNeg);
+        btnP10 = (Button) findViewById(R.id.btnP10);
+        btnParL = (Button) findViewById(R.id.btnParL);
+        btnParR = (Button) findViewById(R.id.btnParR);
+        btnPE = (Button) findViewById(R.id.btnPE);
         btnSin = (Button) findViewById(R.id.btnSin);
         btnSqrt = (Button) findViewById(R.id.btnSqrt);
         btnSub = (Button) findViewById(R.id.btnSub);
@@ -137,6 +145,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (current.length() != 0 && Pattern.matches("\\D|[^\\(]", ((Character) current.charAt(current.length() - 1)).toString()))
+                    return;
+                if (Pattern.matches("\\.", ((Character) current.charAt(current.length() - 1)).toString()))
+                    current.append("0");
+                else current.append("+");
+                tvCurrent.setText(current);
+            }
+        });
+
         btnCE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -198,18 +218,6 @@ public class MainActivity extends AppCompatActivity {
                     current.append("0");
                 Expression e = new ExpressionBuilder(previous.toString()).build();
                 current = new StringBuilder(((Double) e.evaluate()).toString());
-                tvCurrent.setText(current);
-            }
-        });
-
-        btnAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (current.length() != 0 && Pattern.matches("\\D", ((Character) current.charAt(current.length() - 1)).toString()))
-                    return;
-                if (Pattern.matches("\\.", ((Character) current.charAt(current.length() - 1)).toString()))
-                    current.append("0");
-                else current.append("+");
                 tvCurrent.setText(current);
             }
         });
