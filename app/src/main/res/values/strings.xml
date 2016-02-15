@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Eternity</string>
+    <string name="MULTIPLICATION_CHAR">×</string>
+    <string name="DIVISION_CHAR">÷</string>
+    <string name="EIGHT_CHAR">8</string>
+    <string name="SIN_TEXT">sin</string>
+</resources>
