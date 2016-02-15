@@ -194,6 +194,8 @@ public class MainActivity extends AppCompatActivity {
                     previous.append(current);
                     tvPrevious.setText(previous);
                 }
+                if (Pattern.matches("\\.", ((Character) current.charAt(current.length() - 1)).toString()))
+                    current.append("0");
                 Expression e = new ExpressionBuilder(previous.toString()).build();
                 current = new StringBuilder(((Double) e.evaluate()).toString());
                 tvCurrent.setText(current);
@@ -203,7 +205,10 @@ public class MainActivity extends AppCompatActivity {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Pattern.matches("\\D", current.substring(current.length() - 1))) return;
+                if (current.length() != 0 && Pattern.matches("\\D", ((Character) current.charAt(current.length() - 1)).toString()))
+                    return;
+                if (Pattern.matches("\\.", ((Character) current.charAt(current.length() - 1)).toString()))
+                    current.append("0");
                 else current.append("+");
                 tvCurrent.setText(current);
             }
