@@ -3,7 +3,7 @@ package comp5541.team_f.eternity;
 
 public class Functions {
 
-    public static int factorial(int x){ //Recursive function to compute the factorial of x
+    public static long factorial(int x){ //Recursive function to compute the factorial of x
         if( x == 0)
             return 1;
         return(x*factorial(x-1));
@@ -13,7 +13,6 @@ public class Functions {
         double result = 1;
         if(y==0)
             return 1;
-
         for(int i = 0; i <y; i++){
             result*=x;
         }
@@ -28,7 +27,7 @@ public class Functions {
         double result = 0;
         double term;
 
-        for (int i = 1; i<35; i += 2) { //First 500 terms of the series
+        for (int i = 1; i<65; i += 2) { //First 32 terms of the series
             term = toThePower(pi()/180,i)*toThePower(x,i)/factorial(i);
             if(i%4==1)
                 result+=term;
@@ -41,6 +40,6 @@ public class Functions {
     public static void main(String[] args){
         System.out.println(factorial(3));
         System.out.println(toThePower(4,2));
-        System.out.println(sin(80));
+        System.out.println(sin(-45));
     }
 }
