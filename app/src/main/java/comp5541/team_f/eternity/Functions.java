@@ -14,21 +14,21 @@ public class Functions {
         if(y==0)
             return 1;
 
-        for(int i = 1; i <y; i++){
+        for(int i = 0; i <y; i++){
             result*=x;
         }
         return result;
     }
 
-    public static double pi(){ //the number pi
+    public static double pi(){ // a reasonable approximation to the number pi
         return 3.14159265358979323846264338327950288419716939937510582;
     }
 
-    public static double sin(double x) { //Computes sin(x)
+    public static double sin(double x) { //Computes sin(x) using Taylor series expansion
         double result = 0;
         double term;
 
-        for (int i = 1; i<1000; i += 2) { //First 500 terms of Taylor series expansion
+        for (int i = 1; i<35; i += 2) { //First 500 terms of the series
             term = toThePower(pi()/180,i)*toThePower(x,i)/factorial(i);
             if(i%4==1)
                 result+=term;
@@ -36,5 +36,11 @@ public class Functions {
                 result-=term;
         }
         return result;
+    }
+
+    public static void main(String[] args){
+        System.out.println(factorial(3));
+        System.out.println(toThePower(4,2));
+        System.out.println(sin(80));
     }
 }
