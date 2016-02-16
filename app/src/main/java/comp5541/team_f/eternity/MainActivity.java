@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         btn0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\+\\-\\*/%\\(]$)", current.toString())) {
+                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+\\-\\*/%\\(]$)", current.toString())) {
                     current.append("0");
                     tvCurrent.setText(current);
                 }
@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\+\\-\\*/%\\(]$)", current.toString())) {
+                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+\\-\\*/%\\(]$)", current.toString())) {
                     current.append("1");
                     tvCurrent.setText(current);
                 }
@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\+\\-\\*/%\\(]$)", current.toString())) {
+                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+\\-\\*/%\\(]$)", current.toString())) {
                     current.append("2");
                     tvCurrent.setText(current);
                 }
@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
         btn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\+\\-\\*/%\\(]$)", current.toString())) {
+                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+\\-\\*/%\\(]$)", current.toString())) {
                     current.append("3");
                     tvCurrent.setText(current);
                 }
@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
         btn4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\+\\-\\*/%\\(]$)", current.toString())) {
+                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+\\-\\*/%\\(]$)", current.toString())) {
                     current.append("4");
                     tvCurrent.setText(current);
                 }
@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
 
         btn5.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\+\\-\\*/%\\(]$)", current.toString())) {
+                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+\\-\\*/%\\(]$)", current.toString())) {
                     current.append("5");
                     tvCurrent.setText(current);
                 }
@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
         btn6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\+\\-\\*/%\\(]$)", current.toString())) {
+                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+\\-\\*/%\\(]$)", current.toString())) {
                     current.append("6");
                     tvCurrent.setText(current);
                 }
@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
         btn7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\+\\-\\*/%\\(]$)", current.toString())) {
+                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+\\-\\*/%\\(]$)", current.toString())) {
                     current.append("7");
                     tvCurrent.setText(current);
                 }
@@ -151,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
         btn8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\+\\-\\*/%\\(]$)", current.toString())) {
+                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+\\-\\*/%\\(]$)", current.toString())) {
                     current.append("8");
                     tvCurrent.setText(current);
                 }
@@ -161,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
         btn9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\+\\-\\*/%\\(]$)", current.toString())) {
+                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+\\-\\*/%\\(]$)", current.toString())) {
                     current.append("9");
                     tvCurrent.setText(current);
                 }
@@ -195,6 +195,17 @@ public class MainActivity extends AppCompatActivity {
                 current = new StringBuilder();
                 tvCurrent.setText("0");
                 parenthesesDepth = 0;
+            }
+        });
+
+        btnDot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (Pattern.matches(".*" +
+                        "\\d+(\\.\\d+)?$+", current.toString())) {
+                    current.append(".");
+                    tvCurrent.setText(current);
+                }
             }
         });
 
