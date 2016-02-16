@@ -216,7 +216,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="mod"
-        android:id="@+id/button"
+        android:id="@+id/btnMod"
         android:layout_row="3"
         android:layout_column="15"
         android:layout_rowWeight=".1"
@@ -278,7 +278,7 @@
         android:textSize="20sp" />
 
     <Button
-        android:id="@+id/btnEx"
+        android:id="@+id/btnPE"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_column="5"
@@ -291,7 +291,7 @@
         android:textSize="20sp" />
 
     <Button
-        android:id="@+id/btn10x"
+        android:id="@+id/btnP10"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_column="5"
@@ -356,7 +356,7 @@
         android:textSize="20sp" />
 
     <Button
-        android:id="@+id/btnLP"
+        android:id="@+id/btnParL"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_column="10"
@@ -367,7 +367,7 @@
         android:layout_columnSpan="5" />
 
     <Button
-        android:id="@+id/btnRP"
+        android:id="@+id/btnParR"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_column="15"
