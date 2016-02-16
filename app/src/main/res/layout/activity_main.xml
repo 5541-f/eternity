@@ -15,14 +15,15 @@
         android:layout_columnWeight="1"
         android:layout_row="0"
         android:layout_rowWeight=".15"
-        android:ellipsize="marquee"
+        android:ellipsize="none"
         android:marqueeRepeatLimit="marquee_forever"
-        android:scrollHorizontally="true"
+        android:scrollHorizontally="false"
         android:text=""
         android:textAlignment="textEnd"
         android:textAllCaps="false"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:gravity="end" />
 
     <TextView
         android:id="@+id/tvCurrent"
@@ -33,15 +34,17 @@
         android:layout_columnWeight="1"
         android:layout_row="1"
         android:layout_rowWeight=".15"
-        android:ellipsize="marquee"
-        android:marqueeRepeatLimit="marquee_forever"
         android:scrollHorizontally="true"
         android:singleLine="true"
-        android:text=""
-        android:textAlignment="textEnd"
         android:textAllCaps="false"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="60sp" />
+        android:textSize="60sp"
+        android:gravity="center_vertical|end"
+        android:textAlignment="textEnd"
+        android:maxLines="1"
+        android:lines="1"
+        android:minLines="1"
+        android:ellipsize="none" />
 
     <Button
         android:id="@+id/btn0"
