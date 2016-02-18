@@ -26,20 +26,7 @@ public class Functions {
     public static double pi(){ // a reasonable approximation to the number pi
         return 3.14159265358979323846264338327950288419716939937510582;
     }
-
-//    public static double sin(double x) { //Computes sin(x) using Taylor series expansion
-//        double result = 0;
-//        double term;
-//
-//        for (int i = 1; i<65; i += 2) { //First 32 terms of the series
-//            term = toThePower(pi()/180,i)*toThePower(x,i)/factorial(i);
-//            if(i%4==1)
-//                result+=term;
-//            else
-//                result-=term;
-//        }
-//        return result;
-//    }
+    
 
     static Function sin = new Function("sin") {
         @Override
