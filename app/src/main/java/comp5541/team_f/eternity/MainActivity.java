@@ -178,6 +178,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //BS
+
         btnCA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -201,8 +203,7 @@ public class MainActivity extends AppCompatActivity {
         btnDot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Pattern.matches(".*" +
-                        "\\d+(\\.\\d+)?$+", current.toString())) {
+                if (Pattern.matches(".*(?<![]\\.\\d])\\d+$", current.toString())) {
                     current.append(".");
                     tvCurrent.setText(current);
                 }
@@ -238,6 +239,10 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        //ParL
+
+        //ParR
 
         btnSub.setOnClickListener(new View.OnClickListener() {
             @Override
