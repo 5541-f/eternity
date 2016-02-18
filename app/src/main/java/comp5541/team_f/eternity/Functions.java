@@ -23,7 +23,7 @@ public class Functions {
         return result;
     }
 
-    //Implementation
+    //Approximation correct to 11 decimal places using 21 terms
     public static double pi(){
 
         double term=0;
@@ -32,7 +32,7 @@ public class Functions {
                 .build()
                 .evaluate();
 
-        for(int i = 0; i<21; i++){
+        for(int i = 0; i<40; i++){
             term+=(toThePower(-1.0/3.0,i))/(2*i+1);
         }
         return sqrt12*term;
