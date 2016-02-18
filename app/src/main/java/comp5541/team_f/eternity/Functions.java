@@ -26,7 +26,7 @@ public class Functions {
     public static double pi(){ // a reasonable approximation to the number pi
         return 3.14159265358979323846264338327950288419716939937510582;
     }
-    
+
 
     static Function sin = new Function("sin") {
         @Override
