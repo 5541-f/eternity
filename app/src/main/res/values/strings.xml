@@ -4,4 +4,9 @@
     <string name="DIVISION_CHAR">÷</string>
     <string name="EIGHT_CHAR">8</string>
     <string name="SIN_TEXT">sin</string>
+    <string name="ZERO_CHAR">0</string>
+    <string name="ONE_CHAR">1</string>
+    <string name="TWO_CHAR">2</string>
+    <string name="THREE_CHAR">3</string>
+    <string name="FOUR_CHAR">4</string>
 </resources>

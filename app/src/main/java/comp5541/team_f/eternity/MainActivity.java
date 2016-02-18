@@ -240,9 +240,27 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //ParL
+        btnParL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (Pattern.matches("(^$)|(.*[\\.\\+\\-\\*/%\\(]$)", current.toString())) {
+                    parenthesesDepth++;
+                    current.append("(");
+                    tvCurrent.setText(current);
+                }
+            }
+        });
 
-        //ParR
+        btnParR.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (Pattern.matches("(.*[\\d\\)]$)", current.toString()) && parenthesesDepth > 0) {
+                    parenthesesDepth--;
+                    current.append(")");
+                    tvCurrent.setText(current);
+                }
+            }
+        });
 
         btnSub.setOnClickListener(new View.OnClickListener() {
             @Override

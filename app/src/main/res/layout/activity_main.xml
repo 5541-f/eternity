@@ -44,7 +44,10 @@
         android:maxLines="1"
         android:lines="1"
         android:minLines="1"
-        android:ellipsize="none" />
+        android:ellipsize="none"
+        android:text="jgdsjjlssdgjlsjfgsdjgfsldjgsjkdfgkdjfgksjfgljs"
+        android:paddingEnd="20dp"
+        android:paddingStart="20dp" />
 
     <Button
         android:id="@+id/btn0"
@@ -55,7 +58,7 @@
         android:layout_columnWeight=".25"
         android:layout_row="8"
         android:layout_rowWeight=".1"
-        android:text="0"
+        android:text="@string/ZERO_CHAR"
         android:textAllCaps="false"
         android:textSize="20sp" />
 
@@ -68,7 +71,7 @@
         android:layout_columnWeight=".25"
         android:layout_row="7"
         android:layout_rowWeight=".1"
-        android:text="1"
+        android:text="@string/ONE_CHAR"
         android:textAllCaps="false"
         android:textSize="20sp" />
 
@@ -81,7 +84,7 @@
         android:layout_columnWeight=".25"
         android:layout_row="7"
         android:layout_rowWeight=".1"
-        android:text="2"
+        android:text="@string/TWO_CHAR"
         android:textAllCaps="false"
         android:textSize="20sp" />
 
@@ -94,7 +97,7 @@
         android:layout_columnWeight=".25"
         android:layout_row="7"
         android:layout_rowWeight=".1"
-        android:text="3"
+        android:text="@string/THREE_CHAR"
         android:textAllCaps="false"
         android:textSize="20sp" />
 
@@ -107,7 +110,7 @@
         android:layout_columnWeight=".25"
         android:layout_row="6"
         android:layout_rowWeight=".1"
-        android:text="4"
+        android:text="@string/FOUR_CHAR"
         android:textAllCaps="false"
         android:textSize="20sp" />
 
