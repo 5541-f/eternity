@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
             btnDiv, btnDot, btnEqu, btnLog, btnMod, btnMul, btnNeg,
             btnP10, btnParL, btnParR, btnPE, btnSin, btnSqrt, btnSub;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,10 +33,10 @@ public class MainActivity extends AppCompatActivity {
         previous = new StringBuilder("0");
         current = new StringBuilder();
         tvPrevious = (TextView) findViewById(R.id.tvPrevious);
-        tvPrevious.setMovementMethod(new ScrollingMovementMethod());
+//        tvPrevious.setMovementMethod(new ScrollingMovementMethod());
         tvCurrent = (TextView) findViewById(R.id.tvCurrent);
-//        tvCurrent.setMovementMethod(new ScrollingMovementMethod());
         tvCurrent.setText("0");
+
         parenthesesDepth = 0;
 
         btn0 = (Button) findViewById(R.id.btn0);
@@ -282,14 +281,6 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 
-//        btnDot.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                current.append(".");
-//                tvCurrent.setText(current);
-//            }
-//        });
-
 //        btnNeg.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -299,25 +290,25 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 
-//        btnEqu.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (current.length() == 0) return;
-//                if (Pattern.matches("\\d|\\s", ((Character) current.charAt(0)).toString())) {
-//                    previous.delete(0, previous.length());
-//                    previous.append(current);
-//                    tvPrevious.setText(previous);
-//                } else {
-//                    if (previous.length() == 0) previous.append("0");
-//                    previous.append(current);
-//                    tvPrevious.setText(previous);
-//                }
-//                if (Pattern.matches("\\.", ((Character) current.charAt(current.length() - 1)).toString()))
-//                    current.append("0");
-//                Expression e = new ExpressionBuilder(previous.toString()).build();
-//                current = new StringBuilder(((Double) e.evaluate()).toString());
-//                tvCurrent.setText(current);
-//            }
-//        });
+        btnEqu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (current.length() == 0) return;
+                if (Pattern.matches("\\d|\\s", ((Character) current.charAt(0)).toString())) {
+                    previous.delete(0, previous.length());
+                    previous.append(current);
+                    tvPrevious.setText(previous);
+                } else {
+                    if (previous.length() == 0) previous.append("0");
+                    previous.append(current);
+                    tvPrevious.setText(previous);
+                }
+                if (Pattern.matches("\\.", ((Character) current.charAt(current.length() - 1)).toString()))
+                    current.append("0");
+                Expression e = new ExpressionBuilder(previous.toString()).build();
+                current = new StringBuilder(((Double) e.evaluate()).toString());
+                tvCurrent.setText(current);
+            }
+        });
     }
 }

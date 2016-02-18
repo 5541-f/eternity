@@ -23,7 +23,9 @@
         android:textAllCaps="false"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="30sp"
-        android:gravity="end" />
+        android:gravity="end"
+        android:paddingEnd="10dp"
+        android:paddingStart="10dp" />
 
     <TextView
         android:id="@+id/tvCurrent"
@@ -34,20 +36,20 @@
         android:layout_columnWeight="1"
         android:layout_row="1"
         android:layout_rowWeight=".15"
-        android:scrollHorizontally="true"
+        android:scrollHorizontally="false"
         android:singleLine="true"
         android:textAllCaps="false"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="60sp"
-        android:gravity="center_vertical|end"
-        android:textAlignment="textEnd"
         android:maxLines="1"
         android:lines="1"
         android:minLines="1"
         android:ellipsize="none"
-        android:text="jgdsjjlssdgjlsjfgsdjgfsldjgsjkdfgkdjfgksjfgljs"
-        android:paddingEnd="20dp"
-        android:paddingStart="20dp" />
+        android:paddingEnd="10dp"
+        android:paddingStart="10dp"
+        android:gravity="center_vertical|clip_horizontal|center|clip_vertical|fill_vertical|end|center_horizontal|right"
+        android:text="545"
+        android:textAlignment="gravity" />
 
     <Button
         android:id="@+id/btn0"
