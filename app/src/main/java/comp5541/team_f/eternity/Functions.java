@@ -13,7 +13,7 @@ public class Functions {
         return(x*factorial(x-1));
     }
 
-    public static double toThePower(double x, int y){ //Computes x^y
+    public static double toThePower(double x, int y){ //Computes x^y when y is an integer
         double result = 1;
         if(y==0)
             return 1;
@@ -23,8 +23,19 @@ public class Functions {
         return result;
     }
 
-    public static double pi(){ // a reasonable approximation to the number pi
-        return 3.14159265358979323846264338327950288419716939937510582;
+    //Implementation
+    public static double pi(){
+
+        double term=0;
+        double sqrt12 = new ExpressionBuilder("sqrt(12)")
+                .function(sqrt)
+                .build()
+                .evaluate();
+
+        for(int i = 0; i<21; i++){
+            term+=(toThePower(-1.0/3.0,i))/(2*i+1);
+        }
+        return sqrt12*term;
     }
 
 
@@ -71,13 +82,18 @@ public class Functions {
 
 
 
-//    public static void main(String[] args) throws IllegalArgumentException {
+    public static void main(String[] args) throws IllegalArgumentException {
 //        //System.out.println(factorial(3));
 //        //System.out.println(toThePower(4,2));
 //        double result = new ExpressionBuilder("sin(45)")
 //                .function(sin)
 //                .build()
 //                .evaluate();
-//        System.out.println(result);
-//    }
+        System.out.println(pi());
+//        double sqrt9 = new ExpressionBuilder("sqrt(12)")
+//                .function(sqrt)
+//                .build()
+//                .evaluate();
+//        System.out.println(sqrt9);
+   }
 }

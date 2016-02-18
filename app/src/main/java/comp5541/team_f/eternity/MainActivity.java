@@ -295,14 +295,14 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-//        btnBS.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (current.length() < 1) tvCurrent.setText("0");
-//                current.deleteCharAt(current.length() - 1);
-//                tvCurrent.setText(current);
-//            }
-//        });
+        btnBS.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (current.length() < 1) tvCurrent.setText("0");
+                current.deleteCharAt(current.length() - 1);
+                tvCurrent.setText(current);
+            }
+        });
 
         //This is shit; redo it
         btnEqu.setOnClickListener(new View.OnClickListener() {
@@ -332,21 +332,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        btnSin.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                current.append("sin(");
-//                parenthesesDepth++;
-//                tvCurrent.setText(current);
-//            }
-//        });
-//
-//        btnSqrt.setOnClickListener(new View.OnClickListener(){
-//            public void onClick(View v){
-//                current.append("√(");
-//                parenthesesDepth++;
-//                tvCurrent.setText(current);
-//            }
-//        });
+        btnSin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                current.append("sin(");
+                parenthesesDepth++;
+                tvCurrent.setText(current);
+            }
+        });
+
+        btnSqrt.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                current.append("√(");
+                parenthesesDepth++;
+                tvCurrent.setText(current);
+            }
+        });
     }
 }
