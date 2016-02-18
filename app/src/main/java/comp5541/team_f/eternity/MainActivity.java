@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import net.objecthunter.exp4j.Expression;
 import net.objecthunter.exp4j.ExpressionBuilder;
+import net.objecthunter.exp4j.function.Function;
 
 import java.util.regex.Pattern;
 
@@ -310,5 +311,22 @@ public class MainActivity extends AppCompatActivity {
                 tvCurrent.setText(current);
             }
         });
+
+//        btnSin.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                current.append("sin(");
+//                parenthesesDepth++;
+//                tvCurrent.setText(current);
+//            }
+//        });
+//
+//        btnSqrt.setOnClickListener(new View.OnClickListener(){
+//            public void onClick(View v){
+//                current.append("√(");
+//                parenthesesDepth++;
+//                tvCurrent.setText(current);
+//            }
+//        });
     }
 }
