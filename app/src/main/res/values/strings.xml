@@ -9,4 +9,8 @@
     <string name="TWO_CHAR">2</string>
     <string name="THREE_CHAR">3</string>
     <string name="FOUR_CHAR">4</string>
+    <string name="POWER_E_STRING">ℯˣ</string>
+    <string name="POWER_10_STRING">10ˣ</string>
+    <string name="NEGATION_CHAR">±</string>
+    <string name="SQRT_CHAR">√</string>
 </resources>
