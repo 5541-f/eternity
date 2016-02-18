@@ -8,7 +8,7 @@ public class Util {
     static String displayReplace(StringBuilder sb) {
 
         String buildString = sb.toString();
-        String displayString = new String();
+        String displayString = buildString;
         for (Symbol sym : Symbol.values()) {
             displayString = buildString.replace(sym.build(), sym.display());
         }
@@ -19,7 +19,7 @@ public class Util {
     static String executeReplace(StringBuilder sb) {
 
         String buildString = sb.toString();
-        String displayString = new String();
+        String displayString = buildString;
         for (Symbol sym : Symbol.values()) {
             displayString = buildString.replace(sym.build(), sym.display());
         }
