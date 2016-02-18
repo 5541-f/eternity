@@ -15,17 +15,15 @@
         android:layout_columnWeight="1"
         android:layout_row="0"
         android:layout_rowWeight=".15"
-        android:ellipsize="none"
-        android:marqueeRepeatLimit="marquee_forever"
-        android:scrollHorizontally="false"
         android:text=""
-        android:textAlignment="textEnd"
+        android:textAlignment="gravity"
         android:textAllCaps="false"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="30sp"
-        android:gravity="end"
         android:paddingEnd="10dp"
-        android:paddingStart="10dp" />
+        android:paddingStart="10dp"
+        android:ellipsize="none"
+        android:gravity="bottom|end|right" />
 
     <TextView
         android:id="@+id/tvCurrent"
@@ -36,20 +34,16 @@
         android:layout_columnWeight="1"
         android:layout_row="1"
         android:layout_rowWeight=".15"
-        android:scrollHorizontally="false"
-        android:singleLine="true"
+        android:text=""
+        android:textAlignment="gravity"
         android:textAllCaps="false"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="60sp"
-        android:maxLines="1"
-        android:lines="1"
-        android:minLines="1"
-        android:ellipsize="none"
+        android:textSize="50sp"
         android:paddingEnd="10dp"
         android:paddingStart="10dp"
-        android:gravity="center_vertical|clip_horizontal|center|clip_vertical|fill_vertical|end|center_horizontal|right"
-        android:text="545"
-        android:textAlignment="gravity" />
+        android:ellipsize="none"
+        android:gravity="bottom|end|right"
+        android:singleLine="true" />
 
     <Button
         android:id="@+id/btn0"

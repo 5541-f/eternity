@@ -31,12 +31,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         previous = new StringBuilder("0");
-        current = new StringBuilder();
         tvPrevious = (TextView) findViewById(R.id.tvPrevious);
-//        tvPrevious.setMovementMethod(new ScrollingMovementMethod());
+        tvPrevious.setMovementMethod(new ScrollingMovementMethod());
+
+        current = new StringBuilder();
         tvCurrent = (TextView) findViewById(R.id.tvCurrent);
         tvCurrent.setText("0");
-
+        tvCurrent.setMovementMethod(new ScrollingMovementMethod());
         parenthesesDepth = 0;
 
         btn0 = (Button) findViewById(R.id.btn0);
@@ -290,6 +291,7 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 
+        //This is shit; redo it
         btnEqu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
