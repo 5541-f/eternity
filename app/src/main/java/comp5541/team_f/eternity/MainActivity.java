@@ -10,6 +10,7 @@ import android.widget.TextView;
 import net.objecthunter.exp4j.Expression;
 import net.objecthunter.exp4j.ExpressionBuilder;
 
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
@@ -240,6 +241,26 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //Neg; roughed in
+        btnNeg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (Pattern.matches("", current.toString())) {
+                    if (Pattern.matches("", current.toString())) {
+                        Pattern p = Pattern.compile("");
+                        Matcher m = p.matcher(current.toString());
+                        int position = m.regionStart();
+                        current.insert(position +1, " -");
+                    } else if (Pattern.matches("", current.toString())) {
+                        Pattern p = Pattern.compile("");
+                        Matcher m = p.matcher(current.toString());
+                        int position = m.regionStart();
+                        current.delete(position + 1, position + 2);
+                    }
+                }
+            }
+        });
+
         btnParL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -282,15 +303,6 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 
-//        btnNeg.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (current.charAt(0) == ' ' && current.charAt(1) == '-') current.delete(0, 1);
-//                else current.insert(0, " -");
-//                tvCurrent.setText(current);
-//            }
-//        });
-
         //This is shit; redo it
         btnEqu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -299,17 +311,23 @@ public class MainActivity extends AppCompatActivity {
                 if (Pattern.matches("\\d|\\s", ((Character) current.charAt(0)).toString())) {
                     previous.delete(0, previous.length());
                     previous.append(current);
-                    tvPrevious.setText(previous);
                 } else {
                     if (previous.length() == 0) previous.append("0");
                     previous.append(current);
-                    tvPrevious.setText(previous);
                 }
                 if (Pattern.matches("\\.", ((Character) current.charAt(current.length() - 1)).toString()))
                     current.append("0");
-                Expression e = new ExpressionBuilder(previous.toString()).build();
-                current = new StringBuilder(((Double) e.evaluate()).toString());
-                tvCurrent.setText(current);
+                try {
+                    Expression e = new ExpressionBuilder(previous.toString()).build();
+                    current = new StringBuilder(((Double) e.evaluate()).toString());
+                    tvPrevious.setText(previous);
+                    tvCurrent.setText(current);
+                } catch (Exception err) {
+                    previous = new StringBuilder("0");
+                    current = new StringBuilder("");
+                    tvPrevious.setText(err.getMessage());
+                    tvCurrent.setText("ERROR");
+                }
             }
         });
     }
