@@ -1,5 +1,7 @@
 package comp5541.team_f.eternity;
 
+import java.util.regex.Pattern;
+
 /**
  * Created by richard.smith on 2016-02-18.
  */
@@ -10,7 +12,7 @@ public class Util {
         String buildString = sb.toString();
         String displayString = buildString;
         for (Symbol sym : Symbol.values()) {
-            displayString = buildString.replace(sym.build(), sym.display());
+            displayString = displayString.replaceAll(Pattern.quote(sym.build()), sym.display());
         }
 
         return displayString;
@@ -19,11 +21,11 @@ public class Util {
     static String executeReplace(StringBuilder sb) {
 
         String buildString = sb.toString();
-        String displayString = buildString;
+        String executeString = buildString;
         for (Symbol sym : Symbol.values()) {
-            displayString = buildString.replace(sym.build(), sym.display());
+            executeString = executeString.replaceAll(Pattern.quote(sym.build()), sym.execute());
         }
 
-        return displayString;
+        return executeString;
     }
 }
