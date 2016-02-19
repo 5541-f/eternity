@@ -3,7 +3,6 @@ package comp5541.team_f.eternity;
 import org.junit.Test;
 
 import java.lang.Exception;
-import java.util.Arrays;
 import java.util.regex.Pattern;
 
 import static org.junit.Assert.*;

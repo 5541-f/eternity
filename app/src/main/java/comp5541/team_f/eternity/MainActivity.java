@@ -16,16 +16,11 @@ import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
 
-    StringBuilder previous, current;
+    private StringBuilder previous, current;
 
-    TextView tvPrevious, tvCurrent;
+    private TextView tvPrevious, tvCurrent;
 
-    int parenthesesDepth;
-
-    Button btn0, btn1, btn2, btn3, btn4, btn5, btn6,
-            btn7, btn8, btn9, btnAdd, btnBS, btnCA, btnCE,
-            btnDiv, btnDot, btnEqu, btnLog, btnMod, btnMul, btnNeg,
-            btnP10, btnParL, btnParR, btnPE, btnSin, btnSqrt, btnSub;
+    private int parenthesesDepth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,39 +38,39 @@ public class MainActivity extends AppCompatActivity {
 
         parenthesesDepth = 0;
 
-        btn0 = (Button) findViewById(R.id.btn0);
-        btn1 = (Button) findViewById(R.id.btn1);
-        btn2 = (Button) findViewById(R.id.btn2);
-        btn3 = (Button) findViewById(R.id.btn3);
-        btn4 = (Button) findViewById(R.id.btn4);
-        btn5 = (Button) findViewById(R.id.btn5);
-        btn6 = (Button) findViewById(R.id.btn6);
-        btn7 = (Button) findViewById(R.id.btn7);
-        btn8 = (Button) findViewById(R.id.btn8);
-        btn9 = (Button) findViewById(R.id.btn9);
-        btnAdd = (Button) findViewById(R.id.btnAdd);
-        btnBS = (Button) findViewById(R.id.btnBS);
-        btnCA = (Button) findViewById(R.id.btnCA);
-        btnCE = (Button) findViewById(R.id.btnCE);
-        btnDiv = (Button) findViewById(R.id.btnDiv);
-        btnDot = (Button) findViewById(R.id.btnDot);
-        btnEqu = (Button) findViewById(R.id.btnEqu);
-        btnLog = (Button) findViewById(R.id.btnLog);
-        btnMod = (Button) findViewById(R.id.btnMod);
-        btnMul = (Button) findViewById(R.id.btnMul);
-        btnNeg = (Button) findViewById(R.id.btnNeg);
-        btnP10 = (Button) findViewById(R.id.btnP10);
-        btnParL = (Button) findViewById(R.id.btnParL);
-        btnParR = (Button) findViewById(R.id.btnParR);
-        btnPE = (Button) findViewById(R.id.btnPE);
-        btnSin = (Button) findViewById(R.id.btnSin);
-        btnSqrt = (Button) findViewById(R.id.btnSqrt);
-        btnSub = (Button) findViewById(R.id.btnSub);
+        Button btn0 = (Button) findViewById(R.id.btn0);
+        Button btn1 = (Button) findViewById(R.id.btn1);
+        Button btn2 = (Button) findViewById(R.id.btn2);
+        Button btn3 = (Button) findViewById(R.id.btn3);
+        Button btn4 = (Button) findViewById(R.id.btn4);
+        Button btn5 = (Button) findViewById(R.id.btn5);
+        Button btn6 = (Button) findViewById(R.id.btn6);
+        Button btn7 = (Button) findViewById(R.id.btn7);
+        Button btn8 = (Button) findViewById(R.id.btn8);
+        Button btn9 = (Button) findViewById(R.id.btn9);
+        Button btnAdd = (Button) findViewById(R.id.btnAdd);
+        Button btnBS = (Button) findViewById(R.id.btnBS);
+        Button btnCA = (Button) findViewById(R.id.btnCA);
+        Button btnCE = (Button) findViewById(R.id.btnCE);
+        Button btnDiv = (Button) findViewById(R.id.btnDiv);
+        Button btnDot = (Button) findViewById(R.id.btnDot);
+        Button btnEqu = (Button) findViewById(R.id.btnEqu);
+        Button btnLog = (Button) findViewById(R.id.btnLog);
+        Button btnMod = (Button) findViewById(R.id.btnMod);
+        Button btnMul = (Button) findViewById(R.id.btnMul);
+        Button btnNeg = (Button) findViewById(R.id.btnNeg);
+        Button btnP10 = (Button) findViewById(R.id.btnP10);
+        Button btnParL = (Button) findViewById(R.id.btnParL);
+        Button btnParR = (Button) findViewById(R.id.btnParR);
+        Button btnPE = (Button) findViewById(R.id.btnPE);
+        Button btnSin = (Button) findViewById(R.id.btnSin);
+        Button btnSqrt = (Button) findViewById(R.id.btnSqrt);
+        Button btnSub = (Button) findViewById(R.id.btnSub);
 
         btn0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+\\—×÷%\\(∿ℯ⑽㏒√]$)", current.toString())) {
+                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+—×÷%\\(∿ℯ⑽㏒√]$)", current.toString())) {
                     current.append("0");
                     tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
                 }
@@ -85,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+\\—×÷%\\(∿ℯ⑽㏒√]$)", current.toString())) {
+                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+—×÷%\\(∿ℯ⑽㏒√]$)", current.toString())) {
                     current.append("1");
                     tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
                 }
@@ -95,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+\\—×÷%\\(∿ℯ⑽㏒√]$)", current.toString())) {
+                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+—×÷%\\(∿ℯ⑽㏒√]$)", current.toString())) {
                     current.append("2");
                     tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
                 }
@@ -105,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
         btn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+\\—×÷%\\(∿ℯ⑽㏒√]$)", current.toString())) {
+                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+—×÷%\\(∿ℯ⑽㏒√]$)", current.toString())) {
                     current.append("3");
                     tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
                 }
@@ -115,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
         btn4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+\\—×÷%\\(∿ℯ⑽㏒√]$)", current.toString())) {
+                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+—×÷%\\(∿ℯ⑽㏒√]$)", current.toString())) {
                     current.append("4");
                     tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
                 }
@@ -124,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
 
         btn5.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+\\—×÷%\\(∿ℯ⑽㏒√]$)", current.toString())) {
+                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+—×÷%\\(∿ℯ⑽㏒√]$)", current.toString())) {
                     current.append("5");
                     tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
                 }
@@ -134,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
         btn6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+\\—×÷%\\(∿ℯ⑽㏒√]$)", current.toString())) {
+                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+—×÷%\\(∿ℯ⑽㏒√]$)", current.toString())) {
                     current.append("6");
                     tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
                 }
@@ -144,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
         btn7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+\\—×÷%\\(∿ℯ⑽㏒√]$)", current.toString())) {
+                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+—×÷%\\(∿ℯ⑽㏒√]$)", current.toString())) {
                     current.append("7");
                     tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
                 }
@@ -154,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
         btn8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+\\—×÷%\\(∿ℯ⑽㏒√]$)", current.toString())) {
+                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+—×÷%\\(∿ℯ⑽㏒√]$)", current.toString())) {
                     current.append("8");
                     tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
                 }
@@ -164,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
         btn9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+\\—×÷%\\(∿ℯ⑽㏒√]$)", current.toString())) {
+                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+—×÷%\\(∿ℯ⑽㏒√]$)", current.toString())) {
                     current.append("9");
                     tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
                 }
@@ -238,7 +233,7 @@ public class MainActivity extends AppCompatActivity {
                     previous = new StringBuilder("0");
                     current = new StringBuilder("");
                     tvPrevious.setText(err.getMessage());
-                    tvCurrent.setText("ERROR");
+                    tvCurrent.setText(R.string.ERROR_LABEL);
                 }
             }
         });
@@ -287,9 +282,11 @@ public class MainActivity extends AppCompatActivity {
         btnLog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                current.append(Symbol.LOGARITHM_10.build());
-                parenthesesDepth++;
-                tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
+                if (Pattern.matches("(^$)|(.*[\\.\\+—×÷%\\(∿ℯ⑽㏒√]$)", current.toString())) {
+                    current.append(Symbol.LOGARITHM_10.build());
+                    parenthesesDepth++;
+                    tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
+                }
             }
         });
 
@@ -302,7 +299,7 @@ public class MainActivity extends AppCompatActivity {
                         Pattern p = Pattern.compile("");
                         Matcher m = p.matcher(current.toString());
                         int position = m.regionStart();
-                        current.insert(position +1, " -");
+                        current.insert(position + 1, " -");
                     } else if (Pattern.matches("", current.toString())) {
                         Pattern p = Pattern.compile("");
                         Matcher m = p.matcher(current.toString());
@@ -317,16 +314,18 @@ public class MainActivity extends AppCompatActivity {
         btnP10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                current.append(Symbol.EXPONENT_10.build());
-                parenthesesDepth++;
-                tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
+                if (Pattern.matches("(^$)|(.*[\\.\\+—×÷%\\(∿ℯ⑽㏒√]$)", current.toString())) {
+                    current.append(Symbol.EXPONENT_10.build());
+                    parenthesesDepth++;
+                    tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
+                }
             }
         });
 
         btnParL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Pattern.matches("(^$)|(.*[\\.\\+\\—×÷%\\(∿ℯ⑽㏒√]$)", current.toString())) {
+                if (Pattern.matches("(^$)|(.*[\\.\\+—×÷%\\(∿ℯ⑽㏒√]$)", current.toString())) {
                     parenthesesDepth++;
                     current.append("(");
                     tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
@@ -349,9 +348,11 @@ public class MainActivity extends AppCompatActivity {
         btnPE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                current.append(Symbol.EXPONENT_NATURAL.build());
-                parenthesesDepth++;
-                tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
+                if (Pattern.matches("(^$)|(.*[\\.\\+—×÷%\\(∿ℯ⑽㏒√]$)", current.toString())) {
+                    current.append(Symbol.EXPONENT_NATURAL.build());
+                    parenthesesDepth++;
+                    tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
+                }
             }
         });
 
@@ -369,18 +370,22 @@ public class MainActivity extends AppCompatActivity {
         btnSin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                current.append(Symbol.SINE.build());
-                parenthesesDepth++;
-                tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
+                if (Pattern.matches("(^$)|(.*[\\.\\+—×÷%\\(∿ℯ⑽㏒√]$)", current.toString())) {
+                    current.append(Symbol.SINE.build());
+                    parenthesesDepth++;
+                    tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
+                }
             }
         });
 
         //These need an if
-        btnSqrt.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                current.append(Symbol.SQUARE_ROOT.build());
-                parenthesesDepth++;
-                tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
+        btnSqrt.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if (Pattern.matches("(^$)|(.*[\\.\\+—×÷%\\(∿ℯ⑽㏒√]$)", current.toString())) {
+                    current.append(Symbol.SQUARE_ROOT.build());
+                    parenthesesDepth++;
+                    tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
+                }
             }
         });
     }

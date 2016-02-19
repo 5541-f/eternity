@@ -1,19 +1,17 @@
 package comp5541.team_f.eternity;
 
-
-import net.objecthunter.exp4j.Expression;
 import net.objecthunter.exp4j.ExpressionBuilder;
 import net.objecthunter.exp4j.function.Function;
 
 public class Functions {
 
-    public static long factorial(int x){ //Recursive function to compute the factorial of x
+    static long factorial(int x){ //Recursive function to compute the factorial of x
         if( x == 0)
             return 1;
         return(x*factorial(x-1));
     }
 
-    public static double toThePower(double x, int y){ //Computes x^y when y is an integer
+    static double toThePower(double x, int y){ //Computes x^y when y is an integer
         double result = 1;
         if(y==0)
             return 1;
@@ -24,7 +22,7 @@ public class Functions {
     }
 
     //Approximation correct to 11 decimal places using 21 terms
-    public static double pi(){
+    static double pi(){
 
         double term=0;
         double sqrt12 = new ExpressionBuilder("sqrt(12)")
