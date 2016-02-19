@@ -2,6 +2,7 @@ package comp5541.team_f.eternity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
@@ -75,9 +76,9 @@ public class MainActivity extends AppCompatActivity {
         btn0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+\\—×÷%\\(]$)", current.toString())) {
+                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+\\—×÷%\\(qwyz√]$)", current.toString())) {
                     current.append("0");
-                    tvCurrent.setText(Util.displayReplace(current));
+                    tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
                 }
             }
         });
@@ -85,9 +86,9 @@ public class MainActivity extends AppCompatActivity {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+\\—×÷%\\(]$)", current.toString())) {
+                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+\\—×÷%\\(qwyz√]$)", current.toString())) {
                     current.append("1");
-                    tvCurrent.setText(Util.displayReplace(current));
+                    tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
                 }
             }
         });
@@ -95,9 +96,9 @@ public class MainActivity extends AppCompatActivity {
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+\\—×÷%\\(]$)", current.toString())) {
+                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+\\—×÷%\\(qwyz√]$)", current.toString())) {
                     current.append("2");
-                    tvCurrent.setText(Util.displayReplace(current));
+                    tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
                 }
             }
         });
@@ -105,9 +106,9 @@ public class MainActivity extends AppCompatActivity {
         btn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+\\—×÷%\\(]$)", current.toString())) {
+                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+\\—×÷%\\(qwyz√]$)", current.toString())) {
                     current.append("3");
-                    tvCurrent.setText(Util.displayReplace(current));
+                    tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
                 }
             }
         });
@@ -115,18 +116,18 @@ public class MainActivity extends AppCompatActivity {
         btn4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+\\—×÷%\\(]$)", current.toString())) {
+                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+\\—×÷%\\(qwyz√]$)", current.toString())) {
                     current.append("4");
-                    tvCurrent.setText(Util.displayReplace(current));
+                    tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
                 }
             }
         });
 
         btn5.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+\\—×÷%\\(]$)", current.toString())) {
+                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+\\—×÷%\\(qwyz√]$)", current.toString())) {
                     current.append("5");
-                    tvCurrent.setText(Util.displayReplace(current));
+                    tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
                 }
             }
         });
@@ -134,9 +135,9 @@ public class MainActivity extends AppCompatActivity {
         btn6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+\\—×÷%\\(]$)", current.toString())) {
+                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+\\—×÷%\\(qwyz√]$)", current.toString())) {
                     current.append("6");
-                    tvCurrent.setText(Util.displayReplace(current));
+                    tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
                 }
             }
         });
@@ -144,9 +145,9 @@ public class MainActivity extends AppCompatActivity {
         btn7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+\\—×÷%\\(]$)", current.toString())) {
+                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+\\—×÷%\\(qwyz√]$)", current.toString())) {
                     current.append("7");
-                    tvCurrent.setText(Util.displayReplace(current));
+                    tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
                 }
             }
         });
@@ -154,9 +155,9 @@ public class MainActivity extends AppCompatActivity {
         btn8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+\\—×÷%\\(]$)", current.toString())) {
+                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+\\—×÷%\\(qwyz√]$)", current.toString())) {
                     current.append("8");
-                    tvCurrent.setText(Util.displayReplace(current));
+                    tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
                 }
             }
         });
@@ -164,9 +165,9 @@ public class MainActivity extends AppCompatActivity {
         btn9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+\\—×÷%\\(]$)", current.toString())) {
+                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+\\—×÷%\\(qwyz√]$)", current.toString())) {
                     current.append("9");
-                    tvCurrent.setText(Util.displayReplace(current));
+                    tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
                 }
             }
         });
@@ -176,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (Pattern.matches("(^$)|(.*\\d$)|(.*\\)$)", current.toString())) {
                     current.append(Symbol.ADDITION.build());
-                    tvCurrent.setText(Util.displayReplace(current));
+                    tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
                 }
             }
         });
@@ -187,9 +188,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (current.length() < 1) tvCurrent.setText("0");
                 else {
+                    if (Pattern.matches(".*[\\)]", current.toString())) parenthesesDepth++;
+                    if (Pattern.matches(".*[\\(qwyz√]$", current.toString())) parenthesesDepth--;
                     current.deleteCharAt(current.length() - 1);
                     if (current.length() < 1) tvCurrent.setText("0");
-                    else tvCurrent.setText(Util.displayReplace(current));
+                    else tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
                 }
             }
         });
@@ -231,8 +234,8 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     Expression e = new ExpressionBuilder(Util.executeReplace(previous)).build();
                     current = new StringBuilder(((Double) e.evaluate()).toString());
-                    tvPrevious.setText(Util.displayReplace(previous));
-                    tvCurrent.setText(Util.displayReplace(current));
+                    tvPrevious.setText(Html.fromHtml(Util.displayReplace(current)));
+                    tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
                 } catch (Exception err) {
                     previous = new StringBuilder("0");
                     current = new StringBuilder("");
@@ -247,7 +250,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (Pattern.matches(".*(?<![]\\.\\d])\\d+$", current.toString())) {
                     current.append(".");
-                    tvCurrent.setText(Util.displayReplace(current));
+                    tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
                 }
             }
         });
@@ -257,7 +260,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (Pattern.matches("(^$)|(.*\\d$)|(.*\\)$)", current.toString())) {
                     current.append(Symbol.DIVISION.build());
-                    tvCurrent.setText(Util.displayReplace(current));
+                    tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
                 }
             }
         });
@@ -267,7 +270,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (Pattern.matches("(^$)|(.*\\d$)|(.*\\)$)", current.toString())) {
                     current.append(Symbol.MODULUS.build());
-                    tvCurrent.setText(Util.displayReplace(current));
+                    tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
                 }
             }
         });
@@ -277,8 +280,17 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (Pattern.matches("(^$)|(.*\\d$)|(.*\\)$)", current.toString())) {
                     current.append(Symbol.MULTIPLICATION.build());
-                    tvCurrent.setText(Util.displayReplace(current));
+                    tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
                 }
+            }
+        });
+
+        btnLog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                current.append(Symbol.LOGRITHM_10.build());
+                parenthesesDepth++;
+                tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
             }
         });
 
@@ -302,15 +314,22 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //P10
+        btnP10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                current.append(Symbol.EXPONENT_10.build());
+                parenthesesDepth++;
+                tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
+            }
+        });
 
         btnParL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Pattern.matches("(^$)|(.*[\\.\\+\\—×÷%\\(]$)", current.toString())) {
+                if (Pattern.matches("(^$)|(.*[\\.\\+\\—×÷%\\(qwyz√]$)", current.toString())) {
                     parenthesesDepth++;
                     current.append("(");
-                    tvCurrent.setText(Util.displayReplace(current));
+                    tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
                 }
             }
         });
@@ -321,19 +340,26 @@ public class MainActivity extends AppCompatActivity {
                 if (Pattern.matches("(.*[\\d\\)]$)", current.toString()) && parenthesesDepth > 0) {
                     parenthesesDepth--;
                     current.append(")");
-                    tvCurrent.setText(Util.displayReplace(current));
+                    tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
                 }
             }
         });
 
-        //PE
+        btnPE.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                current.append(Symbol.EXPONENT_NATURAL.build());
+                parenthesesDepth++;
+                tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
+            }
+        });
 
         btnSub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (Pattern.matches("(^$)|(.*\\d$)|(.*\\)$)", current.toString())) {
                     current.append(Symbol.SUBTRACTION.build());
-                    tvCurrent.setText(Util.displayReplace(current));
+                    tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
                 }
             }
         });
@@ -343,15 +369,16 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 current.append(Symbol.SINE.build());
                 parenthesesDepth++;
-                tvCurrent.setText(Util.displayReplace(current));
+                tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
             }
         });
 
+        //These need an if
         btnSqrt.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 current.append(Symbol.SQUARE_ROOT.build());
                 parenthesesDepth++;
-                tvCurrent.setText(Util.displayReplace(current));
+                tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
             }
         });
     }
