@@ -215,7 +215,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //This is shit; redo it. Also cast to int if % 0 == 0
+        //This is shit; redo it. Also cast to int if % 0 == 0; reset parentheses depth, C/CE too
         btnEqu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
