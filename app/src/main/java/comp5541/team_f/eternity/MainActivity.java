@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         btn0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+—×÷%\\(∿ℯ⑽㏒√]$)", current.toString())) {
+                if (Pattern.matches(Util.DIGIT_VALIDATION, current.toString())) {
                     current.append("0");
                     tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
                 }
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+—×÷%\\(∿ℯ⑽㏒√]$)", current.toString())) {
+                if (Pattern.matches(Util.DIGIT_VALIDATION, current.toString())) {
                     current.append("1");
                     tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
                 }
@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+—×÷%\\(∿ℯ⑽㏒√]$)", current.toString())) {
+                if (Pattern.matches(Util.DIGIT_VALIDATION, current.toString())) {
                     current.append("2");
                     tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
                 }
@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
         btn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+—×÷%\\(∿ℯ⑽㏒√]$)", current.toString())) {
+                if (Pattern.matches(Util.DIGIT_VALIDATION, current.toString())) {
                     current.append("3");
                     tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
                 }
@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
         btn4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+—×÷%\\(∿ℯ⑽㏒√]$)", current.toString())) {
+                if (Pattern.matches(Util.DIGIT_VALIDATION, current.toString())) {
                     current.append("4");
                     tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
                 }
@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
 
         btn5.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+—×÷%\\(∿ℯ⑽㏒√]$)", current.toString())) {
+                if (Pattern.matches(Util.DIGIT_VALIDATION, current.toString())) {
                     current.append("5");
                     tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
                 }
@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
         btn6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+—×÷%\\(∿ℯ⑽㏒√]$)", current.toString())) {
+                if (Pattern.matches(Util.DIGIT_VALIDATION, current.toString())) {
                     current.append("6");
                     tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
                 }
@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
         btn7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+—×÷%\\(∿ℯ⑽㏒√]$)", current.toString())) {
+                if (Pattern.matches(Util.DIGIT_VALIDATION, current.toString())) {
                     current.append("7");
                     tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
                 }
@@ -149,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
         btn8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+—×÷%\\(∿ℯ⑽㏒√]$)", current.toString())) {
+                if (Pattern.matches(Util.DIGIT_VALIDATION, current.toString())) {
                     current.append("8");
                     tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
                 }
@@ -159,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
         btn9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Pattern.matches("(^$)|(.*\\d$)|(.*[\\.\\+—×÷%\\(∿ℯ⑽㏒√]$)", current.toString())) {
+                if (Pattern.matches(Util.DIGIT_VALIDATION, current.toString())) {
                     current.append("9");
                     tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
                 }
@@ -169,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Pattern.matches("(^$)|(.*\\d$)|(.*\\)$)", current.toString())) {
+                if (Pattern.matches(Util.OPERATOR_VALIDATION, current.toString())) {
                     current.append(Symbol.ADDITION.build());
                     tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
                 }
@@ -210,12 +210,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //This is shit; redo it. Also cast to int if % 0 == 0; reset parentheses depth, C/CE too
+        //This is shit; redo it.
+        // Also cast to int if % 0 == 0; reset parentheses depth, C/CE too;
+        // remove excess .0;, move scroll on type?? close parentheses and functions;
+        // close operators with identity
         btnEqu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (current.length() == 0) return;
-                if (Pattern.matches("\\d|\\s", ((Character) current.charAt(0)).toString())) {
+                //probably invert this and make operators the exception
+                if (Pattern.matches("[\\d\\s\\(∿ℯ⑽㏒√]", ((Character) current.charAt(0)).toString())) {
                     previous.delete(0, previous.length());
                     previous.append(current);
                 } else {
@@ -251,7 +255,7 @@ public class MainActivity extends AppCompatActivity {
         btnDiv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Pattern.matches("(^$)|(.*\\d$)|(.*\\)$)", current.toString())) {
+                if (Pattern.matches(Util.OPERATOR_VALIDATION, current.toString())) {
                     current.append(Symbol.DIVISION.build());
                     tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
                 }
@@ -261,7 +265,7 @@ public class MainActivity extends AppCompatActivity {
         btnMod.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Pattern.matches("(^$)|(.*\\d$)|(.*\\)$)", current.toString())) {
+                if (Pattern.matches(Util.OPERATOR_VALIDATION, current.toString())) {
                     current.append(Symbol.MODULUS.build());
                     tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
                 }
@@ -271,18 +275,17 @@ public class MainActivity extends AppCompatActivity {
         btnMul.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Pattern.matches("(^$)|(.*\\d$)|(.*\\)$)", current.toString())) {
+                if (Pattern.matches(Util.OPERATOR_VALIDATION, current.toString())) {
                     current.append(Symbol.MULTIPLICATION.build());
                     tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
                 }
             }
         });
 
-        //need if
         btnLog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Pattern.matches("(^$)|(.*[\\.\\+—×÷%\\(∿ℯ⑽㏒√]$)", current.toString())) {
+                if (Pattern.matches(Util.FUNCTION_VALIDATION, current.toString())) {
                     current.append(Symbol.LOGARITHM_10.build());
                     parenthesesDepth++;
                     tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
@@ -310,11 +313,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //need if
         btnP10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Pattern.matches("(^$)|(.*[\\.\\+—×÷%\\(∿ℯ⑽㏒√]$)", current.toString())) {
+                if (Pattern.matches(Util.FUNCTION_VALIDATION, current.toString())) {
                     current.append(Symbol.EXPONENT_10.build());
                     parenthesesDepth++;
                     tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
@@ -325,7 +327,7 @@ public class MainActivity extends AppCompatActivity {
         btnParL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Pattern.matches("(^$)|(.*[\\.\\+—×÷%\\(∿ℯ⑽㏒√]$)", current.toString())) {
+                if (Pattern.matches(Util.FUNCTION_VALIDATION, current.toString())) {
                     parenthesesDepth++;
                     current.append("(");
                     tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
@@ -344,11 +346,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //need if
         btnPE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Pattern.matches("(^$)|(.*[\\.\\+—×÷%\\(∿ℯ⑽㏒√]$)", current.toString())) {
+                if (Pattern.matches(Util.FUNCTION_VALIDATION, current.toString())) {
                     current.append(Symbol.EXPONENT_NATURAL.build());
                     parenthesesDepth++;
                     tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
@@ -359,18 +360,17 @@ public class MainActivity extends AppCompatActivity {
         btnSub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Pattern.matches("(^$)|(.*\\d$)|(.*\\)$)", current.toString())) {
+                if (Pattern.matches(Util.OPERATOR_VALIDATION, current.toString())) {
                     current.append(Symbol.SUBTRACTION.build());
                     tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
                 }
             }
         });
 
-        //need if
         btnSin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Pattern.matches("(^$)|(.*[\\.\\+—×÷%\\(∿ℯ⑽㏒√]$)", current.toString())) {
+                if (Pattern.matches(Util.FUNCTION_VALIDATION, current.toString())) {
                     current.append(Symbol.SINE.build());
                     parenthesesDepth++;
                     tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
@@ -378,10 +378,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //These need an if
         btnSqrt.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (Pattern.matches("(^$)|(.*[\\.\\+—×÷%\\(∿ℯ⑽㏒√]$)", current.toString())) {
+                if (Pattern.matches(Util.FUNCTION_VALIDATION, current.toString())) {
                     current.append(Symbol.SQUARE_ROOT.build());
                     parenthesesDepth++;
                     tvCurrent.setText(Html.fromHtml(Util.displayReplace(current)));
