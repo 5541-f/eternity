@@ -67,37 +67,6 @@ public class MainActivity extends AppCompatActivity {
     };
   }
 
-  Function exponent10      = new Function("f_exp10", 1) {
-    @Override
-    public double apply(double... args) {
-      return 0x01;
-    }
-  };
-  Function exponentNatural = new Function("f_expE", 1) {
-    @Override
-    public double apply(double... args) {
-      return 0x02;
-    }
-  };
-  Function logarithm10     = new Function("f_log10", 1) {
-    @Override
-    public double apply(double... args) {
-      return 0x04;
-    }
-  };
-  Function sine            = new Function("f_sine", 1) {
-    @Override
-    public double apply(double... args) {
-      return 0x08;
-    }
-  };
-  Function squareRoot      = new Function("f_sqrt", 1) {
-    @Override
-    public double apply(double... args) {
-      return 0x10;
-    }
-  };
-
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -251,7 +220,8 @@ public class MainActivity extends AppCompatActivity {
           previous = new StringBuilder(current);
         }
         try {
-          Expression e = new ExpressionBuilder(Util.executeReplace(previous)).build();
+          Expression e = new ExpressionBuilder(Util.executeReplace(previous))
+              .functions(Util.FUNCTIONS).build();
           Double result = e.evaluate();
           current = new StringBuilder(result.toString());
           tvPrevious.setText(Util.displayReplace(previous));

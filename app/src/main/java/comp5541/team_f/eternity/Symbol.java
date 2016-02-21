@@ -3,15 +3,15 @@ package comp5541.team_f.eternity;
 enum Symbol {
 
   EXPONENT_10
-      ("⑽", "<tt><small>10ˣ</small></tt>(", "f_exp10("),//"10^("),//rename later
+      ("⑽", "<tt><small>10ˣ</small></tt>(", "a("),//"10^("),//rename later
   EXPONENT_NATURAL
-      ("ℯ", "<tt><small>ℯˣ</small></tt>(", "f_expE("),//"exp("),//rename later
+      ("ℯ", "<tt><small>ℯˣ</small></tt>(", "b("),//"exp("),//rename later
   LOGARITHM_10
-      ("㏒", "<tt><small>log₁₀</small></tt>(", "f_log10("),//"log10("), //rename later
+      ("㏒", "<tt><small>log₁₀</small></tt>(", "c("),//"log10("), //rename later
   SINE
-      ("∿", "<tt><small>sin</small></tt>(", "f_sine("),//"sin("),//rename later
+      ("∿", "<tt><small>sin</small></tt>(", "d("),//"sin("),//rename later
   SQUARE_ROOT
-      ("√", "<tt><small>√</small></tt>(", "f_sqrt("),//"sqrt("), //rename later
+      ("√", "<tt><small>√</small></tt>(", "e("),//"sqrt("), //rename later
   MODULUS
       ("%", " <tt><small>mod</small></tt> ", "%"),
   ADDITION
