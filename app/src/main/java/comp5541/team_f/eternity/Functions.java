@@ -5,6 +5,21 @@ import net.objecthunter.exp4j.function.Function;
 
 public class Functions {
 
+  static double ln(double x){
+    double num = 0;
+    for(int i=0; i<500; i++){
+     num += (1.0/(2*i+1))*toThePower((x-1)/(x+1),(2*i+1));
+    }
+    return 2*num;
+  }
+
+  static double log(double x){
+
+    double num = ln(x)/(ln(10));
+    return num;
+  }
+
+
   static long factorial(int x) { //Recursive function to compute the factorial of x
     if (x == 0) {
       return 1;
@@ -28,9 +43,9 @@ public class Functions {
 
     double term = 0;
     double sqrt12 = new ExpressionBuilder("sqrt(12)")
-        .function(sqrt)
-        .build()
-        .evaluate();
+            .function(sqrt)
+            .build()
+            .evaluate();
 
     for (int i = 0; i < 40; i++) {
       term += (toThePower(-1.0 / 3.0, i)) / (2 * i + 1);
@@ -88,7 +103,8 @@ public class Functions {
     //                .function(sin)
     //                .build()
     //                .evaluate();
-    System.out.println(pi());
+    System.out.println(ln(30));
+    System.out.println(log(100));
     //        double sqrt9 = new ExpressionBuilder("sqrt(12)")
     //                .function(sqrt)
     //                .build()
