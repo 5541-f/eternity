@@ -5,8 +5,10 @@ import net.objecthunter.exp4j.function.Function;
 
 public class Functions {
 
+
   static double ln(double x){
     double num = 0;
+    //Assumed 500 terms was a reasonable enough of an approximation
     for(int i=0; i<500; i++){
      num += (1.0/(2*i+1))*toThePower((x-1)/(x+1),(2*i+1));
     }
@@ -14,9 +16,7 @@ public class Functions {
   }
 
   static double log(double x){
-
-    double num = ln(x)/(ln(10));
-    return num;
+    return ln(x)/(ln(10));
   }
 
 
