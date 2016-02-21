@@ -36,24 +36,28 @@ public class MainActivity extends AppCompatActivity {
         parenthesesDepth = 0;
     }
 
-    private View.OnClickListener setKey(final String validation, final String character) {
+    private void setParenthesesDepth(int flag) {
+        switch (flag) {
+            case 1:
+                parenthesesDepth++;
+                break;
+            case -1:
+                parenthesesDepth--;
+                break;
+            default:
+                break;
+        }
+
+    }
+
+    private View.OnClickListener setKey(final String validation,
+                                        final String character,
+                                        final int parentheses) {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (Pattern.matches(validation, current.toString())) {
-                    current.append(character);
-                    tvCurrent.setText(Util.displayReplace(current));
-                }
-            }
-        };
-    }
-
-    private View.OnClickListener setKey(final String character) {
-        return new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (Pattern.matches(Util.FUNCTION_VALIDATION, current.toString())) {
-                    parenthesesDepth++;
+                    setParenthesesDepth(parentheses);
                     current.append(character);
                     tvCurrent.setText(Util.displayReplace(current));
                 }
@@ -98,35 +102,43 @@ public class MainActivity extends AppCompatActivity {
         Button btnSquareRoot = (Button) findViewById(R.id.btnSqrt);
         Button btnSubtraction = (Button) findViewById(R.id.btnSub);
 
-        btn0.setOnClickListener(this.setKey(Util.DIGIT_VALIDATION, "0"));
-        btn1.setOnClickListener(this.setKey(Util.DIGIT_VALIDATION, "1"));
-        btn2.setOnClickListener(this.setKey(Util.DIGIT_VALIDATION, "2"));
-        btn3.setOnClickListener(this.setKey(Util.DIGIT_VALIDATION, "3"));
-        btn4.setOnClickListener(this.setKey(Util.DIGIT_VALIDATION, "4"));
-        btn5.setOnClickListener(this.setKey(Util.DIGIT_VALIDATION, "5"));
-        btn6.setOnClickListener(this.setKey(Util.DIGIT_VALIDATION, "6"));
-        btn7.setOnClickListener(this.setKey(Util.DIGIT_VALIDATION, "7"));
-        btn8.setOnClickListener(this.setKey(Util.DIGIT_VALIDATION, "8"));
-        btn9.setOnClickListener(this.setKey(Util.DIGIT_VALIDATION, "9"));
+        // redundant 0s
+        btn0.setOnClickListener(this.setKey(Util.DIGIT_VALIDATION, "0", 0));
+        btn1.setOnClickListener(this.setKey(Util.DIGIT_VALIDATION, "1", 0));
+        btn2.setOnClickListener(this.setKey(Util.DIGIT_VALIDATION, "2", 0));
+        btn3.setOnClickListener(this.setKey(Util.DIGIT_VALIDATION, "3", 0));
+        btn4.setOnClickListener(this.setKey(Util.DIGIT_VALIDATION, "4", 0));
+        btn5.setOnClickListener(this.setKey(Util.DIGIT_VALIDATION, "5", 0));
+        btn6.setOnClickListener(this.setKey(Util.DIGIT_VALIDATION, "6", 0));
+        btn7.setOnClickListener(this.setKey(Util.DIGIT_VALIDATION, "7", 0));
+        btn8.setOnClickListener(this.setKey(Util.DIGIT_VALIDATION, "8", 0));
+        btn9.setOnClickListener(this.setKey(Util.DIGIT_VALIDATION, "9", 0));
 
         btnAddition.setOnClickListener(this.setKey(
-                Util.OPERATOR_VALIDATION, Symbol.ADDITION.build()));
+                Util.OPERATOR_VALIDATION, Symbol.ADDITION.build(), 0));
         btnDivision.setOnClickListener(this.setKey(
-                Util.OPERATOR_VALIDATION, Symbol.DIVISION.build()));
+                Util.OPERATOR_VALIDATION, Symbol.DIVISION.build(), 0));
         btnModulus.setOnClickListener(this.setKey(
-                Util.OPERATOR_VALIDATION, Symbol.MODULUS.build()));
+                Util.OPERATOR_VALIDATION, Symbol.MODULUS.build(), 0));
         btnMultiplication.setOnClickListener(this.setKey(
-                Util.OPERATOR_VALIDATION, Symbol.MULTIPLICATION.build()));
+                Util.OPERATOR_VALIDATION, Symbol.MULTIPLICATION.build(), 0));
         btnSubtraction.setOnClickListener(this.setKey(
-                Util.OPERATOR_VALIDATION, Symbol.SUBTRACTION.build()));
+                Util.OPERATOR_VALIDATION, Symbol.SUBTRACTION.build(), 0));
 
-        btnExponent10.setOnClickListener(this.setKey(Symbol.EXPONENT_10.build()));
-        btnLogarithm10.setOnClickListener(this.setKey(Symbol.LOGARITHM_10.build()));
-        btnParenthesisLeft.setOnClickListener(this.setKey("("));
-        btnExponentNatural.setOnClickListener(this.setKey(Symbol.EXPONENT_NATURAL.build()));
-        btnSine.setOnClickListener(this.setKey(Symbol.SINE.build()));
-        btnSquareRoot.setOnClickListener(this.setKey(Symbol.SQUARE_ROOT.build()));
+        btnExponent10.setOnClickListener(this.setKey(
+                Util.FUNCTION_VALIDATION, Symbol.EXPONENT_10.build(), 1));
+        btnLogarithm10.setOnClickListener(this.setKey(
+                Util.FUNCTION_VALIDATION, Symbol.LOGARITHM_10.build(), 1));
+        btnParenthesisLeft.setOnClickListener(this.setKey(
+                Util.FUNCTION_VALIDATION, "(", 1));
+        btnExponentNatural.setOnClickListener(this.setKey(
+                Util.FUNCTION_VALIDATION, Symbol.EXPONENT_NATURAL.build(), 1));
+        btnSine.setOnClickListener(this.setKey(
+                Util.FUNCTION_VALIDATION, Symbol.SINE.build(), 1));
+        btnSquareRoot.setOnClickListener(this.setKey(
+                Util.FUNCTION_VALIDATION, Symbol.SQUARE_ROOT.build(), 1));
 
+        //what to do about 0/empty
         btnBackspace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -159,6 +171,8 @@ public class MainActivity extends AppCompatActivity {
         // Also cast to int if % 0 == 0;
         // move scroll on type??
         // leave expression after error?
+        // negation on return???
+        // infinity
         btnExecute.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -194,22 +208,23 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //Neg; roughed in
         btnNegation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Pattern.matches("", current.toString())) {
-                    if (Pattern.matches("", current.toString())) {
-                        Pattern p = Pattern.compile("");
+                if (Pattern.matches("(.*?)(\\d+[\\.]?\\d*$)", current.toString())) {
+                    if (Pattern.matches("(.*?)(±\\d+[\\.]?\\d*$)", current.toString())) {
+                        Pattern p = Pattern.compile("(.*?)(±\\d+[\\.]?\\d*$)");
                         Matcher m = p.matcher(current.toString());
-                        int position = m.regionStart();
-                        current.insert(position + 1, " -");
-                    } else if (Pattern.matches("", current.toString())) {
-                        Pattern p = Pattern.compile("");
+                        m.find();
+                        int position = m.start(2);
+                        current.deleteCharAt(position);
+                    } else {
+                        Pattern p = Pattern.compile("(.*?)(\\d+[\\.]?\\d*$)");
                         Matcher m = p.matcher(current.toString());
-                        int position = m.regionStart();
-                        current.delete(position + 1, position + 2);
-                    }
+                        m.find();
+                        int position = m.start(2);
+                        current.insert(position, Symbol.NEGATION.build());
+                    } tvCurrent.setText(Util.displayReplace(current));
                 }
             }
         });
@@ -225,6 +240,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btnPoint.setOnClickListener(this.setKey(".*(?<![]\\.\\d])\\d+$", "."));
+        btnPoint.setOnClickListener(this.setKey(".*(?<![\\.\\d])\\d+$", ".", 0));
     }
 }
