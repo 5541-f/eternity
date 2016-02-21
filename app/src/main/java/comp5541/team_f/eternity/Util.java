@@ -1,5 +1,8 @@
 package comp5541.team_f.eternity;
 
+import android.text.Html;
+import android.text.Spanned;
+
 import java.util.regex.Pattern;
 
 class Util {
@@ -10,14 +13,14 @@ class Util {
 
     static final String FUNCTION_VALIDATION = "(^$)|(.*[\\+—×÷%\\(∿ℯ⑽㏒√]$)";
 
-    static String displayReplace(StringBuilder sb) {
+    static Spanned displayReplace(StringBuilder sb) {
 
         String displayString = sb.toString();
         for (Symbol sym : Symbol.values()) {
             displayString = displayString.replaceAll(Pattern.quote(sym.build()), sym.display());
         }
 
-        return displayString;
+        return Html.fromHtml(displayString);
     }
 
     static String executeReplace(StringBuilder sb) {

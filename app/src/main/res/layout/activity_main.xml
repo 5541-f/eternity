@@ -8,11 +8,10 @@
 
     <TextView
         android:id="@+id/tvPrevious"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_column="0"
         android:layout_columnSpan="20"
-        android:layout_columnWeight="1"
         android:layout_row="0"
         android:layout_rowWeight=".15"
         android:text=""
@@ -27,11 +26,10 @@
 
     <TextView
         android:id="@+id/tvCurrent"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_column="0"
         android:layout_columnSpan="20"
-        android:layout_columnWeight="1"
         android:layout_row="1"
         android:layout_rowWeight=".15"
         android:text=""
@@ -43,7 +41,8 @@
         android:paddingStart="10dp"
         android:ellipsize="none"
         android:gravity="bottom|end|right"
-        android:singleLine="true" />
+        android:singleLine="true"
+        android:scrollbarAlwaysDrawHorizontalTrack="false" />
 
     <Button
         android:id="@+id/btn0"
@@ -176,7 +175,7 @@
         android:textSize="20sp" />
 
     <Button
-        android:id="@+id/btnAdd"
+        android:id="@+id/btnAddition"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_column="15"
@@ -189,7 +188,7 @@
         android:textSize="20sp" />
 
     <Button
-        android:id="@+id/btnBS"
+        android:id="@+id/btnBackspace"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_column="10"
@@ -202,7 +201,7 @@
         android:textSize="20sp" />
 
     <Button
-        android:id="@+id/btnCA"
+        android:id="@+id/btnClearAll"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_column="5"
@@ -218,7 +217,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="@string/MODULUS_LABEL"
-        android:id="@+id/btnMod"
+        android:id="@+id/btnModulus"
         android:layout_row="3"
         android:layout_column="15"
         android:layout_rowWeight=".1"
@@ -228,7 +227,7 @@
         android:layout_columnSpan="5" />
 
     <Button
-        android:id="@+id/btnCE"
+        android:id="@+id/btnClearExpression"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_column="0"
@@ -241,7 +240,7 @@
         android:textSize="20sp" />
 
     <Button
-        android:id="@+id/btnDiv"
+        android:id="@+id/btnDivision"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_column="15"
@@ -254,7 +253,7 @@
         android:textSize="20sp" />
 
     <Button
-        android:id="@+id/btnDot"
+        android:id="@+id/btnPoint"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_column="10"
@@ -267,7 +266,7 @@
         android:textSize="20sp" />
 
     <Button
-        android:id="@+id/btnEqu"
+        android:id="@+id/btnExecute"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_column="15"
@@ -306,7 +305,7 @@
         android:layout_columnSpan="5" />
 
     <Button
-        android:id="@+id/btnLog"
+        android:id="@+id/btnLogarithm10"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_column="10"
@@ -319,7 +318,7 @@
         android:textSize="20sp" />
 
     <Button
-        android:id="@+id/btnMul"
+        android:id="@+id/btnMultiplication"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_column="15"
@@ -332,7 +331,7 @@
         android:textSize="20sp" />
 
     <Button
-        android:id="@+id/btnNeg"
+        android:id="@+id/btnNegation"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_column="0"
