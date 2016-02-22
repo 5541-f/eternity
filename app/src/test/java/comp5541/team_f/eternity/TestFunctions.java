@@ -10,10 +10,12 @@ import static org.junit.Assert.*;
 /**
  * To work on unit tests, switch the Test Artifact in the Build Variants view.
  */
-public class ExampleUnitTest {
+public class TestFunctions {
     @Test
     public void addition_isCorrect() throws Exception {
-        assertEquals(4, 2 + 2);
+        assertEquals(Math.PI, Functions.pi_2(), 0.000000000001);
+        System.out.println(Math.PI);
+      System.out.println(Functions.pi_1());
     }
 
     @Test
