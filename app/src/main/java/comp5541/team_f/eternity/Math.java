@@ -1,6 +1,6 @@
 package comp5541.team_f.eternity;
 
-public class Functions {
+public class Math {
 
   static long factorial_1(int limit) { //Recursive function to compute the factorial of x
     if (limit == 0) {
@@ -100,10 +100,10 @@ public class Functions {
   }
 
 //  Math.PI: 3.141592653589793
-//  Functions.pi_1(): 3.141592653589794
+//  Math.pi_1(): 3.141592653589794
 //  Runtime in milliseconds: 4
 //  Math.PI: 3.141592653589793
-//  Functions.pi_2(): 3.1415926545880506
+//  Math.pi_2(): 3.1415926545880506
 //  Runtime in milliseconds: 18546
 //  public static double pi_2() {
 //    //LeibnizFormula
