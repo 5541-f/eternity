@@ -20,6 +20,53 @@ public class Functions {
     return result;
   }
 
+  public static double exponent10_1(double exponent) {
+    double result     = 1.0;
+    int    largestNum = 999999999;
+    if (exponent == 0) {
+      result = 1.0;
+    }
+    if (exponent == 1) {
+      result = 10.0;
+    } else {
+      for (int i = 0; i < largestNum; i++) {
+        // here using Math.log() method temporarily
+        // considering Dana code log() function
+        // finally will call Dana's log()
+        double part = exponent * Math.log(10);
+        result *= (1 + part / largestNum);
+      }
+    }
+    return result;
+  }
+
+  public static double exponent10_2(double exponent) {
+    double sum          = 1;
+    double elem         = 1;
+    double exponentTemp = exponent;
+    double numLn10;
+    int    i            = 1;
+    if (exponent == 0) {
+      return 1.0;
+    }
+    if (exponent == 1) {
+      return 10.0;
+    }
+    if (exponent < 0) {
+      exponentTemp = -exponent;
+    }
+    numLn10 = exponentTemp * Math.log(10);
+    while (elem > 1e-12) {
+      elem *= numLn10 / i;
+      sum += elem;
+      i++;
+    }
+    if (exponent < 0) {
+      sum = 1 / sum;
+    }
+    return sum;
+  }
+
   static double logrithm10_1(double x) {
     return logarithmNatural_1(x) / (logarithmNatural_1(10));
   }
@@ -102,52 +149,5 @@ public class Functions {
       result = temp;
     }
     return result;
-  }
-
-  public static double exponent10_1(double exponent) {
-    double result     = 1.0;
-    int    largestNum = 999999999;
-    if (exponent == 0) {
-      result = 1.0;
-    }
-    if (exponent == 1) {
-      result = 10.0;
-    } else {
-      for (int i = 0; i < largestNum; i++) {
-        // here using Math.log() method temporarily
-        // considering Dana code log() function
-        // finally will call Dana's log()
-        double part = exponent * Math.log(10);
-        result *= (1 + part / largestNum);
-      }
-    }
-    return result;
-  }
-
-  public static double exponent10_2(double exponent) {
-    double sum          = 1;
-    double elem         = 1;
-    double exponentTemp = exponent;
-    double numLn10;
-    int    i            = 1;
-    if (exponent == 0) {
-      return 1.0;
-    }
-    if (exponent == 1) {
-      return 10.0;
-    }
-    if (exponent < 0) {
-      exponentTemp = -exponent;
-    }
-    numLn10 = exponentTemp * Math.log(10);
-    while (elem > 1e-12) {
-      elem *= numLn10 / i;
-      sum += elem;
-      i++;
-    }
-    if (exponent < 0) {
-      sum = 1 / sum;
-    }
-    return sum;
   }
 }
