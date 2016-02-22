@@ -10,16 +10,20 @@ public class Math {
   }
 
   static long factorial_2(int limit) {
+    assert limit >= 0 : limit + " is not a natural number.";
     long result = 1;
     for (int i = 1; i <= limit; i++){
-      result *= result;
+      result *= i;
     }
     return result;
   }
 
-  static double natural_1(int limit) {
-    //to come....
-    return 0;
+  static double natural_1() {
+    double result = 1;
+    for (int i = 1; i < 18; i++){
+      result += (1D / (factorial_2(i)));
+    }
+    return result;
   }
 
   static double exponentiation_1(double base, int exponent) { //Computes x^y when y is an integer
