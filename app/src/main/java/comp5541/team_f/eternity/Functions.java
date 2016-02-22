@@ -2,11 +2,24 @@ package comp5541.team_f.eternity;
 
 public class Functions {
 
-  static long factorial_1(int limit) { //Recursive function to compute the factorial_1 of x
+  static long factorial_1(int limit) { //Recursive function to compute the factorial of x
     if (limit == 0) {
       return 1;
     }
     return (limit * factorial_1(limit - 1));
+  }
+
+  static long factorial_2(int limit) {
+    long result = 1;
+    for (int i = 1; i <= limit; i++){
+      result *= result;
+    }
+    return result;
+  }
+
+  static double natural_1(int limit) {
+    //to come....
+    return 0;
   }
 
   static double exponentiation_1(double base, int exponent) { //Computes x^y when y is an integer
@@ -18,6 +31,50 @@ public class Functions {
       result *= base;
     }
     return result;
+  }
+
+  public static double exponent10_1(double exponent) {
+    double result     = 1.0;
+    int    largestNum = 999999999;
+    if (exponent == 0) {
+      result = 1.0;
+    }
+    if (exponent == 1) {
+      result = 10.0;
+    } else {
+      for (int i = 0; i < largestNum; i++) {
+        double part = exponent * logrithm10_1(10);
+        result *= (1 + part / largestNum);
+      }
+    }
+    return result;
+  }
+
+  public static double exponent10_2(double exponent) {
+    double sum          = 1;
+    double elem         = 1;
+    double exponentTemp = exponent;
+    double numLn10;
+    int    i            = 1;
+    if (exponent == 0) {
+      return 1.0;
+    }
+    if (exponent == 1) {
+      return 10.0;
+    }
+    if (exponent < 0) {
+      exponentTemp = -exponent;
+    }
+    numLn10 = exponentTemp * logrithm10_1(10);
+    while (elem > 1e-12) {
+      elem *= numLn10 / i;
+      sum += elem;
+      i++;
+    }
+    if (exponent < 0) {
+      sum = 1 / sum;
+    }
+    return sum;
   }
 
   static double logrithm10_1(double x) {
@@ -42,22 +99,28 @@ public class Functions {
     return squareRoot_1(12) * term;
   }
 
-  public static double pi_2() {
-    //LeibnizFormula
-    int    count       = 999999999;
-    double pi          = 0;
-    double denominator = 1;
-    for (int x = 0; x < count; x++) {
-      if (x % 2 == 0) {
-        pi = pi + (1 / denominator);
-      } else {
-        pi = pi - (1 / denominator);
-      }
-      denominator = denominator + 2;
-    }
-    pi = pi * 4;
-    return pi;
-  }
+//  Math.PI: 3.141592653589793
+//  Functions.pi_1(): 3.141592653589794
+//  Runtime in milliseconds: 4
+//  Math.PI: 3.141592653589793
+//  Functions.pi_2(): 3.1415926545880506
+//  Runtime in milliseconds: 18546
+//  public static double pi_2() {
+//    //LeibnizFormula
+//    int    count       = 999999999;
+//    double pi          = 0;
+//    double denominator = 1;
+//    for (int x = 0; x < count; x++) {
+//      if (x % 2 == 0) {
+//        pi = pi + (1 / denominator);
+//      } else {
+//        pi = pi - (1 / denominator);
+//      }
+//      denominator = denominator + 2;
+//    }
+//    pi = pi * 4;
+//    return pi;
+//  }
 
   static double sin_1(double x) {
     double result = 0;
@@ -104,55 +167,4 @@ public class Functions {
     return result;
   }
 
-  public static double exponent10_1(double exponent) {
-    double result     = 1.0;
-    int    largestNum = 999999999;
-    if (exponent == 0) {
-      result = 1.0;
-    }
-    if (exponent == 1) {
-      result = 10.0;
-    } else {
-      for (int i = 0; i < largestNum; i++) {
-        // here using Math.log() method temporarily
-        // considering Dana code log() function
-        // finally will call Dana's log()
-        double part = exponent * Math.log(10);
-        result *= (1 + part / largestNum);
-      }
-    }
-    return result;
-  }
-
-  public static double exponent10_2(double exponent) {
-    double sum          = 1;
-    double elem         = 1;
-    double exponentTemp = exponent;
-    double numLn10;
-    int    i            = 1;
-    if (exponent == 0) {
-      return 1.0;
-    }
-    if (exponent == 1) {
-      return 10.0;
-    }
-    if (exponent < 0) {
-      exponentTemp = -exponent;
-    }
-    numLn10 = exponentTemp * Math.log(10);
-    while (elem > 1e-12) {
-      elem *= numLn10 / i;
-      sum += elem;
-      i++;
-    }
-    if (exponent < 0) {
-      sum = 1 / sum;
-    }
-    return sum;
-  }
-
-  public static void main(String[] args){
-    System.out.println(sin_1(35));
-    System.out.println(pi_1());
-  }
 }
