@@ -15,7 +15,7 @@ enum Symbol {
   MODULUS
       ("%", " <tt><small>mod</small></tt> ", "%"),
   ADDITION
-      ("+", " + ", "+"),
+      ("➕", " + ", "+"),
   SUBTRACTION
       ("—", " – ", "-"),
   MULTIPLICATION
