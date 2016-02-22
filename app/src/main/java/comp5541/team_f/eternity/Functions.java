@@ -42,41 +42,7 @@ public class Functions {
     return squareRoot_1(12) * term;
   }
 
-
-  public static double pi_2(String[] args) {
-    int    count       = 999999999;
-    double pi          = 0;
-    double denominator = 1;
-    for (int x = 0; x < count; x++) {
-      if (x % 2 == 0) {
-        pi = pi + (1 / denominator);
-      } else {
-        pi = pi - (1 / denominator);
-      }
-      denominator = denominator + 2;
-    }
-    pi = pi * 4;
-    return pi;
-  }
-
-  public static double pi_3() {
-    //LeibnizFormula
-    int    count       = 999999999;
-    double pi          = 0;
-    double denominator = 1;
-    for (int x = 0; x < count; x++) {
-      if (x % 2 == 0) {
-        pi = pi + (1 / denominator);
-      } else {
-        pi = pi - (1 / denominator);
-      }
-      denominator = denominator + 2;
-    }
-    pi = pi * 4;
-    return pi;
-  }
-
-  public static double pi_4() {
+  public static double pi_2() {
     //LeibnizFormula
     int    count       = 999999999;
     double pi          = 0;
@@ -96,7 +62,6 @@ public class Functions {
   static double sin_1(double x) {
     double result = 0;
     double term;
-
     for (int i = 1; i < 65; i += 2) { //First 32 terms of the Taylor Series Expansion
       term = exponentiation_1(pi_1() / 180, i) * exponentiation_1(x, i) / factorial_1(i); //
       if (i % 4 == 1) {
@@ -115,8 +80,7 @@ public class Functions {
       temp = sqr;
       sqr = (temp + x / temp) / 2;
     } while ((temp - sqr) != 0);
-    double result = temp;
-    return result;
+    return temp;
   }
 
   public static double squareRoot_2(double number) {
@@ -140,7 +104,7 @@ public class Functions {
     return result;
   }
 
-  public static double power10(double exponent) {
+  public static double exponent10_1(double exponent) {
     double result     = 1.0;
     int    largestNum = 999999999;
     if (exponent == 0) {
@@ -160,7 +124,7 @@ public class Functions {
     return result;
   }
 
-  public static double power10(double exponent) {
+  public static double exponent10_2(double exponent) {
     double sum          = 1;
     double elem         = 1;
     double exponentTemp = exponent;
