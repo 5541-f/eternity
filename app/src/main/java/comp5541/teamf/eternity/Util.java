@@ -44,34 +44,34 @@ class Util {
   static final Function[] FUNCTIONS = new Function[5];
 
   static {
-    FUNCTIONS[0] = new Function("a") {
+    FUNCTIONS[0] = new Function("fExpTen") {
       @Override
       public double apply(double... args) {
-        return 0x01;
+        return Math.exponent10(args[0]);
       }
     };
-    FUNCTIONS[1] = new Function("b") {
+    FUNCTIONS[1] = new Function("fExpNat") {
       @Override
       public double apply(double... args) {
-        return 0x02;
+        return Math.exponentNatural(args[0]);
       }
     };
-    FUNCTIONS[2] = new Function("c") {
+    FUNCTIONS[2] = new Function("fLogTen") {
       @Override
       public double apply(double... args) {
-        return 0x04;
+        return Math.logrithm10(args[0]);
       }
     };
-    FUNCTIONS[3] = new Function("d") {
+    FUNCTIONS[3] = new Function("fSine") {
       @Override
       public double apply(double... args) {
-        return 0x08;
+        return Math.sine(args[0]);
       }
     };
-    FUNCTIONS[4] = new Function("e") {
+    FUNCTIONS[4] = new Function("fSqrt") {
       @Override
       public double apply(double... args) {
-        return 0x10;
+        return Math.squareRoot(args[0]);
       }
     };
   }
