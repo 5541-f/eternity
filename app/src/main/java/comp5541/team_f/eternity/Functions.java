@@ -9,6 +9,19 @@ public class Functions {
     return (limit * factorial_1(limit - 1));
   }
 
+  static long factorial_2(int limit) {
+    long result = 1;
+    for (int i = 1; i <= limit; i++){
+      result *= result;
+    }
+    return result;
+  }
+
+  static double natural_1(int limit) {
+    //to come....
+    return 0;
+  }
+
   static double exponentiation_1(double base, int exponent) { //Computes x^y when y is an integer
     double result = 1;
     if (exponent == 0) {
