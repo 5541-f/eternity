@@ -1,6 +1,6 @@
 package comp5541.team_f.eternity;
 
-enum Symbol {
+enum Tokens {
 
   EXPONENT_10
       ("⑽", "<tt><small>10ˣ</small></tt>(", "a("),//"10^("),//rename later
@@ -12,7 +12,7 @@ enum Symbol {
       ("∿", "<tt><small>sin</small></tt>(", "d("),//"sin("),//rename later
   SQUARE_ROOT
       ("√", "<tt><small>√</small></tt>(", "e("),//"sqrt("), //rename later
-  MODULUS
+  MODULO
       ("%", " <tt><small>mod</small></tt> ", "%"),
   ADDITION
       ("➕", " + ", "+"),
@@ -29,7 +29,7 @@ enum Symbol {
   private final String display;
   private final String execute;
 
-  Symbol(String build, String display, String execute) {
+  Tokens(String build, String display, String execute) {
     this.build = build;
     this.display = display;
     this.execute = execute;

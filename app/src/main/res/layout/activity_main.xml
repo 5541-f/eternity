@@ -217,7 +217,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="@string/MODULUS_LABEL"
-        android:id="@+id/btnModulus"
+        android:id="@+id/btnModulo"
         android:layout_row="3"
         android:layout_column="15"
         android:layout_rowWeight=".1"
@@ -279,7 +279,7 @@
         android:textSize="20sp" />
 
     <Button
-        android:id="@+id/btnPE"
+        android:id="@+id/btnExponentNatural"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_column="5"
@@ -292,7 +292,7 @@
         android:textSize="20sp" />
 
     <Button
-        android:id="@+id/btnP10"
+        android:id="@+id/btnExponent10"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_column="5"
@@ -344,7 +344,7 @@
         android:textSize="20sp" />
 
     <Button
-        android:id="@+id/btnSin"
+        android:id="@+id/btnSine"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_column="0"
@@ -357,7 +357,7 @@
         android:textSize="20sp" />
 
     <Button
-        android:id="@+id/btnParL"
+        android:id="@+id/btnParenthesisLeft"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_column="10"
@@ -368,7 +368,7 @@
         android:layout_columnSpan="5" />
 
     <Button
-        android:id="@+id/btnParR"
+        android:id="@+id/btnParenthesisRight"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_column="15"
@@ -379,7 +379,7 @@
         android:layout_columnSpan="5" />
 
     <Button
-        android:id="@+id/btnSqrt"
+        android:id="@+id/btnSquareRoot"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_column="0"
@@ -392,7 +392,7 @@
         android:textSize="20sp" />
 
     <Button
-        android:id="@+id/btnSub"
+        android:id="@+id/btnSubtraction"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_column="15"

@@ -18,6 +18,6 @@ public class ExampleUnitTest {
 
     @Test
     public void symbol_test() throws Exception {
-        System.out.println(Pattern.quote(Symbol.MULTIPLICATION.build()));
+        System.out.println(Pattern.quote(Tokens.MULTIPLICATION.build()));
     }
 }

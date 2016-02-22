@@ -9,12 +9,12 @@ import android.widget.TextView;
 
 import net.objecthunter.exp4j.Expression;
 import net.objecthunter.exp4j.ExpressionBuilder;
-import net.objecthunter.exp4j.function.Function;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
+
 
   private StringBuilder current;
   private StringBuilder previous;
@@ -92,17 +92,17 @@ public class MainActivity extends AppCompatActivity {
     Button btnDivision         = (Button) findViewById(R.id.btnDivision);
     Button btnPoint            = (Button) findViewById(R.id.btnPoint);
     Button btnExecute          = (Button) findViewById(R.id.btnExecute);
-    Button btnExponent10       = (Button) findViewById(R.id.btnP10);
-    Button btnExponentNatural  = (Button) findViewById(R.id.btnPE);
+    Button btnExponent10       = (Button) findViewById(R.id.btnExponent10);
+    Button btnExponentNatural  = (Button) findViewById(R.id.btnExponentNatural);
     Button btnLogarithm10      = (Button) findViewById(R.id.btnLogarithm10);
-    Button btnModulus          = (Button) findViewById(R.id.btnModulus);
+    Button btnModulo           = (Button) findViewById(R.id.btnModulo);
     Button btnMultiplication   = (Button) findViewById(R.id.btnMultiplication);
     Button btnNegation         = (Button) findViewById(R.id.btnNegation);
-    Button btnParenthesisLeft  = (Button) findViewById(R.id.btnParL);
-    Button btnParenthesisRight = (Button) findViewById(R.id.btnParR);
-    Button btnSine             = (Button) findViewById(R.id.btnSin);
-    Button btnSquareRoot       = (Button) findViewById(R.id.btnSqrt);
-    Button btnSubtraction      = (Button) findViewById(R.id.btnSub);
+    Button btnParenthesisLeft  = (Button) findViewById(R.id.btnParenthesisLeft);
+    Button btnParenthesisRight = (Button) findViewById(R.id.btnParenthesisRight);
+    Button btnSine             = (Button) findViewById(R.id.btnSine);
+    Button btnSquareRoot       = (Button) findViewById(R.id.btnSquareRoot);
+    Button btnSubtraction      = (Button) findViewById(R.id.btnSubtraction);
 
     // redundant 0s
     btn0.setOnClickListener(this.setKey(Util.DIGIT_VALIDATION, "0", 0));
@@ -116,29 +116,29 @@ public class MainActivity extends AppCompatActivity {
     btn8.setOnClickListener(this.setKey(Util.DIGIT_VALIDATION, "8", 0));
     btn9.setOnClickListener(this.setKey(Util.DIGIT_VALIDATION, "9", 0));
 
-    btnAddition.setOnClickListener(this.setKey(
-        Util.OPERATOR_VALIDATION, Symbol.ADDITION.build(), 0));
-    btnDivision.setOnClickListener(this.setKey(
-        Util.OPERATOR_VALIDATION, Symbol.DIVISION.build(), 0));
-    btnModulus.setOnClickListener(this.setKey(
-        Util.OPERATOR_VALIDATION, Symbol.MODULUS.build(), 0));
-    btnMultiplication.setOnClickListener(this.setKey(
-        Util.OPERATOR_VALIDATION, Symbol.MULTIPLICATION.build(), 0));
-    btnSubtraction.setOnClickListener(this.setKey(
-        Util.OPERATOR_VALIDATION, Symbol.SUBTRACTION.build(), 0));
+    btnAddition.setOnClickListener(
+        this.setKey(Util.OPERATOR_VALIDATION, Tokens.ADDITION.build(), 0));
+    btnDivision.setOnClickListener(
+        this.setKey(Util.OPERATOR_VALIDATION, Tokens.DIVISION.build(), 0));
+    btnModulo.setOnClickListener(
+        this.setKey(Util.OPERATOR_VALIDATION, Tokens.MODULO.build(), 0));
+    btnMultiplication.setOnClickListener(
+        this.setKey(Util.OPERATOR_VALIDATION, Tokens.MULTIPLICATION.build(), 0));
+    btnSubtraction.setOnClickListener(
+        this.setKey(Util.OPERATOR_VALIDATION, Tokens.SUBTRACTION.build(), 0));
 
-    btnExponent10.setOnClickListener(this.setKey(
-        Util.FUNCTION_VALIDATION, Symbol.EXPONENT_10.build(), 1));
-    btnExponentNatural.setOnClickListener(this.setKey(
-        Util.FUNCTION_VALIDATION, Symbol.EXPONENT_NATURAL.build(), 1));
-    btnLogarithm10.setOnClickListener(this.setKey(
-        Util.FUNCTION_VALIDATION, Symbol.LOGARITHM_10.build(), 1));
-    btnParenthesisLeft.setOnClickListener(this.setKey(
-        Util.FUNCTION_VALIDATION, "(", 1));
-    btnSine.setOnClickListener(this.setKey(
-        Util.FUNCTION_VALIDATION, Symbol.SINE.build(), 1));
-    btnSquareRoot.setOnClickListener(this.setKey(
-        Util.FUNCTION_VALIDATION, Symbol.SQUARE_ROOT.build(), 1));
+    btnExponent10.setOnClickListener(
+        this.setKey(Util.FUNCTION_VALIDATION, Tokens.EXPONENT_10.build(), 1));
+    btnExponentNatural.setOnClickListener(
+        this.setKey(Util.FUNCTION_VALIDATION, Tokens.EXPONENT_NATURAL.build(), 1));
+    btnLogarithm10.setOnClickListener(
+        this.setKey(Util.FUNCTION_VALIDATION, Tokens.LOGARITHM_10.build(), 1));
+    btnParenthesisLeft.setOnClickListener(
+        this.setKey(Util.FUNCTION_VALIDATION, "(", 1));
+    btnSine.setOnClickListener(
+        this.setKey(Util.FUNCTION_VALIDATION, Tokens.SINE.build(), 1));
+    btnSquareRoot.setOnClickListener(
+        this.setKey(Util.FUNCTION_VALIDATION, Tokens.SQUARE_ROOT.build(), 1));
 
     //what to do about 0/empty
     //erasing negation
@@ -151,12 +151,12 @@ public class MainActivity extends AppCompatActivity {
           if (Pattern.matches(".*[\\)]", current.toString())) {
             parenthesesDepth++;
           }
-          if (Pattern.matches(".*[\\(∿ℯ⑽㏒√]$", current.toString())) {
+          if (Pattern.matches(".*[\\(" + Util.FUNCTION_REGEX + "]$", current.toString())) {
             parenthesesDepth--;
           }
           current.deleteCharAt(current.length() - 1);
           if (current.length() > 0 &&
-              current.charAt(current.length() - 1) == Symbol.NEGATION.build().charAt(0)) {
+              current.charAt(current.length() - 1) == Tokens.NEGATION.build().charAt(0)) {
             if (current.length() < 1) {
               tvCurrent.setText("0");
             } else {
@@ -201,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
             current.append("0");
           }
         }
-        if (Pattern.matches("[\\.➕—×÷%]",
+        if (Pattern.matches("[\\.]" + Util.OPERATOR_REGEX,
             ((Character) current.charAt(current.length() - 1)).toString())) {
           current.deleteCharAt(current.length() - 1);
           if (current.length() == 0) {
@@ -211,7 +211,7 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < parenthesesDepth; parenthesesDepth--) {
           current.append(")");
         }
-        if (Pattern.matches("[➕—×÷%]", ((Character) current.charAt(0)).toString())) {
+        if (Pattern.matches(Util.OPERATOR_REGEX, ((Character) current.charAt(0)).toString())) {
           if (previous.length() == 0) {
             previous.append("0");
           }
@@ -250,7 +250,7 @@ public class MainActivity extends AppCompatActivity {
             Matcher m = p.matcher(current.toString());
             m.find();
             int position = m.start(2);
-            current.insert(position, Symbol.NEGATION.build());
+            current.insert(position, Tokens.NEGATION.build());
           }
           tvCurrent.setText(Util.displayReplace(current));
         }
