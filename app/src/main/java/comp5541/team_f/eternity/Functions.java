@@ -2,14 +2,14 @@ package comp5541.team_f.eternity;
 
 public class Functions {
 
-  static long factorial(int limit) { //Recursive function to compute the factorial of x
+  static long factorial_1(int limit) { //Recursive function to compute the factorial_1 of x
     if (limit == 0) {
       return 1;
     }
-    return (limit * factorial(limit - 1));
+    return (limit * factorial_1(limit - 1));
   }
 
-  static double exponentiation(double base, int exponent) { //Computes x^y when y is an integer
+  static double exponentiation_1(double base, int exponent) { //Computes x^y when y is an integer
     double result = 1;
     if (exponent == 0) {
       return 1;
@@ -20,35 +20,35 @@ public class Functions {
     return result;
   }
 
-  static double logrithm10(double x) {
-    return logarithmNatural(x) / (logarithmNatural(10));
+  static double logrithm10_1(double x) {
+    return logarithmNatural_1(x) / (logarithmNatural_1(10));
   }
 
-  static double logarithmNatural(double x) {
+  static double logarithmNatural_1(double x) {
     double result = 0;
     //Assumed 500 terms was a reasonable enough of an approximation
     for (int i = 0; i < 1000; i++) {
-      result += (1.0 / (2 * i + 1)) * exponentiation((x - 1) / (x + 1), (2 * i + 1));
+      result += (1.0 / (2 * i + 1)) * exponentiation_1((x - 1) / (x + 1), (2 * i + 1));
     }
     return 2 * result;
   }
 
   //Approximation correct to 11 decimal places using 21 terms
-  static double pi() {
+  static double pi_1() {
     double term = 0;
     for (int i = 0; i < 40; i++) {
-      term += (exponentiation(-1.0 / 3.0, i)) / (2 * i + 1);
+      term += (exponentiation_1(-1.0 / 3.0, i)) / (2 * i + 1);
     }
-    return squareRoot(12) * term;
+    return squareRoot_1(12) * term;
   }
 
 
-  static double sin(double x) {
+  static double sin_1(double x) {
     double result = 0;
     double term;
 
     for (int i = 1; i < 65; i += 2) { //First 32 terms of the Taylor Series Expansion
-      term = exponentiation(pi() / 180, i) * exponentiation(x, i) / factorial(i); //
+      term = exponentiation_1(pi_1() / 180, i) * exponentiation_1(x, i) / factorial_1(i); //
       if (i % 4 == 1) {
         result += term;
       } else {
@@ -58,10 +58,9 @@ public class Functions {
     return result;
   }
 
-  static double squareRoot(double x) {
+  static double squareRoot_1(double x) {
     double sqr = x / 2;
     double temp;
-
     do {
       temp = sqr;
       sqr = (temp + x / temp) / 2;
@@ -111,143 +110,141 @@ public class Functions {
     return pi;
   }
 
-  public class powCaculatorE {
 
-    public static void main(String[] args) {
+  public static double powCaculatorE(String[] args) {
+    System.out.println("please type one number to calculater the power of " + "10^");
+    Scanner input = new Scanner(System.in);
+    double  num   = input.nextDouble();
+    input.close();
+
+    double result = power10(num);
+    System.out.println("10^ " + num + " = " + result);
+
+    System.out.println("Calculating (10^PI and 10^-PI) ....");
+    double resultPi = power10(pinum());
+    System.out.println("By using Pi to test " + "10^PI = " + resultPi);
+    System.out.println("By using Pi to test " + "10^-PI = " + 1 / resultPi);
+    return resultPi;
+  }
 
 
-      System.out.println("please type one number to calculater the power of " + "10^");
-      Scanner input = new Scanner(System.in);
-      double  num   = input.nextDouble();
-      input.close();
+  public static double power10(double exponent) {
+    double result     = 1.0;
+    int    largestNum = 999999999;
 
-      double result = power10(num);
-      System.out.println("10^ " + num + " = " + result);
 
-      System.out.println("Calculating (10^PI and 10^-PI) ....");
-      double resultPi = power10(pinum());
-      System.out.println("By using Pi to test " + "10^PI = " + resultPi);
-      System.out.println("By using Pi to test " + "10^-PI = " + 1 / resultPi);
+    if (exponent == 0) {
+      result = 1.0;
     }
+    if (exponent == 1) {
+      result = 10.0;
+    } else {
 
-
-    public static double power10(double exponent) {
-      double result     = 1.0;
-      int    largestNum = 999999999;
-
-
-      if (exponent == 0) {
-        result = 1.0;
+      for (int i = 0; i < largestNum; i++) {
+        // here using Math.log() method temporarily
+        // considering Dana code log() function
+        // finally will call Dana's log()
+        double part = exponent * Math.log(10);
+        result *= (1 + part / largestNum);
       }
-      if (exponent == 1) {
-        result = 10.0;
+    }
+    return result;
+  }
+
+  public static double pinum() {
+    //LeibnizFormula
+    int    count       = 999999999;
+    double pi          = 0;
+    double denominator = 1;
+
+    for (int x = 0; x < count; x++) {
+
+      if (x % 2 == 0) {
+        pi = pi + (1 / denominator);
       } else {
-
-        for (int i = 0; i < largestNum; i++) {
-          // here using Math.log() method temporarily
-          // considering Dana code log() function
-          // finally will call Dana's log()
-          double part = exponent * Math.log(10);
-          result *= (1 + part / largestNum);
-        }
+        pi = pi - (1 / denominator);
       }
-      return result;
+      denominator = denominator + 2;
     }
-
-    public static double pinum() {
-      //LeibnizFormula
-      int    count       = 999999999;
-      double pi          = 0;
-      double denominator = 1;
-
-      for (int x = 0; x < count; x++) {
-
-        if (x % 2 == 0) {
-          pi = pi + (1 / denominator);
-        } else {
-          pi = pi - (1 / denominator);
-        }
-        denominator = denominator + 2;
-      }
-      pi = pi * 4;
-      return pi;
-    }
-
+    pi = pi * 4;
+    return pi;
   }
 
-  public class powCaculatorTaylor {
+}
 
-    public static void main(String[] args) {
+public class powCaculatorTaylor {
 
-
-      System.out.println("please type one number to calculater the power of " + "10^");
-      Scanner input = new Scanner(System.in);
-      double  num   = input.nextDouble();
-      input.close();
-
-      double result = power10(num);
-      System.out.println("10^ " + num + " = " + result);
-
-      System.out.println("Calculating (10^PI and 10^-PI) ....");
-      double resultPi = power10(pinum());
-      System.out.println("By using Pi to test " + "10^PI = " + resultPi);
-      System.out.println("By using Pi to test " + "10^-PI = " + 1 / resultPi);
-    }
+  public static void main(String[] args) {
 
 
-    public static double power10(double exponent) {
+    System.out.println("please type one number to calculater the power of " + "10^");
+    Scanner input = new Scanner(System.in);
+    double  num   = input.nextDouble();
+    input.close();
 
-      double sum          = 1;
-      double elem         = 1;
-      double exponentTemp = exponent;
-      double numLn10;
-      int    i            = 1;
+    double result = power10(num);
+    System.out.println("10^ " + num + " = " + result);
 
-      if (exponent == 0) {
-        return 1.0;
-      }
-
-      if (exponent == 1) {
-        return 10.0;
-      }
-
-      if (exponent < 0) {
-        exponentTemp = -exponent;
-      }
-
-      numLn10 = exponentTemp * Math.log(10);
-      while (elem > 1e-12) {
-        elem *= numLn10 / i;
-        sum += elem;
-        i++;
-      }
-
-      if (exponent < 0) {
-        sum = 1 / sum;
-      }
-
-      return sum;
-    }
-
-    public static double pinum() {
-      //LeibnizFormula
-      int    count       = 999999999;
-      double pi          = 0;
-      double denominator = 1;
-
-      for (int x = 0; x < count; x++) {
-
-        if (x % 2 == 0) {
-          pi = pi + (1 / denominator);
-        } else {
-          pi = pi - (1 / denominator);
-        }
-        denominator = denominator + 2;
-      }
-      pi = pi * 4;
-      return pi;
-    }
-
-
+    System.out.println("Calculating (10^PI and 10^-PI) ....");
+    double resultPi = power10(pinum());
+    System.out.println("By using Pi to test " + "10^PI = " + resultPi);
+    System.out.println("By using Pi to test " + "10^-PI = " + 1 / resultPi);
   }
+
+
+  public static double power10(double exponent) {
+
+    double sum          = 1;
+    double elem         = 1;
+    double exponentTemp = exponent;
+    double numLn10;
+    int    i            = 1;
+
+    if (exponent == 0) {
+      return 1.0;
+    }
+
+    if (exponent == 1) {
+      return 10.0;
+    }
+
+    if (exponent < 0) {
+      exponentTemp = -exponent;
+    }
+
+    numLn10 = exponentTemp * Math.log(10);
+    while (elem > 1e-12) {
+      elem *= numLn10 / i;
+      sum += elem;
+      i++;
+    }
+
+    if (exponent < 0) {
+      sum = 1 / sum;
+    }
+
+    return sum;
+  }
+
+  public static double pinum() {
+    //LeibnizFormula
+    int    count       = 999999999;
+    double pi          = 0;
+    double denominator = 1;
+
+    for (int x = 0; x < count; x++) {
+
+      if (x % 2 == 0) {
+        pi = pi + (1 / denominator);
+      } else {
+        pi = pi - (1 / denominator);
+      }
+      denominator = denominator + 2;
+    }
+    pi = pi * 4;
+    return pi;
+  }
+
+
+}
 }
