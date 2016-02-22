@@ -2,7 +2,7 @@ package comp5541.team_f.eternity;
 
 public class Functions {
 
-  static long factorial_1(int limit) { //Recursive function to compute the factorial_1 of x
+  static long factorial_1(int limit) { //Recursive function to compute the factorial of x
     if (limit == 0) {
       return 1;
     }

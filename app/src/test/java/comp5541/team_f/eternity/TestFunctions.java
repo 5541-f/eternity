@@ -36,11 +36,12 @@ public class TestFunctions {
 //    System.out.println(("Runtime in milliseconds: " + (System.currentTimeMillis() - startTime)));
 //  }
 
-  public void test_() throws Exception {
+  @Test
+  public void test_exponent10() throws Exception {
     long startTime = System.currentTimeMillis();
-    assertEquals(Math.PI, Functions.pi_1(), 0.000000000000001);
-    System.out.println("Math.PI: " + Math.PI);
-    System.out.println("Functions.pi_1(): " + Functions.pi_1());
+//    assertEquals(Math.PI, Functions.exponent10_1(0.2), 0.000000000000001);
+    System.out.println("Math.pow(10,0.2): " + Math.pow(10,Math.PI));
+    System.out.println("Functions.exponent10_2(0.2): " + Functions.exponent10_1(Math.PI));
     System.out.println(("Runtime in milliseconds: " + (System.currentTimeMillis() - startTime)));
   }
 }
