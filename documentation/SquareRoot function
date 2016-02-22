@@ -1,4 +1,4 @@
-package comp5541.team_f.eternity;
+package teamf.eternity;
 
 import java.util.Scanner;
 

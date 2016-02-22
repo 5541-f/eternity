@@ -1,4 +1,4 @@
-package comp5541.team_f.eternity;
+package comp5541.teamf.eternity;
 
 import org.junit.Test;
 

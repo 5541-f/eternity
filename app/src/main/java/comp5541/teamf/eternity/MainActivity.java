@@ -1,4 +1,4 @@
-package comp5541.team_f.eternity;
+package comp5541.teamf.eternity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
