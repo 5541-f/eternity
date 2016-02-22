@@ -201,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
             current.append("0");
           }
         }
-        if (Pattern.matches("[\\.➕—×÷%]",
+        if (Pattern.matches("[\\.\\+—×÷%]",
             ((Character) current.charAt(current.length() - 1)).toString())) {
           current.deleteCharAt(current.length() - 1);
           if (current.length() == 0) {
@@ -211,7 +211,7 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < parenthesesDepth; parenthesesDepth--) {
           current.append(")");
         }
-        if (Pattern.matches("[➕—×÷%]", ((Character) current.charAt(0)).toString())) {
+        if (Pattern.matches("[\\+—×÷%]", ((Character) current.charAt(0)).toString())) {
           if (previous.length() == 0) {
             previous.append("0");
           }
