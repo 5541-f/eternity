@@ -150,4 +150,9 @@ public class Functions {
     }
     return sum;
   }
+
+  public static void main(String[] args){
+    System.out.println(sin_1(35));
+    System.out.println(pi_1());
+  }
 }
