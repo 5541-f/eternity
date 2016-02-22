@@ -5,17 +5,19 @@ import android.text.Spanned;
 
 import net.objecthunter.exp4j.function.Function;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Pattern;
 
 class Util {
 
-  static final String DIGIT_VALIDATION = "(^$)|(.*\\d$)|(.*[\\.\\+—×÷%\\(∿ℯ⑽㏒√]$)";
-
+  static final String OPERATOR_REGEX      = Symbol.ADDITION.build()
+                                            + Symbol.DIVISION
+                                            + Symbol.MODULUS
+                                            + Symbol.MULTIPLICATION
+                                            + Symbol.SUBTRACTION;
+  static final String FUNCTION_REGEX      = "";
+  static final String FUNCTION_VALIDATION = "(^$)|(.*[➕—×÷%\\(∿ℯ⑽㏒√]$)";
+  static final String DIGIT_VALIDATION    = "(^$)|(.*\\d$)|(.*[\\.➕—×÷%\\(∿ℯ⑽㏒√]$)";
   static final String OPERATOR_VALIDATION = "(^$)|(.*\\d$)|(.*\\)$)";
-
-  static final String FUNCTION_VALIDATION = "(^$)|(.*[\\+—×÷%\\(∿ℯ⑽㏒√]$)";
 
   static Spanned displayReplace(StringBuilder sb) {
     String displayString = sb.toString();
