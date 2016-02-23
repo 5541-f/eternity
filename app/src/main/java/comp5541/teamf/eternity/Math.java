@@ -2,8 +2,8 @@ package comp5541.teamf.eternity;
 
 public class Math {
 
-  private final double PI = pi_2(); //fix
-  private final double E = natural_1(); //fix
+  private final double PI = pi_2();
+  private final double E = natural_1();
 
   private double exponentiation(double base, double exponent) {
 
@@ -11,8 +11,7 @@ public class Math {
   }
 
   private long factorial(int limit) {
-
-    return 0; //fix
+    return factorial_2(limit);
   }
 
   private double logarithmNatural(double exponent) {
@@ -45,13 +44,15 @@ public class Math {
     return 0; //fix
   }
 
-  private long factorial_1(int limit) { //Recursive function to compute the factorial of x
+  // Recursive factorial function
+  private long factorial_1(int limit) {
     if (limit == 0) {
       return 1;
     }
     return (limit * factorial_1(limit - 1));
   }
 
+  // Non-recursive factorial function
   private long factorial_2(int limit) {
     assert limit >= 0 : limit + " is not a natural number.";
     long result = 1;
@@ -61,6 +62,7 @@ public class Math {
     return result;
   }
 
+  // Function to calculate E; 18 iterations produced maximum accuracy for a double
   private double natural_1() {
     double result = 1;
     for (int i = 1; i < 18; i++){
@@ -69,7 +71,8 @@ public class Math {
     return result;
   }
 
-  private double exponentiation_1(double base, int exponent) { //Computes x^y when y is an integer
+  //Computes x^y when y is an integer
+  private double exponentiation_1(double base, int exponent) {
     double result = 1;
     if (exponent == 0) {
       return 1;
@@ -80,6 +83,7 @@ public class Math {
     return result;
   }
 
+  // E method
   private double exponent10_1(double exponent) {
     double result     = 1.0;
     int    largestNum = 999999999;
@@ -97,6 +101,7 @@ public class Math {
     return result;
   }
 
+  // Taylor Series
   private double exponent10_2(double exponent) {
     double sum          = 1;
     double elem         = 1;
@@ -146,14 +151,8 @@ public class Math {
     return squareRoot_1(12) * term;
   }
 
-//  Math.PI: 3.141592653589793
-//  Math.pi_1(): 3.141592653589794
-//  Runtime in milliseconds: 4
-//  Math.PI: 3.141592653589793
-//  Math.pi_2(): 3.1415926545880506
-//  Runtime in milliseconds: 18546
+  // PI using Leibniz Formula
   private double pi_2() {
-    //LeibnizFormula
     int    count       = 999999999;
     double pi          = 0;
     double denominator = 1;
@@ -169,11 +168,12 @@ public class Math {
     return pi;
   }
 
+  //First 32 terms of the Taylor Series Expansion
   private double sin_1(double x) {
     double result = 0;
     double term;
-    for (int i = 1; i < 65; i += 2) { //First 32 terms of the Taylor Series Expansion
-      term = exponentiation(pi_1() / 180, i) * exponentiation(x, i) / factorial(i); //
+    for (int i = 1; i < 65; i += 2) {
+      term = exponentiation(PI / 180, i) * exponentiation(x, i) / factorial(i);
       if (i % 4 == 1) {
         result += term;
       } else {
