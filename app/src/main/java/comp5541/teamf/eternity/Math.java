@@ -9,6 +9,10 @@ public class Math {
     return exponentiation_1(base, exponent);
   }
 
+  /*
+  Overloaded function to provide algorithms which are more efficient for integers and more accurate
+  for real numbers.
+   */
   private static double exponentiation(double base, double exponent) {
     if (exponent == ((int) exponent)) {
       return exponentiation(base, (int) exponent);
