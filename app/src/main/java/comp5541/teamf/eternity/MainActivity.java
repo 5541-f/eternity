@@ -51,6 +51,13 @@ public class MainActivity extends AppCompatActivity {
     }
   }
 
+  /**
+   * A method for setting OnClickListeners for buttons with common attributes
+   * @param validation Regex that precedes this character
+   * @param character Build character of the token
+   * @param parentheses impact on parenthesis depth
+   * @return
+   */
   private View.OnClickListener setKey(final String validation,
                                       final String character,
                                       final int parentheses) {
