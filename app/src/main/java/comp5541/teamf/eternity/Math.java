@@ -118,6 +118,9 @@ public class Math {
   }
 
   private static double logarithmNatural_1(double x) {
+    if (x <= 0) {
+      throw new ArithmeticException(x + " is not a positive real number.");
+    }
     double result = 0;
     //Assumed 500 terms was a reasonable enough of an approximation
     for (int i = 0; i < 1000; i++) {
