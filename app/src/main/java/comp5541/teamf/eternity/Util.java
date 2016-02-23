@@ -59,7 +59,7 @@ class Util {
     FUNCTIONS[2] = new Function("fLogTen") {
       @Override
       public double apply(double... args) {
-        return Math.logrithm10(args[0]);
+        return Math.logarithm10(args[0]);
       }
     };
     FUNCTIONS[3] = new Function("fSine") {
