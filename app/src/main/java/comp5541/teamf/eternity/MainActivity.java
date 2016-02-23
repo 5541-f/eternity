@@ -147,7 +147,6 @@ public class MainActivity extends AppCompatActivity {
         this.setKey(Util.FUNCTION_VALIDATION, Tokens.SQUARE_ROOT.build(), 1));
 
     //what to do about 0/empty
-    //erasing negation
     btnBackspace.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -208,7 +207,7 @@ public class MainActivity extends AppCompatActivity {
             current.append("0");
           }
         }
-        if (Pattern.matches("[\\.]" + Util.OPERATOR_REGEX,
+        if (Pattern.matches("[\\." + Util.OPERATOR_REGEX + "]",
             ((Character) current.charAt(current.length() - 1)).toString())) {
           current.deleteCharAt(current.length() - 1);
           if (current.length() == 0) {
