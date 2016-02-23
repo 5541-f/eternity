@@ -2,7 +2,7 @@ package comp5541.teamf.eternity;
 
 public class Math {
 
-  private static final double PI = pi_2();
+  private static final double PI = pi_1();
   private static final double E = natural_1();
 
   private static double exponentiation(double base, int exponent) {
@@ -110,9 +110,6 @@ public class Math {
   private static double exponentiation_2(double base, double exponent) {
     double sum          = 1;
     double elem         = 1;
-    double exponentTemp = exponent;
-    double log;
-    int    i            = 1;
     if (exponent == 0) {
       return 1;
     }
@@ -120,13 +117,12 @@ public class Math {
       return base;
     }
     if (exponent < 0) {
-      exponentTemp = -exponent;
+      exponent = -exponent;
     }
-    log = exponentTemp * logarithmNatural(10);
-    while (elem > 1e-12) {
-      elem *= log / i;
+    double log = exponent * logarithmNatural(base);
+    for (int j = 1; elem > 1e-12; j++) {
+      elem *= log / j;
       sum += elem;
-      i++;
     }
     if (exponent < 0) {
       sum = 1 / sum;
@@ -156,7 +152,7 @@ public class Math {
     return squareRoot_1(12) * term;
   }
 
-  // PI using Leibniz Formula
+  // PI using Leibniz Formula; inefficient
   private static double pi_2() {
     int    count       = 999999999;
     double pi          = 0;
@@ -218,5 +214,4 @@ public class Math {
     }
     return result;
   }
-
 }
