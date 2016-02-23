@@ -6,42 +6,35 @@ public class Math {
   private final double E = natural_1();
 
   private double exponentiation(double base, double exponent) {
-
-    return 0; //fix
+    return exponentiation_1(base, ((int) exponent));
   }
 
   private long factorial(int limit) {
     return factorial_2(limit);
   }
 
-  private double logarithmNatural(double exponent) {
-
-    return 0; //fix
+  private double logarithmNatural(double number) {
+    return logarithmNatural_1(number);
   }
 
   public static double exponent10(double exponent) {
-
-    return 0; //fix
+    return exponent10(exponent);
   }
 
   public static double exponentNatural(double exponent) {
-
-    return 0; //fix
+    return exponentNatural(exponent);
   }
 
-  public static double logrithm10(double exponent) {
-
-    return 0; //fix
+  public static double logarithm10(double number) {
+    return logarithm10(number);
   }
 
-  public static double sine(double exponent) {
-
-    return 0; //fix
+  public static double sine(double number) {
+    return sine(number);
   }
 
-  public static double squareRoot(double exponent) {
-
-    return 0; //fix
+  public static double squareRoot(double number) {
+    return squareRoot(number);
   }
 
   // Recursive factorial function
@@ -94,7 +87,7 @@ public class Math {
       result = 10.0;
     } else {
       for (int i = 0; i < largestNum; i++) {
-        double part = exponent * logrithm10(10);
+        double part = exponent * logarithm10(10);
         result *= (1 + part / largestNum);
       }
     }
@@ -117,7 +110,7 @@ public class Math {
     if (exponent < 0) {
       exponentTemp = -exponent;
     }
-    numLn10 = exponentTemp * logrithm10(10);
+    numLn10 = exponentTemp * logarithm10(10);
     while (elem > 1e-12) {
       elem *= numLn10 / i;
       sum += elem;
@@ -129,7 +122,7 @@ public class Math {
     return sum;
   }
 
-  private double logrithm10_1(double x) {
+  private double logarithm10_1(double x) {
     return logarithmNatural(x) / (logarithmNatural(10));
   }
 
