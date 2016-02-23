@@ -1,20 +1,34 @@
 package comp5541.teamf.eternity;
 
+/**
+ * Provides mathematical functions. Abstraction provided to set only those method used by the
+ * calculator app to be public; shared private methods so that algorithms requiring other
+ * mathematical functions do not directly reference one another; and private method implementations
+ * of the various mathematical functions, which can be replaced or overloaded, depending on context
+ */
 public class Math {
 
+  // Calculated constant for PI
   private static final double PI = pi_1();
+  // Calculated constant for E
   private static final double E  = natural_1();
 
+  /**
+   * Power of 10
+   * @param exponent Accepts all real numbers
+   * @return
+   */
   public static double exponent10(double exponent) {
     return exponentiation(10, exponent);
   }
 
+  // Overloaded exponentiation method for use with int exponents
   private static double exponentiation(double base, int exponent) {
     return exponentiation_1(base, exponent);
   }
 
   /*
-  Overloaded function to provide algorithms which are more efficient for integers and more accurate
+  Overloaded method to provide algorithms which are more efficient for integers and more accurate
   for real numbers.
    */
   private static double exponentiation(double base, double exponent) {
@@ -25,6 +39,7 @@ public class Math {
     }
   }
 
+  // Private method for use by functions that require factorials, such as E or sine
   private static long factorial(int limit) {
     return factorial_2(limit);
   }
@@ -59,7 +74,9 @@ public class Math {
 
   // Non-recursive factorial function
   private static long factorial_2(int limit) {
-    assert limit >= 0 : limit + " is not a natural number.";
+    if (limit < 0) {
+      throw new ArithmeticException(limit + " is not a natural number.");
+    }
     long result = 1;
     for (int i = 1; i <= limit; i++) {
       result *= i;
@@ -76,7 +93,7 @@ public class Math {
     return result;
   }
 
-  //Computes x^y when y is an integer
+  // Computes x^y when y is an integer
   private static double exponentiation_1(double base, int exponent) {
     double result = 1;
     if (exponent == 0) {
@@ -88,10 +105,10 @@ public class Math {
     return result;
   }
 
-  // Taylor Series
+  // Taylor Series; for real number exponents
   private static double exponentiation_2(double base, double exponent) {
     double result       = 1;
-    double elem         = 1;
+    double elementary         = 1;
     double intermediate = exponent;
     if (exponent == 0) {
       return 1;
@@ -103,9 +120,9 @@ public class Math {
       intermediate = -exponent;
     }
     double log = intermediate * logarithmNatural(base);
-    for (int j = 1; elem > 1e-12; j++) {
-      elem *= log / j;
-      result += elem;
+    for (int j = 1; elementary > 1e-12; j++) {
+      elementary *= log / j;
+      result += elementary;
     }
     if (exponent < 0) {
       result = 1 / result;
@@ -113,23 +130,23 @@ public class Math {
     return result;
   }
 
-  private static double logarithm10_1(double x) {
-    return logarithmNatural(x) / (logarithmNatural(10));
+  private static double logarithm10_1(double number) {
+    return logarithmNatural(number) / (logarithmNatural(10));
   }
 
-  private static double logarithmNatural_1(double x) {
-    if (x <= 0) {
-      throw new ArithmeticException(x + " is not a positive real number.");
+  // Assumed 500 terms was a reasonable enough of an approximation
+  private static double logarithmNatural_1(double number) {
+    if (number <= 0) {
+      throw new ArithmeticException(number + " is not a positive real number.");
     }
     double result = 0;
-    //Assumed 500 terms was a reasonable enough of an approximation
     for (int i = 0; i < 1000; i++) {
-      result += (1.0 / (2 * i + 1)) * exponentiation((x - 1) / (x + 1), (2 * i + 1));
+      result += (1.0 / (2 * i + 1)) * exponentiation((number - 1) / (number + 1), (2 * i + 1));
     }
     return 2 * result;
   }
 
-  //Approximation correct to 11 decimal places using 21 terms
+  // Approximation correct to 11 decimal places using 21 terms
   private static double pi_1() {
     double term = 0;
     for (int i = 0; i < 40; i++) {
@@ -138,7 +155,7 @@ public class Math {
     return squareRoot_1(12) * term;
   }
 
-  //First 32 terms of the Taylor Series Expansion
+  // First 32 terms of the Taylor Series Expansion
   private static double sine_1(double x) {
     double result = 0;
     double term;
