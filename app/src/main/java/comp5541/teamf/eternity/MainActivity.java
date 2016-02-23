@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
     parenthesesDepth = 0;
   }
 
-  //displaydepth somewhere?
   private void setParenthesesDepth(int flag) {
     switch (flag) {
       case 1:
@@ -155,13 +154,14 @@ public class MainActivity extends AppCompatActivity {
             parenthesesDepth--;
           }
           current.deleteCharAt(current.length() - 1);
-          if (current.length() > 0 &&
-              current.charAt(current.length() - 1) == Tokens.NEGATION.build().charAt(0)) {
-            if (current.length() < 1) {
-              tvCurrent.setText("0");
-            } else {
-              tvCurrent.setText(Util.displayReplace(current));
-            }
+          if (current.length() > 0
+              && current.charAt(current.length() - 1) == Tokens.NEGATION.build().charAt(0)) {
+            current.deleteCharAt(current.length() - 1);
+          }
+          if (current.length() < 1) {
+            tvCurrent.setText("0");
+          } else {
+            tvCurrent.setText(Util.displayReplace(current));
           }
         }
       }
@@ -223,7 +223,7 @@ public class MainActivity extends AppCompatActivity {
           Expression e = new ExpressionBuilder(Util.executeReplace(previous))
               .functions(Util.FUNCTIONS).build();
           Double result = e.evaluate();
-          current = new StringBuilder(result.toString());
+          current = new StringBuilder(result.toString().replace('-', '±'));
           tvPrevious.setText(Util.displayReplace(previous));
           tvCurrent.setText(Util.displayReplace(current));
         } catch (Exception err) {

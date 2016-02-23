@@ -5,8 +5,16 @@ public class Math {
   private static final double PI = pi_2();
   private static final double E = natural_1();
 
+  private static double exponentiation(double base, int exponent) {
+    return exponentiation_1(base, exponent);
+  }
+
   private static double exponentiation(double base, double exponent) {
-    return exponentiation_1(base, ((int) exponent));
+    if (exponent == ((int) exponent)) {
+      return exponentiation(base, (int) exponent);
+    } else {
+      return exponentiation_2(base, exponent);
+    }
   }
 
   private static long factorial(int limit) {
@@ -18,7 +26,7 @@ public class Math {
   }
 
   public static double exponent10(double exponent) {
-    return exponent10_2(exponent);
+    return exponentiation(10, exponent);
   }
 
   public static double exponentNatural(double exponent) {
@@ -87,7 +95,7 @@ public class Math {
       result = 10.0;
     } else {
       for (int i = 0; i < largestNum; i++) {
-        double part = exponent * logarithm10(10);
+        double part = exponent * logarithmNatural(10);
         result *= (1 + part / largestNum);
       }
     }
@@ -95,24 +103,24 @@ public class Math {
   }
 
   // Taylor Series
-  private static double exponent10_2(double exponent) {
+  private static double exponentiation_2(double base, double exponent) {
     double sum          = 1;
     double elem         = 1;
     double exponentTemp = exponent;
-    double numLn10;
+    double log;
     int    i            = 1;
     if (exponent == 0) {
-      return 1.0;
+      return 1;
     }
     if (exponent == 1) {
-      return 10.0;
+      return base;
     }
     if (exponent < 0) {
       exponentTemp = -exponent;
     }
-    numLn10 = exponentTemp * logarithm10(10);
+    log = exponentTemp * logarithmNatural(10);
     while (elem > 1e-12) {
-      elem *= numLn10 / i;
+      elem *= log / i;
       sum += elem;
       i++;
     }

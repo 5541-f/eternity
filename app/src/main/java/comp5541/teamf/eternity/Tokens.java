@@ -1,5 +1,10 @@
 package comp5541.teamf.eternity;
 
+/**
+ * Enum of mathematical tokens depending on use. Display strings are displayed in the UI;
+ * build strings are used to build the strings before execution and prevent conflicts,
+ * execute strings are those which are recognized by the exp4j library.
+ */
 enum Tokens {
 
   EXPONENT_10
