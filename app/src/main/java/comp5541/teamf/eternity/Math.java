@@ -3,7 +3,11 @@ package comp5541.teamf.eternity;
 public class Math {
 
   private static final double PI = pi_1();
-  private static final double E = natural_1();
+  private static final double E  = natural_1();
+
+  public static double exponent10(double exponent) {
+    return exponentiation(10, exponent);
+  }
 
   private static double exponentiation(double base, int exponent) {
     return exponentiation_1(base, exponent);
@@ -27,10 +31,6 @@ public class Math {
 
   private static double logarithmNatural(double number) {
     return logarithmNatural_1(number);
-  }
-
-  public static double exponent10(double exponent) {
-    return exponentiation(10, exponent);
   }
 
   public static double exponentNatural(double exponent) {
@@ -61,7 +61,7 @@ public class Math {
   private static long factorial_2(int limit) {
     assert limit >= 0 : limit + " is not a natural number.";
     long result = 1;
-    for (int i = 1; i <= limit; i++){
+    for (int i = 1; i <= limit; i++) {
       result *= i;
     }
     return result;
@@ -70,7 +70,7 @@ public class Math {
   // Function to calculate E; 18 iterations produced maximum accuracy for a double
   private static double natural_1() {
     double result = 1;
-    for (int i = 1; i < 18; i++){
+    for (int i = 1; i < 18; i++) {
       result += (1D / (factorial(i)));
     }
     return result;
@@ -88,28 +88,11 @@ public class Math {
     return result;
   }
 
-  // E method
-  private static double exponent10_1(double exponent) {
-    double result     = 1.0;
-    int    largestNum = 999999999;
-    if (exponent == 0) {
-      result = 1.0;
-    }
-    if (exponent == 1) {
-      result = 10.0;
-    } else {
-      for (int i = 0; i < largestNum; i++) {
-        double part = exponent * logarithmNatural(10);
-        result *= (1 + part / largestNum);
-      }
-    }
-    return result;
-  }
-
   // Taylor Series
   private static double exponentiation_2(double base, double exponent) {
-    double sum          = 1;
+    double result       = 1;
     double elem         = 1;
+    double intermediate = exponent;
     if (exponent == 0) {
       return 1;
     }
@@ -117,17 +100,17 @@ public class Math {
       return base;
     }
     if (exponent < 0) {
-      exponent = -exponent;
+      intermediate = -exponent;
     }
-    double log = exponent * logarithmNatural(base);
+    double log = intermediate * logarithmNatural(base);
     for (int j = 1; elem > 1e-12; j++) {
       elem *= log / j;
-      sum += elem;
+      result += elem;
     }
     if (exponent < 0) {
-      sum = 1 / sum;
+      result = 1 / result;
     }
-    return sum;
+    return result;
   }
 
   private static double logarithm10_1(double x) {
@@ -150,23 +133,6 @@ public class Math {
       term += (exponentiation(-1.0 / 3.0, i)) / (2 * i + 1);
     }
     return squareRoot_1(12) * term;
-  }
-
-  // PI using Leibniz Formula; inefficient
-  private static double pi_2() {
-    int    count       = 999999999;
-    double pi          = 0;
-    double denominator = 1;
-    for (int x = 0; x < count; x++) {
-      if (x % 2 == 0) {
-        pi = pi + (1 / denominator);
-      } else {
-        pi = pi - (1 / denominator);
-      }
-      denominator = denominator + 2;
-    }
-    pi = pi * 4;
-    return pi;
   }
 
   //First 32 terms of the Taylor Series Expansion
