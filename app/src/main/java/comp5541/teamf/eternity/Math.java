@@ -2,43 +2,43 @@ package comp5541.teamf.eternity;
 
 public class Math {
 
-  private final double PI = pi_2();
-  private final double E = natural_1();
+  private static final double PI = pi_2();
+  private static final double E = natural_1();
 
-  private double exponentiation(double base, double exponent) {
+  private static double exponentiation(double base, double exponent) {
     return exponentiation_1(base, ((int) exponent));
   }
 
-  private long factorial(int limit) {
+  private static long factorial(int limit) {
     return factorial_2(limit);
   }
 
-  private double logarithmNatural(double number) {
+  private static double logarithmNatural(double number) {
     return logarithmNatural_1(number);
   }
 
   public static double exponent10(double exponent) {
-    return exponent10(exponent);
+    return exponent10_2(exponent);
   }
 
   public static double exponentNatural(double exponent) {
-    return exponentNatural(exponent);
+    return exponentiation(E, exponent);
   }
 
   public static double logarithm10(double number) {
-    return logarithm10(number);
+    return logarithm10_1(number);
   }
 
   public static double sine(double number) {
-    return sine(number);
+    return sine_1(number);
   }
 
   public static double squareRoot(double number) {
-    return squareRoot(number);
+    return squareRoot_2(number);
   }
 
   // Recursive factorial function
-  private long factorial_1(int limit) {
+  private static long factorial_1(int limit) {
     if (limit == 0) {
       return 1;
     }
@@ -46,7 +46,7 @@ public class Math {
   }
 
   // Non-recursive factorial function
-  private long factorial_2(int limit) {
+  private static long factorial_2(int limit) {
     assert limit >= 0 : limit + " is not a natural number.";
     long result = 1;
     for (int i = 1; i <= limit; i++){
@@ -56,7 +56,7 @@ public class Math {
   }
 
   // Function to calculate E; 18 iterations produced maximum accuracy for a double
-  private double natural_1() {
+  private static double natural_1() {
     double result = 1;
     for (int i = 1; i < 18; i++){
       result += (1D / (factorial(i)));
@@ -65,7 +65,7 @@ public class Math {
   }
 
   //Computes x^y when y is an integer
-  private double exponentiation_1(double base, int exponent) {
+  private static double exponentiation_1(double base, int exponent) {
     double result = 1;
     if (exponent == 0) {
       return 1;
@@ -77,7 +77,7 @@ public class Math {
   }
 
   // E method
-  private double exponent10_1(double exponent) {
+  private static double exponent10_1(double exponent) {
     double result     = 1.0;
     int    largestNum = 999999999;
     if (exponent == 0) {
@@ -95,7 +95,7 @@ public class Math {
   }
 
   // Taylor Series
-  private double exponent10_2(double exponent) {
+  private static double exponent10_2(double exponent) {
     double sum          = 1;
     double elem         = 1;
     double exponentTemp = exponent;
@@ -122,11 +122,11 @@ public class Math {
     return sum;
   }
 
-  private double logarithm10_1(double x) {
+  private static double logarithm10_1(double x) {
     return logarithmNatural(x) / (logarithmNatural(10));
   }
 
-  private double logarithmNatural_1(double x) {
+  private static double logarithmNatural_1(double x) {
     double result = 0;
     //Assumed 500 terms was a reasonable enough of an approximation
     for (int i = 0; i < 1000; i++) {
@@ -136,7 +136,7 @@ public class Math {
   }
 
   //Approximation correct to 11 decimal places using 21 terms
-  private double pi_1() {
+  private static double pi_1() {
     double term = 0;
     for (int i = 0; i < 40; i++) {
       term += (exponentiation(-1.0 / 3.0, i)) / (2 * i + 1);
@@ -145,7 +145,7 @@ public class Math {
   }
 
   // PI using Leibniz Formula
-  private double pi_2() {
+  private static double pi_2() {
     int    count       = 999999999;
     double pi          = 0;
     double denominator = 1;
@@ -162,7 +162,7 @@ public class Math {
   }
 
   //First 32 terms of the Taylor Series Expansion
-  private double sin_1(double x) {
+  private static double sine_1(double x) {
     double result = 0;
     double term;
     for (int i = 1; i < 65; i += 2) {
@@ -176,7 +176,7 @@ public class Math {
     return result;
   }
 
-  private double squareRoot_1(double x) {
+  private static double squareRoot_1(double x) {
     double sqr = x / 2;
     double temp;
     do {
@@ -186,7 +186,7 @@ public class Math {
     return temp;
   }
 
-  private double squareRoot_2(double number) {
+  private static double squareRoot_2(double number) {
     double num    = number;
     double result = 0;
     double sqr;
