@@ -15,6 +15,7 @@ public class Math {
 
   /**
    * Power of 10
+   *
    * @param exponent Accepts all real numbers
    * @return
    */
@@ -108,7 +109,7 @@ public class Math {
   // Taylor Series; for real number exponents
   private static double exponentiation_2(double base, double exponent) {
     double result       = 1;
-    double elementary         = 1;
+    double elementary   = 1;
     double intermediate = exponent;
     if (exponent == 0) {
       return 1;
@@ -136,11 +137,14 @@ public class Math {
 
   // Assumed 500 terms was a reasonable enough of an approximation
   private static double logarithmNatural_1(double number) {
-    if (number <= 0) {
-      throw new ArithmeticException(number + " is not a positive real number.");
+    if (number < 0) {
+      return Double.NaN;
+    }
+    if (number == 0) {
+      return Double.NEGATIVE_INFINITY;
     }
     double result = 0;
-    for (int i = 0; i < 1000; i++) {
+    for (int i = 0; i < 70; i++) {
       result += (1.0 / (2 * i + 1)) * exponentiation((number - 1) / (number + 1), (2 * i + 1));
     }
     return 2 * result;
@@ -181,23 +185,20 @@ public class Math {
   }
 
   private static double squareRoot_2(double number) {
-    double num    = number;
-    double result = 0;
-    double sqr;
-    double temp   = 0;
-    if (num == 0) {
-      sqr = 0;
-      result = sqr;
-    } else if (num < 0) {
-      result = -99999999;
-    } else {
-      sqr = num / 2;
-      do {
-        temp = sqr;
-        sqr = (temp + num / temp) / 2;
-      } while ((temp - sqr) != 0);
-      result = temp;
+    if (number < 0) {
+      return Double.NaN;
     }
+    if (number == 0) {
+      return 0;
+    }
+    double result = 0;
+    double temp   = 0;
+    double sqr = number / 2;
+    do {
+      temp = sqr;
+      sqr = (temp + number / temp) / 2;
+    } while ((temp - sqr) != 0);
+    result = temp;
     return result;
   }
 }
