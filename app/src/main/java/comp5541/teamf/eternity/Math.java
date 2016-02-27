@@ -32,7 +32,7 @@ public class Math {
   for real numbers.
    */
   private static double exponentiation(double base, double exponent) {
-    if (exponent == ((int) exponent)) {
+    if (exponent == ((int) exponent) && exponent >= 1) {
       return exponentiation(base, (int) exponent);
     } else {
       return exponentiation_2(base, exponent);
