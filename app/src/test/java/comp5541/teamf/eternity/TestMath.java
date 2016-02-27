@@ -21,8 +21,8 @@ public class TestMath {
 
   @Before
   public void setUp() {
-    values = new double[3][8];
-    values[0] = new double[]{-9, -1.0, -0.3, 0.0, 0.3, 1.0, 9, java.lang.Math.PI};
+    values = new double[3][10];
+    values[0] = new double[]{-100, -10, -1, -0.1, 0, 0.1, 1, 10, 100, java.lang.Math.PI};
   }
 
   @Test
@@ -43,9 +43,9 @@ public class TestMath {
     String name = "exponent10";
     for (int i = 0; i < values[0].length; i++) {
       try {
-        assertEquals(values[1][i], values[2][i], 1e-10);
+        assertEquals(values[1][i], values[2][i], 2e-11);
       } finally {
-        System.out.printf("\n%s %f:\nBuiltin: %f\nCustom: %f\n",
+        System.out.printf("\n%s %.20f:\nBuiltin: %.20f\nCustom: %.20f\n",
             name, values[0][i], values[1][i], values[2][i]);
       }
     }
@@ -71,9 +71,9 @@ public class TestMath {
     String name ="exponentNatural";
     for (int i = 0; i < values[0].length; i++) {
       try {
-        assertEquals(values[1][i], values[2][i], 1e-10);
+        assertEquals(values[1][i], values[2][i], 2e-11);
       } finally {
-        System.out.printf("\n%s %f:\nBuiltin: %f\nCustom: %f\n",
+        System.out.printf("\n%s %.20f:\nBuiltin: %.20f\nCustom: %.20f\n",
             name, values[0][i], values[1][i], values[2][i]);
       }
     }
@@ -99,9 +99,9 @@ public class TestMath {
     String name = "logarithm10";
     for (int i = 0; i < values[0].length; i++) {
       try {
-        assertEquals(values[1][i], values[2][i], 1e-10);
+        assertEquals(values[1][i], values[2][i], 2e-11);
       } finally {
-        System.out.printf("\n%s %f:\nBuiltin: %f\nCustom: %f\n",
+        System.out.printf("\n%s %.20f:\nBuiltin: %.20f\nCustom: %.20f\n",
             name, values[0][i], values[1][i], values[2][i]);
       }
     }
@@ -127,9 +127,9 @@ public class TestMath {
     String name = "sine";
     for (int i = 0; i < values[0].length; i++) {
       try {
-        assertEquals(values[1][i], values[2][i], 1e-10);
+        assertEquals(values[1][i], values[2][i], 2e-16);
       } finally {
-        System.out.printf("\n%s %f:\nBuiltin: %f\nCustom: %f\n",
+        System.out.printf("\n%s %.20f:\nBuiltin: %.20f\nCustom: %.20f\n",
             name, values[0][i], values[1][i], values[2][i]);
       }
     }
@@ -155,9 +155,9 @@ public class TestMath {
     String name = "squareRoot";
     for (int i = 0; i < values[0].length; i++) {
       try {
-        assertEquals(values[1][i], values[2][i], 1e-10);
+        assertEquals(values[1][i], values[2][i], 2e-11);
       } finally {
-        System.out.printf("\n%s %f:\nBuiltin: %f\nCustom: %f\n",
+        System.out.printf("\n%s %.20f:\nBuiltin: %.20f\nCustom: %.20f\n",
             name, values[0][i], values[1][i], values[2][i]);
       }
     }

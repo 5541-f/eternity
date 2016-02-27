@@ -62,7 +62,7 @@ public class Math {
   }
 
   public static double squareRoot(double number) {
-    return squareRoot_2(number);
+    return squareRoot_1(number);
   }
 
   // Recursive factorial function
@@ -143,9 +143,13 @@ public class Math {
     if (number == 0) {
       return Double.NEGATIVE_INFINITY;
     }
+    double temp = 0;
     double result = 0;
-    for (int i = 0; i < 70; i++) {
-      result += (1.0 / (2 * i + 1)) * exponentiation((number - 1) / (number + 1), (2 * i + 1));
+    for (int i = 0; i < 90; i++) {
+      temp = (1.0 / (2 * i + 1)) * exponentiation((number - 1) / (number + 1), (2 * i + 1));
+      if (temp * 0 == 0) {
+        result += temp;
+      }
     }
     return 2 * result;
   }
@@ -156,35 +160,28 @@ public class Math {
     for (int i = 0; i < 40; i++) {
       term += (exponentiation(-1.0 / 3.0, i)) / (2 * i + 1);
     }
-    return squareRoot_1(12) * term;
+    return squareRoot(12) * term;
   }
 
   // First 32 terms of the Taylor Series Expansion
   private static double sine_1(double x) {
     double result = 0;
-    double term;
+    Double term;
     for (int i = 1; i < 65; i += 2) {
       term = exponentiation(PI / 180, i) * exponentiation(x, i) / factorial(i);
-      if (i % 4 == 1) {
-        result += term;
-      } else {
-        result -= term;
+      if (term * 0 == 0) {
+        if (i % 4 == 1) {
+          result += term;
+        } else {
+          result -= term;
+        }
       }
     }
     return result;
   }
 
-  private static double squareRoot_1(double x) {
-    double sqr = x / 2;
-    double temp;
-    do {
-      temp = sqr;
-      sqr = (temp + x / temp) / 2;
-    } while ((temp - sqr) != 0);
-    return temp;
-  }
 
-  private static double squareRoot_2(double number) {
+  private static double squareRoot_1(double number) {
     if (number < 0) {
       return Double.NaN;
     }
