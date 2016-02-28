@@ -241,7 +241,7 @@ public class Math {
     return squareRoot(12) * term;
   }
 
-  // First 32 terms of the Taylor Series Expansion
+  // First 10 terms of the Taylor Series Expansion
   private static double sine_1(double number) {
 
     //algorithm not accurate with high negative values. Convert back to negative at the end if needed
@@ -259,6 +259,8 @@ public class Math {
       number = number-360; //Get the negative equivalent of the angle
     }
     Double term;
+
+    //Taylor Series Terms
     for (int i = 1; i < 20; i += 2) {
       term = exponentiation(PI / 180, i) * exponentiation(number, i) / factorial(i);
       if (!term.isInfinite() && !term.isNaN()) {
