@@ -9,9 +9,9 @@ package comp5541.teamf.eternity;
 public class Math {
 
   // Calculated constant for PI
-  private static final double PI = pi_1();
+  public static final double PI = pi_1();
   // Calculated constant for E
-  private static final double E  = natural_1();
+  public static final double E  = natural_1();
 
   /**
    * Power of 10
@@ -121,7 +121,7 @@ public class Math {
       intermediate = -exponent;
     }
     double log = intermediate * logarithmNatural(base);
-    for (int j = 1; elementary > 1e-12; j++) {
+    for (int j = 1; elementary > 0; j++) {
       elementary *= log / j;
       result += elementary;
     }
@@ -143,11 +143,13 @@ public class Math {
     if (number == 0) {
       return Double.NEGATIVE_INFINITY;
     }
-    double temp = 0;
+    double temp = 1;
     double result = 0;
-    for (int i = 0; i < 90; i++) {
+    for (int i = 0; i < 10000; i++) {
       temp = (1.0 / (2 * i + 1)) * exponentiation((number - 1) / (number + 1), (2 * i + 1));
-      if (temp * 0 == 0) {
+      if (temp == 0 || temp * 0 != 0) {
+        break;
+      } else {
         result += temp;
       }
     }
@@ -157,7 +159,7 @@ public class Math {
   // Approximation correct to 11 decimal places using 21 terms
   private static double pi_1() {
     double term = 0;
-    for (int i = 0; i < 40; i++) {
+    for (int i = 0; i < 30; i++) {
       term += (exponentiation(-1.0 / 3.0, i)) / (2 * i + 1);
     }
     return squareRoot(12) * term;
@@ -167,7 +169,7 @@ public class Math {
   private static double sine_1(double x) {
     double result = 0;
     Double term;
-    for (int i = 1; i < 65; i += 2) {
+    for (int i = 1; i < 20; i += 2) {
       term = exponentiation(PI / 180, i) * exponentiation(x, i) / factorial(i);
       if (term * 0 == 0) {
         if (i % 4 == 1) {

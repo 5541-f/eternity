@@ -21,8 +21,18 @@ public class TestMath {
 
   @Before
   public void setUp() {
-    values = new double[3][10];
-    values[0] = new double[]{-100, -10, -1, -0.1, 0, 0.1, 1, 10, 100, java.lang.Math.PI};
+    values = new double[3][11];
+    values[0] = new double[]{-100, -10, -1, -0.1, 0, 0.1, 1, 10, 100, 10000, java.lang.Math.PI};
+  }
+
+  @Test
+  public void testPI(){
+    assertEquals(java.lang.Math.PI, Math.PI, 2e-16);
+  }
+
+  @Test
+  public void testE(){
+    assertEquals(java.lang.Math.E, Math.E, 2e-16);
   }
 
   @Test
@@ -47,6 +57,7 @@ public class TestMath {
       } finally {
         System.out.printf("\n%s %.20f:\nBuiltin: %.20f\nCustom: %.20f\n",
             name, values[0][i], values[1][i], values[2][i]);
+        System.out.printf("Difference: %.20f\n", values[1][i] - values[2][i]);
       }
     }
     System.out.println(name + " Builtin Runtime:" + builtinTotalTime
@@ -75,6 +86,7 @@ public class TestMath {
       } finally {
         System.out.printf("\n%s %.20f:\nBuiltin: %.20f\nCustom: %.20f\n",
             name, values[0][i], values[1][i], values[2][i]);
+        System.out.printf("Difference: %.20f\n", values[1][i] - values[2][i]);
       }
     }
     System.out.println(name + " Builtin Runtime:" + builtinTotalTime
@@ -103,6 +115,7 @@ public class TestMath {
       } finally {
         System.out.printf("\n%s %.20f:\nBuiltin: %.20f\nCustom: %.20f\n",
             name, values[0][i], values[1][i], values[2][i]);
+        System.out.printf("Difference: %.20f\n", values[1][i] - values[2][i]);
       }
     }
     System.out.println(name + " Builtin Runtime:" + builtinTotalTime
@@ -131,6 +144,7 @@ public class TestMath {
       } finally {
         System.out.printf("\n%s %.20f:\nBuiltin: %.20f\nCustom: %.20f\n",
             name, values[0][i], values[1][i], values[2][i]);
+        System.out.printf("Difference: %.20f\n", values[1][i] - values[2][i]);
       }
     }
     System.out.println(name + " Builtin Runtime:" + builtinTotalTime
@@ -159,6 +173,7 @@ public class TestMath {
       } finally {
         System.out.printf("\n%s %.20f:\nBuiltin: %.20f\nCustom: %.20f\n",
             name, values[0][i], values[1][i], values[2][i]);
+        System.out.printf("Difference: %.20f\n", values[1][i] - values[2][i]);
       }
     }
     System.out.println(name + " Builtin Runtime:" + builtinTotalTime
