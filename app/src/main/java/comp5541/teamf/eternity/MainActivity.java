@@ -188,11 +188,11 @@ public class MainActivity extends AppCompatActivity {
       }
     });
 
-    // Also cast to int if % 0 == 0;
+    // Also cast to int if % 0 == 0; done?
     // move scroll on type??
     // leave expression after error?
-    // negation on return???
-    // infinity
+    // negation on return???; done?
+    // infinity/NaN?
     btnExecute.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -229,7 +229,11 @@ public class MainActivity extends AppCompatActivity {
           Expression e = new ExpressionBuilder(Util.executeReplace(previous))
               .functions(Util.FUNCTIONS).build();
           Double result = e.evaluate();
-          current = new StringBuilder(result.toString().replace('-', '±'));
+          if (result == result.intValue()) {
+            current = new StringBuilder(((Integer) result.intValue()).toString().replace('-', '±'));
+          } else {
+            current = new StringBuilder(result.toString().replace('-', '±'));
+          }
           tvPrevious.setText(Util.displayReplace(previous));
           tvCurrent.setText(Util.displayReplace(current));
         } catch (Exception err) {

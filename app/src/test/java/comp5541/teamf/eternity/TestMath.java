@@ -21,18 +21,19 @@ public class TestMath {
 
   @Before
   public void setUp() {
-    values = new double[3][11];
-    values[0] = new double[]{-100, -10, -1, -0.1, 0, 0.1, 1, 10, 100, 10000, java.lang.Math.PI};
+    values = new double[3][14];
+    values[0] = new double[]{-100, -10, -1, -0.1, 0, 0.1, 1, 10, 100, 1000,
+        Double.NaN, Double.POSITIVE_INFINITY, Double.NEGATIVE_INFINITY, java.lang.Math.PI};
   }
 
   @Test
   public void testPI(){
-    assertEquals(java.lang.Math.PI, Math.PI, 2e-16);
+    assertEquals(java.lang.Math.PI, Math.PI, 2e-15);
   }
 
   @Test
   public void testE(){
-    assertEquals(java.lang.Math.E, Math.E, 2e-16);
+    assertEquals(java.lang.Math.E, Math.E, 2e-15);
   }
 
   @Test
@@ -51,6 +52,8 @@ public class TestMath {
     long customTotalTime = System.currentTimeMillis() - customStartTime;
 
     String name = "exponent10";
+    System.out.println(name + " Builtin Runtime:" + builtinTotalTime
+                       + "; Custom Runtime:" + customTotalTime + "\n\n");
     for (int i = 0; i < values[0].length; i++) {
       try {
         assertEquals(values[1][i], values[2][i], 2e-11);
@@ -60,8 +63,6 @@ public class TestMath {
         System.out.printf("Difference: %.20f\n", values[1][i] - values[2][i]);
       }
     }
-    System.out.println(name + " Builtin Runtime:" + builtinTotalTime
-                       + "; Custom Runtime:" + customTotalTime + "\n\n");
   }
 
   @Test
@@ -80,6 +81,8 @@ public class TestMath {
     long customTotalTime = System.currentTimeMillis() - customStartTime;
 
     String name ="exponentNatural";
+    System.out.println(name + " Builtin Runtime:" + builtinTotalTime
+                       + "; Custom Runtime:" + customTotalTime + "\n\n");
     for (int i = 0; i < values[0].length; i++) {
       try {
         assertEquals(values[1][i], values[2][i], 2e-11);
@@ -89,8 +92,6 @@ public class TestMath {
         System.out.printf("Difference: %.20f\n", values[1][i] - values[2][i]);
       }
     }
-    System.out.println(name + " Builtin Runtime:" + builtinTotalTime
-                       + "; Custom Runtime:" + customTotalTime + "\n\n");
   }
 
   @Test
@@ -109,6 +110,8 @@ public class TestMath {
     long customTotalTime = System.currentTimeMillis() - customStartTime;
 
     String name = "logarithm10";
+    System.out.println(name + " Builtin Runtime:" + builtinTotalTime
+                       + "; Custom Runtime:" + customTotalTime + "\n\n");
     for (int i = 0; i < values[0].length; i++) {
       try {
         assertEquals(values[1][i], values[2][i], 2e-11);
@@ -118,8 +121,6 @@ public class TestMath {
         System.out.printf("Difference: %.20f\n", values[1][i] - values[2][i]);
       }
     }
-    System.out.println(name + " Builtin Runtime:" + builtinTotalTime
-                       + "; Custom Runtime:" + customTotalTime + "\n\n");
   }
 
   @Test
@@ -138,17 +139,17 @@ public class TestMath {
     long customTotalTime = System.currentTimeMillis() - customStartTime;
 
     String name = "sine";
+    System.out.println(name + " Builtin Runtime:" + builtinTotalTime
+                       + "; Custom Runtime:" + customTotalTime + "\n\n");
     for (int i = 0; i < values[0].length; i++) {
       try {
-        assertEquals(values[1][i], values[2][i], 2e-16);
+        assertEquals(values[1][i], values[2][i], 2e-11);
       } finally {
         System.out.printf("\n%s %.20f:\nBuiltin: %.20f\nCustom: %.20f\n",
             name, values[0][i], values[1][i], values[2][i]);
         System.out.printf("Difference: %.20f\n", values[1][i] - values[2][i]);
       }
     }
-    System.out.println(name + " Builtin Runtime:" + builtinTotalTime
-                       + "; Custom Runtime:" + customTotalTime + "\n\n");
   }
 
   @Test
@@ -167,6 +168,8 @@ public class TestMath {
     long customTotalTime = System.currentTimeMillis() - customStartTime;
 
     String name = "squareRoot";
+    System.out.println(name + " Builtin Runtime:" + builtinTotalTime
+                       + "; Custom Runtime:" + customTotalTime + "\n\n");
     for (int i = 0; i < values[0].length; i++) {
       try {
         assertEquals(values[1][i], values[2][i], 2e-11);
@@ -176,7 +179,5 @@ public class TestMath {
         System.out.printf("Difference: %.20f\n", values[1][i] - values[2][i]);
       }
     }
-    System.out.println(name + " Builtin Runtime:" + builtinTotalTime
-                       + "; Custom Runtime:" + customTotalTime + "\n\n");
   }
 }

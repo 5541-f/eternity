@@ -20,6 +20,18 @@ public class Math {
    * @return
    */
   public static double exponent10(double exponent) {
+    if (((Double) exponent).isNaN()) {
+      return Double.NaN;
+    }
+    if (exponent == Double.NEGATIVE_INFINITY) {
+      return 0;
+    }
+    if (exponent == Double.POSITIVE_INFINITY) {
+      return Double.POSITIVE_INFINITY;
+    }
+    if (exponent == 0) {
+      return 1;
+    }
     return exponentiation(10, exponent);
   }
 
@@ -33,51 +45,127 @@ public class Math {
   for real numbers.
    */
   private static double exponentiation(double base, double exponent) {
-    if (exponent == ((int) exponent) && exponent >= 1) {
+    if (((Double) exponent).isNaN()) {
+      return Double.NaN;
+    }
+    if (exponent == Double.NEGATIVE_INFINITY) {
+      return 0;
+    }
+    if (exponent == Double.POSITIVE_INFINITY) {
+      return Double.POSITIVE_INFINITY;
+    }
+    if (exponent == 0) {
+      return 1;
+    }
+    if (exponent == 1) {
+      return base;
+    }
+    if (exponent == ((int) exponent)) {
       return exponentiation(base, (int) exponent);
     } else {
       return exponentiation_2(base, exponent);
     }
   }
 
-  // Private method for use by functions that require factorials, such as E or sine
-  private static long factorial(int limit) {
-    return factorial_2(limit);
-  }
-
-  private static double logarithmNatural(double number) {
-    return logarithmNatural_1(number);
-  }
-
   public static double exponentNatural(double exponent) {
+    if (((Double) exponent).isNaN()) {
+      return Double.NaN;
+    }
+    if (exponent == Double.NEGATIVE_INFINITY) {
+      return 0;
+    }
+    if (exponent == Double.POSITIVE_INFINITY) {
+      return Double.POSITIVE_INFINITY;
+    }
+    if (exponent == 0) {
+      return 1;
+    }
     return exponentiation(E, exponent);
   }
 
+  // Private method for use by functions that require factorials, such as E or sine
+  private static long factorial(int limit) {
+    if (limit < 0) {
+      throw new ArithmeticException(limit + " is not a natural number.");
+    }
+    if (limit == 0) {
+      return 1;
+    }
+    if (limit == 1) {
+      return 1;
+    }
+    return factorial_1(limit);
+  }
+
+  private static double logarithmNatural(double number) {
+    if (((Double) number).isNaN()) {
+      return Double.NaN;
+    }
+    if (number == Double.NEGATIVE_INFINITY) {
+      return Double.NaN;
+    }
+    if (number == Double.POSITIVE_INFINITY) {
+      return Double.POSITIVE_INFINITY;
+    }
+    if (number < 0) {
+      return Double.NaN;
+    }
+    if (number == 0) {
+      return Double.NEGATIVE_INFINITY;
+    }
+    return logarithmNatural_1(number);
+  }
+
   public static double logarithm10(double number) {
+    if (((Double) number).isNaN()) {
+      return Double.NaN;
+    }
+    if (number == Double.NEGATIVE_INFINITY) {
+      return Double.NaN;
+    }
+    if (number == Double.POSITIVE_INFINITY) {
+      return Double.POSITIVE_INFINITY;
+    }
     return logarithm10_1(number);
   }
 
   public static double sine(double number) {
+    if (((Double) number).isNaN()) {
+      return Double.NaN;
+    }
+    if (number == Double.NEGATIVE_INFINITY) {
+      return Double.NaN;
+    }
+    if (number == Double.POSITIVE_INFINITY) {
+      return Double.NaN;
+    }
+    if (number == 0) {
+      return 0;
+    }
     return sine_1(number);
   }
 
   public static double squareRoot(double number) {
+    if (((Double) number).isNaN()) {
+      return Double.NaN;
+    }
+    if (number == Double.NEGATIVE_INFINITY) {
+      return Double.NaN;
+    }
+    if (number == Double.POSITIVE_INFINITY) {
+      return Double.POSITIVE_INFINITY;
+    }
+    if (number < 0) {
+      return Double.NaN;
+    }
+    if (number == 0) {
+      return 0;
+    }
     return squareRoot_1(number);
   }
 
-  // Recursive factorial function
-  private static long factorial_1(int limit) {
-    if (limit == 0) {
-      return 1;
-    }
-    return (limit * factorial_1(limit - 1));
-  }
-
   // Non-recursive factorial function
-  private static long factorial_2(int limit) {
-    if (limit < 0) {
-      throw new ArithmeticException(limit + " is not a natural number.");
-    }
+  private static long factorial_1(int limit) {
     long result = 1;
     for (int i = 1; i <= limit; i++) {
       result *= i;
@@ -97,11 +185,15 @@ public class Math {
   // Computes x^y when y is an integer
   private static double exponentiation_1(double base, int exponent) {
     double result = 1;
-    if (exponent == 0) {
-      return 1;
+    double temp = exponent;
+    if (exponent < 0) {
+      temp = -exponent;
     }
-    for (int i = 0; i < exponent; i++) {
+    for (int i = 0; i < temp; i++) {
       result *= base;
+    }
+    if (exponent < 0) {
+      result = 1 / result;
     }
     return result;
   }
@@ -110,17 +202,11 @@ public class Math {
   private static double exponentiation_2(double base, double exponent) {
     double result       = 1;
     double elementary   = 1;
-    double intermediate = exponent;
-    if (exponent == 0) {
-      return 1;
-    }
-    if (exponent == 1) {
-      return base;
-    }
+    double temp = exponent;
     if (exponent < 0) {
-      intermediate = -exponent;
+      temp = -exponent;
     }
-    double log = intermediate * logarithmNatural(base);
+    double log = temp * logarithmNatural(base);
     for (int j = 1; elementary > 0; j++) {
       elementary *= log / j;
       result += elementary;
@@ -137,26 +223,16 @@ public class Math {
 
   // Assumed 500 terms was a reasonable enough of an approximation
   private static double logarithmNatural_1(double number) {
-    if (number < 0) {
-      return Double.NaN;
-    }
-    if (number == 0) {
-      return Double.NEGATIVE_INFINITY;
-    }
-    double temp = 1;
+    double temp = 0;
     double result = 0;
-    for (int i = 0; i < 10000; i++) {
+    for (int i = 0; i < 500; i++) {
       temp = (1.0 / (2 * i + 1)) * exponentiation((number - 1) / (number + 1), (2 * i + 1));
-      if (temp == 0 || temp * 0 != 0) {
-        break;
-      } else {
-        result += temp;
-      }
+      result += temp;
     }
     return 2 * result;
   }
 
-  // Approximation correct to 11 decimal places using 21 terms
+  // Function to calculate PI; 30 iterations produced maximum accuracy for a double
   private static double pi_1() {
     double term = 0;
     for (int i = 0; i < 30; i++) {
@@ -166,12 +242,12 @@ public class Math {
   }
 
   // First 32 terms of the Taylor Series Expansion
-  private static double sine_1(double x) {
+  private static double sine_1(double number) {
     double result = 0;
     Double term;
     for (int i = 1; i < 20; i += 2) {
-      term = exponentiation(PI / 180, i) * exponentiation(x, i) / factorial(i);
-      if (term * 0 == 0) {
+      term = exponentiation(PI / 180, i) * exponentiation(number, i) / factorial(i);
+      if (!term.isInfinite() && !term.isNaN()) {
         if (i % 4 == 1) {
           result += term;
         } else {
@@ -179,17 +255,10 @@ public class Math {
         }
       }
     }
-    return result;
+    return result ;
   }
 
-
   private static double squareRoot_1(double number) {
-    if (number < 0) {
-      return Double.NaN;
-    }
-    if (number == 0) {
-      return 0;
-    }
     double result = 0;
     double temp   = 0;
     double sqr = number / 2;
