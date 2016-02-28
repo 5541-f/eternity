@@ -244,6 +244,12 @@ public class Math {
   // First 32 terms of the Taylor Series Expansion
   private static double sine_1(double number) {
     double result = 0;
+    number = number%360; // Algorithm can only take angles between -179 to 179
+    if(number == 180)
+      return 0;
+    if(number>180){
+      number = number-360;
+    }
     Double term;
     for (int i = 1; i < 20; i += 2) {
       term = exponentiation(PI / 180, i) * exponentiation(number, i) / factorial(i);
@@ -269,4 +275,5 @@ public class Math {
     result = temp;
     return result;
   }
+
 }
