@@ -243,12 +243,20 @@ public class Math {
 
   // First 32 terms of the Taylor Series Expansion
   private static double sine_1(double number) {
+
+    //algorithm not accurate with high negative values. Convert back to negative at the end if needed
+    boolean isNegative = false;
+    if(number<0) {
+      isNegative = true;
+      number = number*-1;
+    }
     double result = 0;
-    number = number%360; // Algorithm can only take angles between -179 to 179
+
+    number = number%360; // Algorithm can only take angles between [0,180[
     if(number == 180)
       return 0;
     if(number>180){
-      number = number-360;
+      number = number-360; //Get the negative equivalent of the angle
     }
     Double term;
     for (int i = 1; i < 20; i += 2) {
@@ -261,6 +269,8 @@ public class Math {
         }
       }
     }
+    if(isNegative == true)
+      return result*-1;
     return result ;
   }
 
@@ -274,6 +284,10 @@ public class Math {
     } while ((temp - sqr) != 0);
     result = temp;
     return result;
+  }
+
+  public static void main(String[] args){
+    System.out.println(sine_1(-1000));
   }
 
 }
