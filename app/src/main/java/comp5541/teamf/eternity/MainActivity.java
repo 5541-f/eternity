@@ -192,6 +192,7 @@ public class MainActivity extends AppCompatActivity {
     // TODO: leave expression after error?
     // TODO: negation on return???; done?
     // TODO: infinity/NaN?
+    // TODO: close functions???
     ((Button) findViewById(R.id.btnExecute))
         .setOnClickListener(new View.OnClickListener() {
       @Override

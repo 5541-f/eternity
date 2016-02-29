@@ -4,9 +4,9 @@ model {
     android {
         compileSdkVersion 23
         buildToolsVersion "23.0.2"
-        ndk {
-            moduleName "hello-jni"
-        }
+//        ndk {
+//            moduleName "hello-jni"
+//        }
 
         defaultConfig {
             applicationId "comp5541.teamf.eternity"
