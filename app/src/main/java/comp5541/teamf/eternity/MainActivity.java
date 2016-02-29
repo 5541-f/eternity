@@ -1,6 +1,7 @@
 package comp5541.teamf.eternity;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
@@ -24,6 +25,9 @@ public class MainActivity extends AppCompatActivity {
 
   private int parenthesesDepth;
 
+  /**
+   * Sets/resets <b>Previous Expression</b> display and values
+   */
   private void setPrevious() {
     previous = new StringBuilder("0");
     tvPrevious = (TextView) findViewById(R.id.tvPrevious);
@@ -31,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
     tvPrevious.setMovementMethod(new ScrollingMovementMethod());
   }
 
+  /**
+   * Sets/resets <b>Current Expression</b> display and values
+   */
   private void setCurrent() {
     current = new StringBuilder();
     tvCurrent = (TextView) findViewById(R.id.tvCurrent);
@@ -39,6 +46,10 @@ public class MainActivity extends AppCompatActivity {
     parenthesesDepth = 0;
   }
 
+  /**
+   * Increments or decrements <b>parenthesis depth</b> by 1. For use with <b>setKey</b> method.
+   * @param flag <b>1</b> to increment by 1; <b>-1</b> to decrement by 1; default has no impact.
+   */
   private void setParenthesesDepth(int flag) {
     switch (flag) {
       case 1:
@@ -53,10 +64,11 @@ public class MainActivity extends AppCompatActivity {
 
   /**
    * A method for setting OnClickListeners for buttons with common attributes
-   * @param validation Regex that precedes this character
-   * @param character Build character of the token
+   *
+   * @param validation  Regex that precedes this character
+   * @param character   Build character of the token
    * @param parentheses impact on parenthesis depth
-   * @return
+   * @return (View.OnClickListener)
    */
   private View.OnClickListener setKey(final String validation,
                                       final String character,
@@ -81,73 +93,58 @@ public class MainActivity extends AppCompatActivity {
     this.setPrevious();
     this.setCurrent();
 
-    Button btn0                = (Button) findViewById(R.id.btn0);
-    Button btn1                = (Button) findViewById(R.id.btn1);
-    Button btn2                = (Button) findViewById(R.id.btn2);
-    Button btn3                = (Button) findViewById(R.id.btn3);
-    Button btn4                = (Button) findViewById(R.id.btn4);
-    Button btn5                = (Button) findViewById(R.id.btn5);
-    Button btn6                = (Button) findViewById(R.id.btn6);
-    Button btn7                = (Button) findViewById(R.id.btn7);
-    Button btn8                = (Button) findViewById(R.id.btn8);
-    Button btn9                = (Button) findViewById(R.id.btn9);
-    Button btnAddition         = (Button) findViewById(R.id.btnAddition);
-    Button btnBackspace        = (Button) findViewById(R.id.btnBackspace);
-    Button btnClearAll         = (Button) findViewById(R.id.btnClearAll);
-    Button btnClearExpression  = (Button) findViewById(R.id.btnClearExpression);
-    Button btnDivision         = (Button) findViewById(R.id.btnDivision);
-    Button btnPoint            = (Button) findViewById(R.id.btnPoint);
-    Button btnExecute          = (Button) findViewById(R.id.btnExecute);
-    Button btnExponent10       = (Button) findViewById(R.id.btnExponent10);
-    Button btnExponentNatural  = (Button) findViewById(R.id.btnExponentNatural);
-    Button btnLogarithm10      = (Button) findViewById(R.id.btnLogarithm10);
-    Button btnModulo           = (Button) findViewById(R.id.btnModulo);
-    Button btnMultiplication   = (Button) findViewById(R.id.btnMultiplication);
-    Button btnNegation         = (Button) findViewById(R.id.btnNegation);
-    Button btnParenthesisLeft  = (Button) findViewById(R.id.btnParenthesisLeft);
-    Button btnParenthesisRight = (Button) findViewById(R.id.btnParenthesisRight);
-    Button btnSine             = (Button) findViewById(R.id.btnSine);
-    Button btnSquareRoot       = (Button) findViewById(R.id.btnSquareRoot);
-    Button btnSubtraction      = (Button) findViewById(R.id.btnSubtraction);
+    // Digits
+    // TODO:redundant 0s
+    ((Button) findViewById(R.id.btn0)).setOnClickListener(
+        this.setKey(Util.DIGIT_VALIDATION, "0", 0));
+    ((Button) findViewById(R.id.btn1)).setOnClickListener(
+        this.setKey(Util.DIGIT_VALIDATION, "1", 0));
+    ((Button) findViewById(R.id.btn2)).setOnClickListener(
+        this.setKey(Util.DIGIT_VALIDATION, "2", 0));
+    ((Button) findViewById(R.id.btn3)).setOnClickListener(
+        this.setKey(Util.DIGIT_VALIDATION, "3", 0));
+    ((Button) findViewById(R.id.btn4)).setOnClickListener(
+        this.setKey(Util.DIGIT_VALIDATION, "4", 0));
+    ((Button) findViewById(R.id.btn5)).setOnClickListener(
+        this.setKey(Util.DIGIT_VALIDATION, "5", 0));
+    ((Button) findViewById(R.id.btn6)).setOnClickListener(
+        this.setKey(Util.DIGIT_VALIDATION, "6", 0));
+    ((Button) findViewById(R.id.btn7)).setOnClickListener(
+        this.setKey(Util.DIGIT_VALIDATION, "7", 0));
+    ((Button) findViewById(R.id.btn8)).setOnClickListener(
+        this.setKey(Util.DIGIT_VALIDATION, "8", 0));
+    ((Button) findViewById(R.id.btn9)).setOnClickListener(
+        this.setKey(Util.DIGIT_VALIDATION, "9", 0));
 
-    // redundant 0s
-    btn0.setOnClickListener(this.setKey(Util.DIGIT_VALIDATION, "0", 0));
-    btn1.setOnClickListener(this.setKey(Util.DIGIT_VALIDATION, "1", 0));
-    btn2.setOnClickListener(this.setKey(Util.DIGIT_VALIDATION, "2", 0));
-    btn3.setOnClickListener(this.setKey(Util.DIGIT_VALIDATION, "3", 0));
-    btn4.setOnClickListener(this.setKey(Util.DIGIT_VALIDATION, "4", 0));
-    btn5.setOnClickListener(this.setKey(Util.DIGIT_VALIDATION, "5", 0));
-    btn6.setOnClickListener(this.setKey(Util.DIGIT_VALIDATION, "6", 0));
-    btn7.setOnClickListener(this.setKey(Util.DIGIT_VALIDATION, "7", 0));
-    btn8.setOnClickListener(this.setKey(Util.DIGIT_VALIDATION, "8", 0));
-    btn9.setOnClickListener(this.setKey(Util.DIGIT_VALIDATION, "9", 0));
-
-    btnAddition.setOnClickListener(
+    // Operators
+    ((Button) findViewById(R.id.btnAddition)).setOnClickListener(
         this.setKey(Util.OPERATOR_VALIDATION, Tokens.ADDITION.build(), 0));
-    btnDivision.setOnClickListener(
+    ((Button) findViewById(R.id.btnDivision)).setOnClickListener(
         this.setKey(Util.OPERATOR_VALIDATION, Tokens.DIVISION.build(), 0));
-    btnModulo.setOnClickListener(
+    ((Button) findViewById(R.id.btnModulo)).setOnClickListener(
         this.setKey(Util.OPERATOR_VALIDATION, Tokens.MODULO.build(), 0));
-    btnMultiplication.setOnClickListener(
+    ((Button) findViewById(R.id.btnMultiplication)).setOnClickListener(
         this.setKey(Util.OPERATOR_VALIDATION, Tokens.MULTIPLICATION.build(), 0));
-    btnSubtraction.setOnClickListener(
+    ((Button) findViewById(R.id.btnSubtraction)).setOnClickListener(
         this.setKey(Util.OPERATOR_VALIDATION, Tokens.SUBTRACTION.build(), 0));
 
-    btnExponent10.setOnClickListener(
+    // Functions
+    ((Button) findViewById(R.id.btnExponent10)).setOnClickListener(
         this.setKey(Util.FUNCTION_VALIDATION, Tokens.EXPONENT_10.build(), 1));
-    btnExponentNatural.setOnClickListener(
+    ((Button) findViewById(R.id.btnExponentNatural)).setOnClickListener(
         this.setKey(Util.FUNCTION_VALIDATION, Tokens.EXPONENT_NATURAL.build(), 1));
-    btnLogarithm10.setOnClickListener(
+    ((Button) findViewById(R.id.btnLogarithm10)).setOnClickListener(
         this.setKey(Util.FUNCTION_VALIDATION, Tokens.LOGARITHM_10.build(), 1));
-    btnParenthesisLeft.setOnClickListener(
+    ((Button) findViewById(R.id.btnParenthesisLeft)).setOnClickListener(
         this.setKey(Util.FUNCTION_VALIDATION, "(", 1));
-    btnSine.setOnClickListener(
+    ((Button) findViewById(R.id.btnSine)).setOnClickListener(
         this.setKey(Util.FUNCTION_VALIDATION, Tokens.SINE.build(), 1));
-    btnSquareRoot.setOnClickListener(
+    ((Button) findViewById(R.id.btnSquareRoot)).setOnClickListener(
         this.setKey(Util.FUNCTION_VALIDATION, Tokens.SQUARE_ROOT.build(), 1));
 
     //what to do about 0/empty
-    btnBackspace.setOnClickListener(new View.OnClickListener() {
+    ((Button) findViewById(R.id.btnBackspace))
+        .setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
         if (current.length() < 1) {
@@ -173,7 +170,8 @@ public class MainActivity extends AppCompatActivity {
       }
     });
 
-    btnClearAll.setOnClickListener(new View.OnClickListener() {
+    ((Button) findViewById(R.id.btnClearAll))
+        .setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
         setPrevious();
@@ -181,19 +179,21 @@ public class MainActivity extends AppCompatActivity {
       }
     });
 
-    btnClearExpression.setOnClickListener(new View.OnClickListener() {
+    ((Button) findViewById(R.id.btnClearExpression))
+        .setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
         setCurrent();
       }
     });
 
-    // Also cast to int if % 0 == 0; done?
-    // move scroll on type??
-    // leave expression after error?
-    // negation on return???; done?
-    // infinity/NaN?
-    btnExecute.setOnClickListener(new View.OnClickListener() {
+    // TODO: Also cast to int if % 0 == 0; done?
+    // TODO: move scroll on type??
+    // TODO: leave expression after error?
+    // TODO: negation on return???; done?
+    // TODO: infinity/NaN?
+    ((Button) findViewById(R.id.btnExecute))
+        .setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
         if (current.length() == 0) {
@@ -245,7 +245,8 @@ public class MainActivity extends AppCompatActivity {
       }
     });
 
-    btnNegation.setOnClickListener(new View.OnClickListener() {
+    ((Button) findViewById(R.id.btnNegation))
+        .setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
         if (Pattern.matches("(.*?)(\\d+[\\.]?\\d*$)", current.toString())) {
@@ -267,7 +268,8 @@ public class MainActivity extends AppCompatActivity {
       }
     });
 
-    btnParenthesisRight.setOnClickListener(new View.OnClickListener() {
+    ((Button) findViewById(R.id.btnParenthesisRight))
+        .setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
         if (Pattern.matches("(.*[\\d\\)]$)", current.toString()) && parenthesesDepth > 0) {
@@ -278,6 +280,7 @@ public class MainActivity extends AppCompatActivity {
       }
     });
 
-    btnPoint.setOnClickListener(this.setKey(".*(?<![\\.\\d])\\d+$", ".", 0));
+    ((Button) findViewById(R.id.btnPoint))
+        .setOnClickListener(this.setKey(".*(?<![\\.\\d])\\d+$", ".", 0));
   }
 }
