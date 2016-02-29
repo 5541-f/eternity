@@ -243,42 +243,28 @@ public class Math {
 
   // First 10 terms of the Taylor Series Expansion
   private static double sine_1(double number) {
-
     //algorithm not accurate with high negative values. Convert back to negative at the end if needed
-    boolean isNegative = false;
-    if(number<0) {
-      isNegative = true;
-      number = number*-1;
-    }
-    double result = 0;
-
-    number = number%360; // Algorithm can only take angles between [0,180[
-    if(number == 180)
+    double temp = (number < 0) ? -number % 360 : number % 360; // can only take angles between [0,180]
+    if (temp == 180 || temp == 0) {
       return 0;
-    if(number>180){
-      number = number-360; //Get the negative equivalent of the angle
     }
     Double term;
-
-    //Taylor Series Terms
-    for (int i = 1; i < 20; i += 2) {
-      term = exponentiation(PI / 180, i) * exponentiation(number, i) / factorial(i);
+    double result = 0;
+    if (temp > 180){
+      temp = temp - 360; // Get the negative equivalent of the angle
+    }
+    for (int i = 1; i < 20; i += 2) { // Taylor Series Terms
+      term = exponentiation(PI / 180, i) * exponentiation(temp, i) / factorial(i);
       if (!term.isInfinite() && !term.isNaN()) {
-        if (i % 4 == 1) {
-          result += term;
-        } else {
-          result -= term;
-        }
+        result += (i % 4 == 1) ? term : -term;
       }
     }
-    if(isNegative == true)
-      return result*-1;
-    return result ;
+    return (number < 0) ? -result : result;
   }
 
   private static double squareRoot_1(double number) {
-    double result = 0;
-    double temp   = 0;
+    double result;
+    double temp;
     double sqr = number / 2;
     do {
       temp = sqr;
@@ -287,9 +273,4 @@ public class Math {
     result = temp;
     return result;
   }
-
-  public static void main(String[] args){
-    System.out.println(sine_1(-1000));
-  }
-
 }

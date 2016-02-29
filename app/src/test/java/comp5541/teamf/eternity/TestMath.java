@@ -1,13 +1,7 @@
 package comp5541.teamf.eternity;
 
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
-
-import java.io.BufferedOutputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.PrintStream;
 
 import static org.junit.Assert.*;
 
@@ -21,8 +15,8 @@ public class TestMath {
 
   @Before
   public void setUp() {
-    values = new double[3][14];
-    values[0] = new double[]{-100, -10, -1, -0.1, 0, 0.1, 1, 10, 100, 1000,
+    values = new double[3][19];
+    values[0] = new double[]{-360, -270, -180, -100, -90, -10, -1, -0.1, 0, 0.1, 1, 10, 100, 1000, 10000,
         Double.NaN, Double.POSITIVE_INFINITY, Double.NEGATIVE_INFINITY, java.lang.Math.PI};
   }
 
