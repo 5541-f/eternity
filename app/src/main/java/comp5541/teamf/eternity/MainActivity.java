@@ -30,8 +30,9 @@ public class MainActivity extends AppCompatActivity {
   private void setPrevious() {
     previous = new StringBuilder("0");
     tvPrevious = (TextView) findViewById(R.id.tvPrevious);
-    tvPrevious.setText("");
     tvPrevious.setMovementMethod(new ScrollingMovementMethod());
+    tvPrevious.setText("");
+    tvPrevious.bringPointIntoView(tvPrevious.length());
   }
 
   /**
@@ -40,8 +41,9 @@ public class MainActivity extends AppCompatActivity {
   private void setCurrent() {
     current = new StringBuilder();
     tvCurrent = (TextView) findViewById(R.id.tvCurrent);
-    tvCurrent.setText("0");
     tvCurrent.setMovementMethod(new ScrollingMovementMethod());
+    tvCurrent.setText("0");
+    tvCurrent.bringPointIntoView(tvCurrent.length());
     parenthesesDepth = 0;
   }
 
@@ -79,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
           setParenthesesDepth(parentheses);
           current.append(character);
           tvCurrent.setText(Util.displayReplace(current));
+          tvCurrent.bringPointIntoView(tvCurrent.length());
         }
       }
     };
@@ -151,6 +154,7 @@ public class MainActivity extends AppCompatActivity {
       public void onClick(View v) {
         if (current.length() < 1) {
           tvCurrent.setText("0");
+          tvCurrent.bringPointIntoView(tvCurrent.length());
         } else {
           if (Pattern.matches(".*[\\)]", current.toString())) {
             parenthesesDepth++;
@@ -165,8 +169,10 @@ public class MainActivity extends AppCompatActivity {
           }
           if (current.length() < 1) {
             tvCurrent.setText("0");
+            tvCurrent.bringPointIntoView(tvCurrent.length());
           } else {
             tvCurrent.setText(Util.displayReplace(current));
+            tvCurrent.bringPointIntoView(tvCurrent.length());
           }
         }
       }
@@ -243,12 +249,16 @@ public class MainActivity extends AppCompatActivity {
             current = new StringBuilder(result.toString().replace('-', '±'));
           }
           tvPrevious.setText(Util.displayReplace(previous));
+          tvPrevious.bringPointIntoView(tvPrevious.length());
           tvCurrent.setText(Util.displayReplace(current));
+          tvCurrent.bringPointIntoView(tvCurrent.length());
         } catch (Exception err) {
           setPrevious();
           setCurrent();
           tvPrevious.setText(err.getMessage());
+          tvPrevious.bringPointIntoView(tvPrevious.length());
           tvCurrent.setText(R.string.ERROR_LABEL);
+          tvCurrent.bringPointIntoView(tvCurrent.length());
         }
       }
     });
@@ -272,6 +282,7 @@ public class MainActivity extends AppCompatActivity {
             current.insert(position, Tokens.NEGATION.build());
           }
           tvCurrent.setText(Util.displayReplace(current));
+          tvCurrent.bringPointIntoView(tvCurrent.length());
         }
       }
     });
@@ -284,6 +295,7 @@ public class MainActivity extends AppCompatActivity {
           parenthesesDepth--;
           current.append(")");
           tvCurrent.setText(Util.displayReplace(current));
+          tvCurrent.bringPointIntoView(tvCurrent.length());
         }
       }
     });
