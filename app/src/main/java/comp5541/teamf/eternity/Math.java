@@ -123,17 +123,6 @@ public class Math {
   }
 
   /**
-   * Overloaded private exponentiation method for use with integer exponents
-   *
-   * @param base     (double)
-   * @param exponent (int)
-   * @return result (double)
-   */
-  private static double exponentiation(double base, int exponent) {
-    return exponentiationAlgoritmA(base, exponent);
-  }
-
-  /**
    * Overloaded private exponentiation method to provide algorithms which are more accurate for
    * integers and more accurate for real numbers. Checks if (int) value of exponent is equal to
    * (double) value and selects appropriate method.
@@ -158,7 +147,7 @@ public class Math {
       return base;
     }
     if (exponent == ((int) exponent)) {
-      return exponentiation(base, (int) exponent);
+      return exponentiationAlgoritmA(base, (int) exponent);
     } else {
       return exponentiationAlgorithmB(base, exponent);
     }
@@ -270,12 +259,12 @@ public class Math {
 
 //  private static double logTable10(double number) {
 //    int result = -323;
-//    double temp = 1e-323;
+//    Double temp = 1e-323;
 //    while (temp < 1e308) {
 //      if (number == temp) {
 //        return result;
 //      } else {
-//        temp *= 10;
+//        temp *= (temp > 0) ? 10 : -10;
 //        result++;
 //      }
 //    }
@@ -284,11 +273,15 @@ public class Math {
 
   // Assumed 500 terms was a reasonable enough of an approximation
   private static double logarithmNaturalAlgorthmA(double number) {
-    double temp   = 0;
+    Double temp   = 0.0;
     double result = 0;
-    for (int i = 0; i < 500; i++) {
+    for (int i = 0; i < 1500; i++) {
       temp = (1.0 / (2 * i + 1)) * exponentiation((number - 1) / (number + 1), (2 * i + 1));
-      result += temp;
+      if (temp.isInfinite() || temp.isNaN()) {
+        break;
+      } else {
+        result += temp;
+      }
     }
     return 2 * result;
   }

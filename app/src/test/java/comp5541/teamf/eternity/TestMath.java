@@ -16,8 +16,8 @@ public class TestMath {
   public void setUp() {
     values = new double[3][];
     values[0] = new double[]{
-        1e-323, -360.1, -360, -259.9, -270, -180, -100, -90,
-        -10, -1, -0.1, 0, 1e-15, 1e-5, 0.1,
+        -360.1, -360, -259.9, -270, -180, -100, -90,
+        -10, -1, -0.1, 0, 1e-5, 0.1,
         1, 10, 100, 1000, 10000, 678, 999, 1e20, 1e308,
         Double.NaN, Double.POSITIVE_INFINITY, Double.NEGATIVE_INFINITY, java.lang.Math.PI
     };

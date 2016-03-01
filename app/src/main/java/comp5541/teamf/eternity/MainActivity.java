@@ -227,7 +227,7 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < parenthesesDepth; parenthesesDepth--) {
           current.append(")");
         }
-        //
+        // Append to previous if first character is an operator
         if (Pattern.matches("[" + Util.OPERATOR_REGEX + "]",
             ((Character) current.charAt(0)).toString())) {
           if (previous.length() == 0) {
