@@ -4,20 +4,24 @@ package comp5541.teamf.eternity;
  * Provides mathematical functions. Abstraction provided to set only those method used by the
  * calculator app to be public; shared private methods so that algorithms requiring other
  * mathematical functions do not directly reference one another; and private method implementations
- * of the various mathematical functions, which can be replaced or overloaded, depending on context
+ * of the various mathematical functions, which can be replaced or overloaded, depending on context.
  */
 public class Math {
 
-  // Calculated constant for PI
-  public static final double PI = pi_1();
-  // Calculated constant for E
-  public static final double E  = natural_1();
+  /**
+   * Calculated constant for <b>PI</b>.
+   */
+  static final double PI = piAlgorithmA();
+  /**
+   * Calculated constant for <b><i>E</i></b>.
+   */
+  static final double E  = naturalAlgorithmA();
 
   /**
-   * Power of 10
+   * Public method for <b>Power of 10</b>.
    *
-   * @param exponent Accepts all real numbers
-   * @return
+   * @param exponent (double)
+   * @return result (double)
    */
   public static double exponent10(double exponent) {
     if (((Double) exponent).isNaN()) {
@@ -35,14 +39,109 @@ public class Math {
     return exponentiation(10, exponent);
   }
 
-  // Overloaded exponentiation method for use with int exponents
-  private static double exponentiation(double base, int exponent) {
-    return exponentiation_1(base, exponent);
+  /**
+   * Public method for Exponential Function
+   *
+   * @param exponent (double)
+   * @return result (double)
+   */
+  public static double exponentNatural(double exponent) {
+    if (((Double) exponent).isNaN()) {
+      return Double.NaN;
+    }
+    if (exponent == Double.NEGATIVE_INFINITY) {
+      return 0;
+    }
+    if (exponent == Double.POSITIVE_INFINITY) {
+      return Double.POSITIVE_INFINITY;
+    }
+    if (exponent == 0) {
+      return 1;
+    }
+    return exponentiation(E, exponent);
   }
 
-  /*
-  Overloaded method to provide algorithms which are more efficient for integers and more accurate
-  for real numbers.
+  public static double logarithm10(double number) {
+    if (((Double) number).isNaN()) {
+      return Double.NaN;
+    }
+    if (number == Double.NEGATIVE_INFINITY) {
+      return Double.NaN;
+    }
+    if (number == Double.POSITIVE_INFINITY) {
+      return Double.POSITIVE_INFINITY;
+    }
+    if (number < 0) {
+      return Double.NaN;
+    }
+    if (number == 0) {
+      return Double.NEGATIVE_INFINITY;
+    }
+    if (number == 1) {
+      return 0;
+    }
+    if (number % 10 == 0) {
+      return logarithm10AlgorithmB((int) number, true);
+    }
+    if ((number / 1e-17) % 10 == 0) {
+      return logarithm10AlgorithmB((1 / number), false);
+    }
+    return logarithm10AlgorithmA(number);
+  }
+
+  public static double sine(double number) {
+    if (((Double) number).isNaN()) {
+      return Double.NaN;
+    }
+    if (number == Double.NEGATIVE_INFINITY) {
+      return Double.NaN;
+    }
+    if (number == Double.POSITIVE_INFINITY) {
+      return Double.NaN;
+    }
+    if (number == 0) {
+      return 0;
+    }
+    return sineAlgorthmA(number);
+  }
+
+  public static double squareRoot(double number) {
+    if (((Double) number).isNaN()) {
+      return Double.NaN;
+    }
+    if (number == Double.NEGATIVE_INFINITY) {
+      return Double.NaN;
+    }
+    if (number == Double.POSITIVE_INFINITY) {
+      return Double.POSITIVE_INFINITY;
+    }
+    if (number < 0) {
+      return Double.NaN;
+    }
+    if (number == 0) {
+      return 0;
+    }
+    return squareRootAlgorthmA(number);
+  }
+
+  /**
+   * Overloaded private exponentiation method for use with integer exponents
+   *
+   * @param base     (double)
+   * @param exponent (int)
+   * @return result (double)
+   */
+  private static double exponentiation(double base, int exponent) {
+    return exponentiationAlgoritmA(base, exponent);
+  }
+
+  /**
+   * Overloaded private exponentiation method to provide algorithms which are more accurate for
+   * integers and more accurate for real numbers. Checks if (int) value of exponent is equal to
+   * (double) value and selects appropriate method.
+   * @param base (double)
+   * @param exponent (double)
+   * @return double
    */
   private static double exponentiation(double base, double exponent) {
     if (((Double) exponent).isNaN()) {
@@ -63,27 +162,16 @@ public class Math {
     if (exponent == ((int) exponent)) {
       return exponentiation(base, (int) exponent);
     } else {
-      return exponentiation_2(base, exponent);
+      return exponentiationAlgorithmB(base, exponent);
     }
   }
 
-  public static double exponentNatural(double exponent) {
-    if (((Double) exponent).isNaN()) {
-      return Double.NaN;
-    }
-    if (exponent == Double.NEGATIVE_INFINITY) {
-      return 0;
-    }
-    if (exponent == Double.POSITIVE_INFINITY) {
-      return Double.POSITIVE_INFINITY;
-    }
-    if (exponent == 0) {
-      return 1;
-    }
-    return exponentiation(E, exponent);
-  }
-
-  // Private method for use by functions that require factorials, such as E or sine
+  /**
+   * Private method for use by functions or calculated constants that require factorials, such as
+   * sine or E.
+   * @param limit (int)
+   * @return (long)
+   */
   private static long factorial(int limit) {
     if (limit < 0) {
       throw new ArithmeticException(limit + " is not a natural number.");
@@ -94,7 +182,7 @@ public class Math {
     if (limit == 1) {
       return 1;
     }
-    return factorial_1(limit);
+    return factorialAlgorithmA(limit);
   }
 
   private static double logarithmNatural(double number) {
@@ -113,59 +201,14 @@ public class Math {
     if (number == 0) {
       return Double.NEGATIVE_INFINITY;
     }
-    return logarithmNatural_1(number);
-  }
-
-  public static double logarithm10(double number) {
-    if (((Double) number).isNaN()) {
-      return Double.NaN;
-    }
-    if (number == Double.NEGATIVE_INFINITY) {
-      return Double.NaN;
-    }
-    if (number == Double.POSITIVE_INFINITY) {
-      return Double.POSITIVE_INFINITY;
-    }
-    return logarithm10_1(number);
-  }
-
-  public static double sine(double number) {
-    if (((Double) number).isNaN()) {
-      return Double.NaN;
-    }
-    if (number == Double.NEGATIVE_INFINITY) {
-      return Double.NaN;
-    }
-    if (number == Double.POSITIVE_INFINITY) {
-      return Double.NaN;
-    }
-    if (number == 0) {
+    if (number == 1) {
       return 0;
     }
-    return sine_1(number);
-  }
-
-  public static double squareRoot(double number) {
-    if (((Double) number).isNaN()) {
-      return Double.NaN;
-    }
-    if (number == Double.NEGATIVE_INFINITY) {
-      return Double.NaN;
-    }
-    if (number == Double.POSITIVE_INFINITY) {
-      return Double.POSITIVE_INFINITY;
-    }
-    if (number < 0) {
-      return Double.NaN;
-    }
-    if (number == 0) {
-      return 0;
-    }
-    return squareRoot_1(number);
+    return logarithmNaturalAlgorthmA(number);
   }
 
   // Non-recursive factorial function
-  private static long factorial_1(int limit) {
+  private static long factorialAlgorithmA(int limit) {
     long result = 1;
     for (int i = 1; i <= limit; i++) {
       result *= i;
@@ -174,7 +217,7 @@ public class Math {
   }
 
   // Function to calculate E; 18 iterations produced maximum accuracy for a double
-  private static double natural_1() {
+  private static double naturalAlgorithmA() {
     double result = 1;
     for (int i = 1; i < 18; i++) {
       result += (1D / (factorial(i)));
@@ -183,9 +226,9 @@ public class Math {
   }
 
   // Computes x^y when y is an integer
-  private static double exponentiation_1(double base, int exponent) {
+  private static double exponentiationAlgoritmA(double base, int exponent) {
     double result = 1;
-    double temp = exponent;
+    double temp   = exponent;
     if (exponent < 0) {
       temp = -exponent;
     }
@@ -199,16 +242,22 @@ public class Math {
   }
 
   // Taylor Series; for real number exponents
-  private static double exponentiation_2(double base, double exponent) {
-    double result       = 1;
-    double elementary   = 1;
-    double temp = exponent;
+  private static double exponentiationAlgorithmB(double base, double exponent) {
+    double result     = 1;
+    Double elementary = 1.0;
+    double temp       = exponent;
     if (exponent < 0) {
       temp = -exponent;
     }
     double log = temp * logarithmNatural(base);
     for (int j = 1; elementary > 0; j++) {
       elementary *= log / j;
+      if (elementary.isInfinite() && exponent < 0) {
+        return 0;
+      }
+      if (elementary.isInfinite() && exponent > 0) {
+        return Double.POSITIVE_INFINITY;
+      }
       result += elementary;
     }
     if (exponent < 0) {
@@ -217,13 +266,23 @@ public class Math {
     return result;
   }
 
-  private static double logarithm10_1(double number) {
+  private static double logarithm10AlgorithmA(double number) {
     return logarithmNatural(number) / (logarithmNatural(10));
+  }
+  private static double logarithm10AlgorithmB(double number, boolean isPositive) {
+    double temp = number;
+    for (int i = 1; temp > 1; i++) {
+      temp /= 10;
+      if (temp <= 1) {
+        return (isPositive) ? i : -i;
+      }
+    }
+    return Double.NaN;
   }
 
   // Assumed 500 terms was a reasonable enough of an approximation
-  private static double logarithmNatural_1(double number) {
-    double temp = 0;
+  private static double logarithmNaturalAlgorthmA(double number) {
+    double temp   = 0;
     double result = 0;
     for (int i = 0; i < 500; i++) {
       temp = (1.0 / (2 * i + 1)) * exponentiation((number - 1) / (number + 1), (2 * i + 1));
@@ -233,7 +292,7 @@ public class Math {
   }
 
   // Function to calculate PI; 30 iterations produced maximum accuracy for a double
-  private static double pi_1() {
+  private static double piAlgorithmA() {
     double term = 0;
     for (int i = 0; i < 30; i++) {
       term += (exponentiation(-1.0 / 3.0, i)) / (2 * i + 1);
@@ -242,17 +301,18 @@ public class Math {
   }
 
   // First 10 terms of the Taylor Series Expansion
-  private static double sine_1(double number) {
+  private static double sineAlgorthmA(double number) {
     //algorithm not accurate with high negative values. Convert back to negative at the end if needed
-    double temp = (number < 0) ? -number % 360 : number % 360; // can only take angles between [0,180]
+    double temp = (number < 0) ?
+        -number % 360 : number % 360; // can only take angles between [0,180]
     if (temp == 180 || temp == 0) {
       return 0;
     }
-    Double term;
     double result = 0;
-    if (temp > 180){
+    if (temp > 180) {
       temp = temp - 360; // Get the negative equivalent of the angle
     }
+    Double term;
     for (int i = 1; i < 20; i += 2) { // Taylor Series Terms
       term = exponentiation(PI / 180, i) * exponentiation(temp, i) / factorial(i);
       if (!term.isInfinite() && !term.isNaN()) {
@@ -262,7 +322,8 @@ public class Math {
     return (number < 0) ? -result : result;
   }
 
-  private static double squareRoot_1(double number) {
+  //TODO
+  private static double squareRootAlgorthmA(double number) {
     double result;
     double temp;
     double sqr = number / 2;
