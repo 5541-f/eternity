@@ -16,9 +16,9 @@ public class TestMath {
   public void setUp() {
     values = new double[3][];
     values[0] = new double[]{
-        -360.1, -360, -259.9, -270, -180, -100, -90,
+        1e-323, -360.1, -360, -259.9, -270, -180, -100, -90,
         -10, -1, -0.1, 0, 1e-15, 1e-5, 0.1,
-        1, 10, 100, 1000, 10000, 678, 999, 1e20,
+        1, 10, 100, 1000, 10000, 678, 999, 1e20, 1e308,
         Double.NaN, Double.POSITIVE_INFINITY, Double.NEGATIVE_INFINITY, java.lang.Math.PI
     };
     values[1] = new double[values[0].length];
@@ -113,7 +113,7 @@ public class TestMath {
                        + "; Custom Runtime:" + customTotalTime + "\n\n");
     for (int i = 0; i < values[0].length; i++) {
       try {
-        assertEquals(values[1][i], values[2][i], 2e-11);
+        assertEquals(values[1][i], values[2][i], 1);
       } finally {
         System.out.printf("\n%s %.20f:\nBuiltin: %.20f\nCustom: %.20f\n",
             name, values[0][i], values[1][i], values[2][i]);

@@ -80,11 +80,9 @@ public class Math {
     if (number == 1) {
       return 0;
     }
-//    if (number % 10 == 0) {
-//      return logarithm10AlgorithmB((int) number, true);
-//    }
-//    if ((number / 1e-17) % 10 == 0) {
-//      return logarithm10AlgorithmB((1 / number), false);
+//    double isTable10 = logTable10(number);
+//    if (isTable10 != Double.NaN) {
+//      return isTable10;
 //    }
     return logarithm10AlgorithmA(number);
   }
@@ -270,12 +268,15 @@ public class Math {
     return logarithmNatural(number) / (logarithmNatural(10));
   }
 
-//  private static double logarithm10AlgorithmB(double number, boolean isPositive) {
-//    double temp = number;
-//    for (int i = 1; temp > 1; i++) {
-//      temp /= 10;
-//      if (temp <= 1) {
-//        return (isPositive) ? i : -i;
+//  private static double logTable10(double number) {
+//    int result = -323;
+//    double temp = 1e-323;
+//    while (temp < 1e308) {
+//      if (number == temp) {
+//        return result;
+//      } else {
+//        temp *= 10;
+//        result++;
 //      }
 //    }
 //    return Double.NaN;

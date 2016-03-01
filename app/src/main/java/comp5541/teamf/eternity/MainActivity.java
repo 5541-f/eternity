@@ -195,8 +195,6 @@ public class MainActivity extends AppCompatActivity {
       }
     });
 
-    // TODO: Also cast to int if % 0 == 0; done?
-    // TODO: move scroll on type??
     // TODO: leave expression after error?
     // TODO: negation on return???; done?
     // TODO: infinity/NaN?
