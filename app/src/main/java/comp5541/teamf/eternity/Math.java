@@ -80,12 +80,12 @@ public class Math {
     if (number == 1) {
       return 0;
     }
-    if (number % 10 == 0) {
-      return logarithm10AlgorithmB((int) number, true);
-    }
-    if ((number / 1e-17) % 10 == 0) {
-      return logarithm10AlgorithmB((1 / number), false);
-    }
+//    if (number % 10 == 0) {
+//      return logarithm10AlgorithmB((int) number, true);
+//    }
+//    if ((number / 1e-17) % 10 == 0) {
+//      return logarithm10AlgorithmB((1 / number), false);
+//    }
     return logarithm10AlgorithmA(number);
   }
 
@@ -269,16 +269,17 @@ public class Math {
   private static double logarithm10AlgorithmA(double number) {
     return logarithmNatural(number) / (logarithmNatural(10));
   }
-  private static double logarithm10AlgorithmB(double number, boolean isPositive) {
-    double temp = number;
-    for (int i = 1; temp > 1; i++) {
-      temp /= 10;
-      if (temp <= 1) {
-        return (isPositive) ? i : -i;
-      }
-    }
-    return Double.NaN;
-  }
+
+//  private static double logarithm10AlgorithmB(double number, boolean isPositive) {
+//    double temp = number;
+//    for (int i = 1; temp > 1; i++) {
+//      temp /= 10;
+//      if (temp <= 1) {
+//        return (isPositive) ? i : -i;
+//      }
+//    }
+//    return Double.NaN;
+//  }
 
   // Assumed 500 terms was a reasonable enough of an approximation
   private static double logarithmNaturalAlgorthmA(double number) {

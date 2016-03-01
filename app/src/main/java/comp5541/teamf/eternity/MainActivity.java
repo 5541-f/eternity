@@ -115,6 +115,9 @@ public class MainActivity extends AppCompatActivity {
     ((Button) findViewById(R.id.btn9)).setOnClickListener(
         this.setKey(Util.DIGIT_VALIDATION, "9", 0));
 
+    ((Button) findViewById(R.id.btnPoint))
+            .setOnClickListener(this.setKey(".*(?<![\\.\\d])\\d+$", ".", 0));
+
     // Operators
     ((Button) findViewById(R.id.btnAddition)).setOnClickListener(
         this.setKey(Util.OPERATOR_VALIDATION, Tokens.ADDITION.build(), 0));
@@ -195,10 +198,12 @@ public class MainActivity extends AppCompatActivity {
         .setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
+        // Ensure current is not empty
         if (current.length() == 0) {
           current.append("0");
         }
-        if (Pattern.matches("[\\(]",
+        // Remove empty left parentheses and functions; append zero if result is empty
+        if (Pattern.matches("[\\(" + Util.FUNCTION_REGEX + "]",
             ((Character) current.charAt(current.length() - 1)).toString())) {
           parenthesesDepth--;
           current.deleteCharAt(current.length() - 1);
@@ -206,6 +211,7 @@ public class MainActivity extends AppCompatActivity {
             current.append("0");
           }
         }
+        // Remove hanging decimal point or operators; append zero if result is empty
         if (Pattern.matches("[\\." + Util.OPERATOR_REGEX + "]",
             ((Character) current.charAt(current.length() - 1)).toString())) {
           current.deleteCharAt(current.length() - 1);
@@ -213,10 +219,13 @@ public class MainActivity extends AppCompatActivity {
             current.append("0");
           }
         }
+        // Close remaining parentheses
         for (int i = 0; i < parenthesesDepth; parenthesesDepth--) {
           current.append(")");
         }
-        if (Pattern.matches(Util.OPERATOR_REGEX, ((Character) current.charAt(0)).toString())) {
+        //
+        if (Pattern.matches("[" + Util.OPERATOR_REGEX + "]",
+            ((Character) current.charAt(0)).toString())) {
           if (previous.length() == 0) {
             previous.append("0");
           }
@@ -278,8 +287,5 @@ public class MainActivity extends AppCompatActivity {
         }
       }
     });
-
-    ((Button) findViewById(R.id.btnPoint))
-        .setOnClickListener(this.setKey(".*(?<![\\.\\d])\\d+$", ".", 0));
   }
 }
