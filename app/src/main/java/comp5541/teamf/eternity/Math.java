@@ -80,12 +80,12 @@ public class Math {
     if (number == 1) {
       return 0;
     }
-//    if (number % 10 == 0) {
-//      return logarithm10AlgorithmB((int) number, true);
-//    }
-//    if ((number / 1e-17) % 10 == 0) {
-//      return logarithm10AlgorithmB((1 / number), false);
-//    }
+    if (number % 10 == 0) {
+      return logarithm10AlgorithmB((int) number, true);
+    }
+    if ((number / 1e-17) % 10 == 0) {
+      return logarithm10AlgorithmB((1 / number), false);
+    }
     return logarithm10AlgorithmA(number);
   }
 
