@@ -81,7 +81,7 @@ public class Math {
       return 0;
     }
 //    double isTable10 = logTable10(number);
-//    if (isTable10 != Double.NaN) {
+//    if (isTable10 != 0) {
 //      return isTable10;
 //    }
     return logarithm10AlgorithmA(number);
@@ -264,11 +264,11 @@ public class Math {
 //      if (number == temp) {
 //        return result;
 //      } else {
-//        temp *= (temp > 0) ? 10 : -10;
+//        temp = (temp < 0) ? temp / 10 : temp * 10;
 //        result++;
 //      }
 //    }
-//    return Double.NaN;
+//    return 0.0;
 //  }
 
   // Assumed 500 terms was a reasonable enough of an approximation

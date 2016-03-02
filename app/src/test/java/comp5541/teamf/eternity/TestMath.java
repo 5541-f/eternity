@@ -27,12 +27,12 @@ public class TestMath {
 
   @Test
   public void testPI() {
-    assertEquals(java.lang.Math.PI, Math.PI, 2e-15);
+    assertEquals(java.lang.Math.PI, Math.PI, 2e-10);
   }
 
   @Test
   public void testE() {
-    assertEquals(java.lang.Math.E, Math.E, 2e-15);
+    assertEquals(java.lang.Math.E, Math.E, 2e-10);
   }
 
   @Test
@@ -55,7 +55,7 @@ public class TestMath {
                        + "; Custom Runtime:" + customTotalTime + "\n\n");
     for (int i = 0; i < values[0].length; i++) {
       try {
-        assertEquals(values[1][i], values[2][i], 2e-11);
+        assertEquals(values[1][i], values[2][i], 2e-10);
       } finally {
         System.out.printf("\n%s %.20f:\nBuiltin: %.20f\nCustom: %.20f\n",
             name, values[0][i], values[1][i], values[2][i]);
@@ -113,7 +113,7 @@ public class TestMath {
                        + "; Custom Runtime:" + customTotalTime + "\n\n");
     for (int i = 0; i < values[0].length; i++) {
       try {
-        assertEquals(values[1][i], values[2][i], 1);
+        assertEquals(values[1][i], values[2][i], 1e-5);
       } finally {
         System.out.printf("\n%s %.20f:\nBuiltin: %.20f\nCustom: %.20f\n",
             name, values[0][i], values[1][i], values[2][i]);
