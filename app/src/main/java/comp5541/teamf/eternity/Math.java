@@ -4,7 +4,8 @@ package comp5541.teamf.eternity;
  * Provides mathematical functions. Abstraction provided to set only those method used by the
  * calculator app to be public; shared private methods so that algorithms requiring other
  * mathematical functions do not directly reference one another; and private method implementations
- * of the various mathematical functions, which can be replaced or overloaded, depending on context.
+ * of the various mathematical functions, which can be replaced or overloaded, depending on
+ * context.
  */
 public class Math {
 
@@ -20,7 +21,9 @@ public class Math {
   /**
    * Public method for <b>Power of 10</b>.
    *
-   * @param exponent (double)
+   * @param exponent
+   *     (double)
+   *
    * @return result (double)
    */
   public static double exponent10(double exponent) {
@@ -42,7 +45,9 @@ public class Math {
   /**
    * Public method for Exponential Function
    *
-   * @param exponent (double)
+   * @param exponent
+   *     (double)
+   *
    * @return result (double)
    */
   public static double exponentNatural(double exponent) {
@@ -126,8 +131,12 @@ public class Math {
    * Overloaded private exponentiation method to provide algorithms which are more accurate for
    * integers and more accurate for real numbers. Checks if (int) value of exponent is equal to
    * (double) value and selects appropriate method.
-   * @param base (double)
-   * @param exponent (double)
+   *
+   * @param base
+   *     (double)
+   * @param exponent
+   *     (double)
+   *
    * @return double
    */
   private static double exponentiation(double base, double exponent) {
@@ -156,7 +165,10 @@ public class Math {
   /**
    * Private method for use by functions or calculated constants that require factorials, such as
    * sine or E.
-   * @param limit (int)
+   *
+   * @param limit
+   *     (int)
+   *
    * @return (long)
    */
   private static long factorial(int limit) {
@@ -299,7 +311,7 @@ public class Math {
   private static double sineAlgorthmA(double number) {
     //algorithm not accurate with high negative values. Convert back to negative at the end if needed
     double temp = (number < 0) ?
-        -number % 360 : number % 360; // can only take angles between [0,180]
+                  -number % 360 : number % 360; // can only take angles between [0,180]
     if (temp == 180 || temp == 0) {
       return 0;
     }

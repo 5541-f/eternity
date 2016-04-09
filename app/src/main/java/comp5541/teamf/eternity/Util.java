@@ -13,28 +13,28 @@ class Util {
    * String constant of operator build tokens for use in regular expressions.
    */
   static final String OPERATOR_REGEX      = Tokens.ADDITION.build()
-                                            + Tokens.DIVISION.build()
-                                            + Tokens.MODULO.build()
-                                            + Tokens.MULTIPLICATION.build()
-                                            + Tokens.SUBTRACTION.build();
+      + Tokens.DIVISION.build()
+      + Tokens.MODULO.build()
+      + Tokens.MULTIPLICATION.build()
+      + Tokens.SUBTRACTION.build();
   /**
    * String constant of function build tokens for use in regular expressions.
    */
   static final String FUNCTION_REGEX      = Tokens.EXPONENT_10.build()
-                                            + Tokens.EXPONENT_NATURAL.build()
-                                            + Tokens.LOGARITHM_10.build()
-                                            + Tokens.SQUARE_ROOT.build()
-                                            + Tokens.SINE.build();
+      + Tokens.EXPONENT_NATURAL.build()
+      + Tokens.LOGARITHM_10.build()
+      + Tokens.SQUARE_ROOT.build()
+      + Tokens.SINE.build();
   /**
    * String constant of regular expression for validation of digits.
    */
   static final String DIGIT_VALIDATION    = "(^$)|(.*\\d$)|(.*[\\." + OPERATOR_REGEX
-                                            + "\\(" + FUNCTION_REGEX + "]$)";
+      + "\\(" + FUNCTION_REGEX + "]$)";
   /**
    * String constant of regular expression for validation of function tokens.
    */
   static final String FUNCTION_VALIDATION = "(^$)|(.*[" + OPERATOR_REGEX
-                                            + "\\(" + FUNCTION_REGEX + "]$)";
+      + "\\(" + FUNCTION_REGEX + "]$)";
   /**
    * String constant of regular expression for validation of operator tokens.
    */
@@ -42,7 +42,10 @@ class Util {
 
   /**
    * Method to find and replace tokens for display.
-   * @param sb (StringBuilder)
+   *
+   * @param sb
+   *     (StringBuilder)
+   *
    * @return (Spanned)
    */
   static Spanned displayReplace(StringBuilder sb) {
@@ -55,7 +58,10 @@ class Util {
 
   /**
    * Method to find and replace tokens for execution.
-   * @param sb (StringBuilder)
+   *
+   * @param sb
+   *     (StringBuilder)
+   *
    * @return (String)
    */
   static String executeReplace(StringBuilder sb) {

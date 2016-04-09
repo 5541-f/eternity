@@ -15,6 +15,7 @@ import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
 
+  private Calculator calculator = new Calculator();
 
   private StringBuilder current;
   private StringBuilder previous;
@@ -49,7 +50,9 @@ public class MainActivity extends AppCompatActivity {
 
   /**
    * Increments or decrements <b>parenthesis depth</b> by 1. For use with <b>setKey</b> method.
-   * @param flag <b>1</b> to increment by 1; <b>-1</b> to decrement by 1; default has no impact.
+   *
+   * @param flag
+   *     <b>1</b> to increment by 1; <b>-1</b> to decrement by 1; default has no impact.
    */
   private void setParenthesesDepth(int flag) {
     switch (flag) {
@@ -66,9 +69,13 @@ public class MainActivity extends AppCompatActivity {
   /**
    * A method for setting OnClickListeners for buttons with common attributes
    *
-   * @param validation  Regex that precedes this character
-   * @param character   Build character of the token
-   * @param parentheses impact on parenthesis depth
+   * @param validation
+   *     Regex that precedes this character
+   * @param character
+   *     Build character of the token
+   * @param parentheses
+   *     impact on parenthesis depth
+   *
    * @return (View.OnClickListener)
    */
   private View.OnClickListener setKey(final String validation,
@@ -119,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
         this.setKey(Util.DIGIT_VALIDATION, "9", 0));
 
     ((Button) findViewById(R.id.btnPoint))
-            .setOnClickListener(this.setKey(".*(?<![\\.\\d])\\d+$", ".", 0));
+        .setOnClickListener(this.setKey(".*(?<![\\.\\d])\\d+$", ".", 0));
 
     // Operators
     ((Button) findViewById(R.id.btnAddition)).setOnClickListener(
@@ -150,152 +157,153 @@ public class MainActivity extends AppCompatActivity {
     //what to do about 0/empty
     ((Button) findViewById(R.id.btnBackspace))
         .setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        if (current.length() < 1) {
-          tvCurrent.setText("0");
-          tvCurrent.bringPointIntoView(tvCurrent.length());
-        } else {
-          if (Pattern.matches(".*[\\)]", current.toString())) {
-            parenthesesDepth++;
+          @Override
+          public void onClick(View v) {
+            if (current.length() < 1) {
+              tvCurrent.setText("0");
+              tvCurrent.bringPointIntoView(tvCurrent.length());
+            } else {
+              if (Pattern.matches(".*[\\)]", current.toString())) {
+                parenthesesDepth++;
+              }
+              if (Pattern.matches(".*[\\(" + Util.FUNCTION_REGEX + "]$", current.toString())) {
+                parenthesesDepth--;
+              }
+              current.deleteCharAt(current.length() - 1);
+              if (current.length() > 0
+                  && current.charAt(current.length() - 1) == Tokens.NEGATION.build().charAt(0)) {
+                current.deleteCharAt(current.length() - 1);
+              }
+              if (current.length() < 1) {
+                tvCurrent.setText("0");
+                tvCurrent.bringPointIntoView(tvCurrent.length());
+              } else {
+                tvCurrent.setText(Util.displayReplace(current));
+                tvCurrent.bringPointIntoView(tvCurrent.length());
+              }
+            }
           }
-          if (Pattern.matches(".*[\\(" + Util.FUNCTION_REGEX + "]$", current.toString())) {
-            parenthesesDepth--;
-          }
-          current.deleteCharAt(current.length() - 1);
-          if (current.length() > 0
-              && current.charAt(current.length() - 1) == Tokens.NEGATION.build().charAt(0)) {
-            current.deleteCharAt(current.length() - 1);
-          }
-          if (current.length() < 1) {
-            tvCurrent.setText("0");
-            tvCurrent.bringPointIntoView(tvCurrent.length());
-          } else {
-            tvCurrent.setText(Util.displayReplace(current));
-            tvCurrent.bringPointIntoView(tvCurrent.length());
-          }
-        }
-      }
-    });
+        });
 
     ((Button) findViewById(R.id.btnClearAll))
         .setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        setPrevious();
-        setCurrent();
-      }
-    });
+          @Override
+          public void onClick(View v) {
+            setPrevious();
+            setCurrent();
+          }
+        });
 
     ((Button) findViewById(R.id.btnClearExpression))
         .setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        setCurrent();
-      }
-    });
+          @Override
+          public void onClick(View v) {
+            setCurrent();
+          }
+        });
 
     // TODO: leave expression after error?
     // TODO: negation on return???; done?
     // TODO: infinity/NaN?
     ((Button) findViewById(R.id.btnExecute))
         .setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        // Ensure current is not empty
-        if (current.length() == 0) {
-          current.append("0");
-        }
-        // Remove empty left parentheses and functions; append zero if result is empty
-        if (Pattern.matches("[\\(" + Util.FUNCTION_REGEX + "]",
-            ((Character) current.charAt(current.length() - 1)).toString())) {
-          parenthesesDepth--;
-          current.deleteCharAt(current.length() - 1);
-          if (current.length() == 0) {
-            current.append("0");
+          @Override
+          public void onClick(View v) {
+            // Ensure current is not empty
+            if (current.length() == 0) {
+              current.append("0");
+            }
+            // Remove empty left parentheses and functions; append zero if result is empty
+            if (Pattern.matches("[\\(" + Util.FUNCTION_REGEX + "]",
+                                ((Character) current.charAt(current.length() - 1)).toString())) {
+              parenthesesDepth--;
+              current.deleteCharAt(current.length() - 1);
+              if (current.length() == 0) {
+                current.append("0");
+              }
+            }
+            // Remove hanging decimal point or operators; append zero if result is empty
+            if (Pattern.matches("[\\." + Util.OPERATOR_REGEX + "]",
+                                ((Character) current.charAt(current.length() - 1)).toString())) {
+              current.deleteCharAt(current.length() - 1);
+              if (current.length() == 0) {
+                current.append("0");
+              }
+            }
+            // Close remaining parentheses
+            for (int i = 0; i < parenthesesDepth; parenthesesDepth--) {
+              current.append(")");
+            }
+            // Append to previous if first character is an operator
+            if (Pattern.matches("[" + Util.OPERATOR_REGEX + "]",
+                                ((Character) current.charAt(0)).toString())) {
+              if (previous.length() == 0) {
+                previous.append("0");
+              }
+              previous.append(current);
+            } else {
+              previous = new StringBuilder(current);
+            }
+            try {
+              Expression e = new ExpressionBuilder(Util.executeReplace(previous))
+                  .functions(Util.FUNCTIONS).build();
+              Double result = e.evaluate();
+              if (result == result.intValue()) {
+                current =
+                    new StringBuilder(((Integer) result.intValue()).toString().replace('-', '±'));
+              } else {
+                current = new StringBuilder(result.toString().replace('-', '±'));
+              }
+              tvPrevious.setText(Util.displayReplace(previous));
+              tvPrevious.bringPointIntoView(tvPrevious.length());
+              tvCurrent.setText(Util.displayReplace(current));
+              tvCurrent.bringPointIntoView(tvCurrent.length());
+            } catch (Exception err) {
+              setPrevious();
+              setCurrent();
+              tvPrevious.setText(err.getMessage());
+              tvPrevious.bringPointIntoView(tvPrevious.length());
+              tvCurrent.setText(R.string.ERROR_LABEL);
+              tvCurrent.bringPointIntoView(tvCurrent.length());
+            }
           }
-        }
-        // Remove hanging decimal point or operators; append zero if result is empty
-        if (Pattern.matches("[\\." + Util.OPERATOR_REGEX + "]",
-            ((Character) current.charAt(current.length() - 1)).toString())) {
-          current.deleteCharAt(current.length() - 1);
-          if (current.length() == 0) {
-            current.append("0");
-          }
-        }
-        // Close remaining parentheses
-        for (int i = 0; i < parenthesesDepth; parenthesesDepth--) {
-          current.append(")");
-        }
-        // Append to previous if first character is an operator
-        if (Pattern.matches("[" + Util.OPERATOR_REGEX + "]",
-            ((Character) current.charAt(0)).toString())) {
-          if (previous.length() == 0) {
-            previous.append("0");
-          }
-          previous.append(current);
-        } else {
-          previous = new StringBuilder(current);
-        }
-        try {
-          Expression e = new ExpressionBuilder(Util.executeReplace(previous))
-              .functions(Util.FUNCTIONS).build();
-          Double result = e.evaluate();
-          if (result == result.intValue()) {
-            current = new StringBuilder(((Integer) result.intValue()).toString().replace('-', '±'));
-          } else {
-            current = new StringBuilder(result.toString().replace('-', '±'));
-          }
-          tvPrevious.setText(Util.displayReplace(previous));
-          tvPrevious.bringPointIntoView(tvPrevious.length());
-          tvCurrent.setText(Util.displayReplace(current));
-          tvCurrent.bringPointIntoView(tvCurrent.length());
-        } catch (Exception err) {
-          setPrevious();
-          setCurrent();
-          tvPrevious.setText(err.getMessage());
-          tvPrevious.bringPointIntoView(tvPrevious.length());
-          tvCurrent.setText(R.string.ERROR_LABEL);
-          tvCurrent.bringPointIntoView(tvCurrent.length());
-        }
-      }
-    });
+        });
 
     ((Button) findViewById(R.id.btnNegation))
         .setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        if (Pattern.matches("(.*?)(\\d+[\\.]?\\d*$)", current.toString())) {
-          if (Pattern.matches("(.*?)(±\\d+[\\.]?\\d*$)", current.toString())) {
-            Pattern p = Pattern.compile("(.*?)(±\\d+[\\.]?\\d*$)");
-            Matcher m = p.matcher(current.toString());
-            m.find();
-            int position = m.start(2);
-            current.deleteCharAt(position);
-          } else {
-            Pattern p = Pattern.compile("(.*?)(\\d+[\\.]?\\d*$)");
-            Matcher m = p.matcher(current.toString());
-            m.find();
-            int position = m.start(2);
-            current.insert(position, Tokens.NEGATION.build());
+          @Override
+          public void onClick(View v) {
+            if (Pattern.matches("(.*?)(\\d+[\\.]?\\d*$)", current.toString())) {
+              if (Pattern.matches("(.*?)(±\\d+[\\.]?\\d*$)", current.toString())) {
+                Pattern p = Pattern.compile("(.*?)(±\\d+[\\.]?\\d*$)");
+                Matcher m = p.matcher(current.toString());
+                m.find();
+                int position = m.start(2);
+                current.deleteCharAt(position);
+              } else {
+                Pattern p = Pattern.compile("(.*?)(\\d+[\\.]?\\d*$)");
+                Matcher m = p.matcher(current.toString());
+                m.find();
+                int position = m.start(2);
+                current.insert(position, Tokens.NEGATION.build());
+              }
+              tvCurrent.setText(Util.displayReplace(current));
+              tvCurrent.bringPointIntoView(tvCurrent.length());
+            }
           }
-          tvCurrent.setText(Util.displayReplace(current));
-          tvCurrent.bringPointIntoView(tvCurrent.length());
-        }
-      }
-    });
+        });
 
     ((Button) findViewById(R.id.btnParenthesisRight))
         .setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        if (Pattern.matches("(.*[\\d\\)]$)", current.toString()) && parenthesesDepth > 0) {
-          parenthesesDepth--;
-          current.append(")");
-          tvCurrent.setText(Util.displayReplace(current));
-          tvCurrent.bringPointIntoView(tvCurrent.length());
-        }
-      }
-    });
+          @Override
+          public void onClick(View v) {
+            if (Pattern.matches("(.*[\\d\\)]$)", current.toString()) && parenthesesDepth > 0) {
+              parenthesesDepth--;
+              current.append(")");
+              tvCurrent.setText(Util.displayReplace(current));
+              tvCurrent.bringPointIntoView(tvCurrent.length());
+            }
+          }
+        });
   }
 }
