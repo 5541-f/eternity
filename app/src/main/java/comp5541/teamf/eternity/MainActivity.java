@@ -23,7 +23,11 @@ public class MainActivity extends AppCompatActivity {
     calculator.resetPrevious();
     tvPrevious = (TextView) findViewById(R.id.tvPrevious);
     tvPrevious.setMovementMethod(new ScrollingMovementMethod());
-    tvPrevious.setText("");
+    setPrevious("");
+  }
+
+  private void setPrevious(String string) {
+    tvPrevious.setText(Util.displayReplace(string));
     tvPrevious.bringPointIntoView(tvPrevious.length());
   }
 
@@ -34,7 +38,11 @@ public class MainActivity extends AppCompatActivity {
     calculator.resetCurrent();
     tvCurrent = (TextView) findViewById(R.id.tvCurrent);
     tvCurrent.setMovementMethod(new ScrollingMovementMethod());
-    tvCurrent.setText("0");
+    setCurrent("0");
+  }
+
+  private void setCurrent(String string) {
+    tvCurrent.setText(Util.displayReplace(string));
     tvCurrent.bringPointIntoView(tvCurrent.length());
   }
 
@@ -58,8 +66,7 @@ public class MainActivity extends AppCompatActivity {
       public void onClick(View v) {
         if (Pattern.matches(validation, calculator.getCurrent())) {
           calculator.pressKey(validation, character, parentheses);
-          tvCurrent.setText(Util.displayReplace(calculator.getCurrent()));
-          tvCurrent.bringPointIntoView(tvCurrent.length());
+          setCurrent(calculator.getCurrent());
         }
       }
     };
@@ -126,84 +133,71 @@ public class MainActivity extends AppCompatActivity {
         this.setKey(Util.FUNCTION_VALIDATION, Tokens.SQUARE_ROOT.build(), 1));
 
     //what to do about 0/empty
-    ((Button) findViewById(R.id.btnBackspace))
-        .setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View v) {
-            if (calculator.getCurrent().length() < 1) {
-              tvCurrent.setText("0");
-              tvCurrent.bringPointIntoView(tvCurrent.length());
-            } else {
-              calculator.pressBackspace();
-              if (calculator.getCurrent().length() < 1) {
-                tvCurrent.setText("0");
-                tvCurrent.bringPointIntoView(tvCurrent.length());
-              } else {
-                tvCurrent.setText(Util.displayReplace(calculator.getCurrent()));
-                tvCurrent.bringPointIntoView(tvCurrent.length());
-              }
-            }
+    ((Button) findViewById(R.id.btnBackspace)).setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        if (calculator.getCurrent().length() < 1) {
+          setCurrent("0");
+        } else {
+          calculator.pressBackspace();
+          if (calculator.getCurrent().length() < 1) {
+            setCurrent("0");
+          } else {
+            setCurrent(calculator.getCurrent());
           }
-        });
+        }
+      }
+    });
 
-    ((Button) findViewById(R.id.btnClearAll))
-        .setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View v) {
-            setPrevious();
-            setCurrent();
-          }
-        });
+    ((Button) findViewById(R.id.btnClearAll)).setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        setPrevious();
+        setCurrent();
+      }
+    });
 
-    ((Button) findViewById(R.id.btnClearExpression))
-        .setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View v) {
-            setCurrent();
-          }
-        });
+    ((Button) findViewById(R.id.btnClearExpression)).setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        setCurrent();
+      }
+    });
 
     // TODO: leave expression after error?
     // TODO: negation on return???; done?
     // TODO: infinity/NaN?
-    ((Button) findViewById(R.id.btnExecute))
-        .setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View v) {
-            try {
-              calculator.pressEvaluate();
-              tvPrevious.setText(Util.displayReplace(calculator.getPrevious()));
-              tvPrevious.bringPointIntoView(tvPrevious.length());
-              tvCurrent.setText(Util.displayReplace(calculator.getCurrent()));
-              tvCurrent.bringPointIntoView(tvCurrent.length());
-            } catch (Exception err) {
-              setPrevious();
-              setCurrent();
-              tvPrevious.setText(err.getMessage());
-              tvPrevious.bringPointIntoView(tvPrevious.length());
-              tvCurrent.setText(R.string.ERROR_LABEL);
-              tvCurrent.bringPointIntoView(tvCurrent.length());
-            }
-          }
-        });
+    ((Button) findViewById(R.id.btnExecute)).setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        try {
+          calculator.pressEvaluate();
+          setPrevious(calculator.getPrevious());
+          setCurrent(calculator.getCurrent());
+        } catch (Exception err) {
+          setPrevious();
+          setCurrent();
+          setPrevious(err.getMessage());
+          tvCurrent.setText(R.string.ERROR_LABEL);
+          tvCurrent.bringPointIntoView(tvCurrent.length());
+        }
+      }
+    });
 
-    ((Button) findViewById(R.id.btnNegation))
-        .setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View v) {
-            calculator.pressNegation();
-            tvCurrent.setText(Util.displayReplace(calculator.getCurrent()));
-            tvCurrent.bringPointIntoView(tvCurrent.length());
-          }
-        });
+    ((Button) findViewById(R.id.btnNegation)).setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        calculator.pressNegation();
+        setCurrent(calculator.getCurrent());
+      }
+    });
 
-    ((Button) findViewById(R.id.btnParenthesisRight))
-        .setOnClickListener(new View.OnClickListener() {
+    ((Button) findViewById(R.id.btnParenthesisRight)).setOnClickListener(
+        new View.OnClickListener() {
           @Override
           public void onClick(View v) {
             calculator.pressParenthesisRight();
-            tvCurrent.setText(Util.displayReplace(calculator.getCurrent()));
-            tvCurrent.bringPointIntoView(tvCurrent.length());
+            setCurrent(calculator.getCurrent());
           }
         });
   }
