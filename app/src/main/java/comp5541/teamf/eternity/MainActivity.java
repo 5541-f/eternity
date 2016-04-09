@@ -7,29 +7,20 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import net.objecthunter.exp4j.Expression;
-import net.objecthunter.exp4j.ExpressionBuilder;
-
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
 
   private Calculator calculator = new Calculator();
 
-  private StringBuilder current;
-  private StringBuilder previous;
-
   private TextView tvCurrent;
   private TextView tvPrevious;
-
-  private int parenthesesDepth;
 
   /**
    * Sets/resets <b>Previous Expression</b> display and values
    */
   private void setPrevious() {
-    previous = new StringBuilder("0");
+    calculator.resetPrevious();
     tvPrevious = (TextView) findViewById(R.id.tvPrevious);
     tvPrevious.setMovementMethod(new ScrollingMovementMethod());
     tvPrevious.setText("");
@@ -40,30 +31,11 @@ public class MainActivity extends AppCompatActivity {
    * Sets/resets <b>Current Expression</b> display and values
    */
   private void setCurrent() {
-    current = new StringBuilder();
+    calculator.resetCurrent();
     tvCurrent = (TextView) findViewById(R.id.tvCurrent);
     tvCurrent.setMovementMethod(new ScrollingMovementMethod());
     tvCurrent.setText("0");
     tvCurrent.bringPointIntoView(tvCurrent.length());
-    parenthesesDepth = 0;
-  }
-
-  /**
-   * Increments or decrements <b>parenthesis depth</b> by 1. For use with <b>setKey</b> method.
-   *
-   * @param flag
-   *     <b>1</b> to increment by 1; <b>-1</b> to decrement by 1; default has no impact.
-   */
-  private void setParenthesesDepth(int flag) {
-    switch (flag) {
-      case 1:
-        parenthesesDepth++;
-        break;
-      case -1:
-        parenthesesDepth--;
-        break;
-      default:
-    }
   }
 
   /**
@@ -84,10 +56,9 @@ public class MainActivity extends AppCompatActivity {
     return new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        if (Pattern.matches(validation, current.toString())) {
-          setParenthesesDepth(parentheses);
-          current.append(character);
-          tvCurrent.setText(Util.displayReplace(current));
+        if (Pattern.matches(validation, calculator.getCurrent())) {
+          calculator.pressKey(validation, character, parentheses);
+          tvCurrent.setText(Util.displayReplace(calculator.getCurrent()));
           tvCurrent.bringPointIntoView(tvCurrent.length());
         }
       }
@@ -159,26 +130,16 @@ public class MainActivity extends AppCompatActivity {
         .setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
-            if (current.length() < 1) {
+            if (calculator.getCurrent().length() < 1) {
               tvCurrent.setText("0");
               tvCurrent.bringPointIntoView(tvCurrent.length());
             } else {
-              if (Pattern.matches(".*[\\)]", current.toString())) {
-                parenthesesDepth++;
-              }
-              if (Pattern.matches(".*[\\(" + Util.FUNCTION_REGEX + "]$", current.toString())) {
-                parenthesesDepth--;
-              }
-              current.deleteCharAt(current.length() - 1);
-              if (current.length() > 0
-                  && current.charAt(current.length() - 1) == Tokens.NEGATION.build().charAt(0)) {
-                current.deleteCharAt(current.length() - 1);
-              }
-              if (current.length() < 1) {
+              calculator.pressBackspace();
+              if (calculator.getCurrent().length() < 1) {
                 tvCurrent.setText("0");
                 tvCurrent.bringPointIntoView(tvCurrent.length());
               } else {
-                tvCurrent.setText(Util.displayReplace(current));
+                tvCurrent.setText(Util.displayReplace(calculator.getCurrent()));
                 tvCurrent.bringPointIntoView(tvCurrent.length());
               }
             }
@@ -209,54 +170,11 @@ public class MainActivity extends AppCompatActivity {
         .setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
-            // Ensure current is not empty
-            if (current.length() == 0) {
-              current.append("0");
-            }
-            // Remove empty left parentheses and functions; append zero if result is empty
-            if (Pattern.matches("[\\(" + Util.FUNCTION_REGEX + "]",
-                                ((Character) current.charAt(current.length() - 1)).toString())) {
-              parenthesesDepth--;
-              current.deleteCharAt(current.length() - 1);
-              if (current.length() == 0) {
-                current.append("0");
-              }
-            }
-            // Remove hanging decimal point or operators; append zero if result is empty
-            if (Pattern.matches("[\\." + Util.OPERATOR_REGEX + "]",
-                                ((Character) current.charAt(current.length() - 1)).toString())) {
-              current.deleteCharAt(current.length() - 1);
-              if (current.length() == 0) {
-                current.append("0");
-              }
-            }
-            // Close remaining parentheses
-            for (int i = 0; i < parenthesesDepth; parenthesesDepth--) {
-              current.append(")");
-            }
-            // Append to previous if first character is an operator
-            if (Pattern.matches("[" + Util.OPERATOR_REGEX + "]",
-                                ((Character) current.charAt(0)).toString())) {
-              if (previous.length() == 0) {
-                previous.append("0");
-              }
-              previous.append(current);
-            } else {
-              previous = new StringBuilder(current);
-            }
             try {
-              Expression e = new ExpressionBuilder(Util.executeReplace(previous))
-                  .functions(Util.FUNCTIONS).build();
-              Double result = e.evaluate();
-              if (result == result.intValue()) {
-                current =
-                    new StringBuilder(((Integer) result.intValue()).toString().replace('-', '±'));
-              } else {
-                current = new StringBuilder(result.toString().replace('-', '±'));
-              }
-              tvPrevious.setText(Util.displayReplace(previous));
+              calculator.pressEvaluate();
+              tvPrevious.setText(Util.displayReplace(calculator.getPrevious()));
               tvPrevious.bringPointIntoView(tvPrevious.length());
-              tvCurrent.setText(Util.displayReplace(current));
+              tvCurrent.setText(Util.displayReplace(calculator.getCurrent()));
               tvCurrent.bringPointIntoView(tvCurrent.length());
             } catch (Exception err) {
               setPrevious();
@@ -273,23 +191,9 @@ public class MainActivity extends AppCompatActivity {
         .setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
-            if (Pattern.matches("(.*?)(\\d+[\\.]?\\d*$)", current.toString())) {
-              if (Pattern.matches("(.*?)(±\\d+[\\.]?\\d*$)", current.toString())) {
-                Pattern p = Pattern.compile("(.*?)(±\\d+[\\.]?\\d*$)");
-                Matcher m = p.matcher(current.toString());
-                m.find();
-                int position = m.start(2);
-                current.deleteCharAt(position);
-              } else {
-                Pattern p = Pattern.compile("(.*?)(\\d+[\\.]?\\d*$)");
-                Matcher m = p.matcher(current.toString());
-                m.find();
-                int position = m.start(2);
-                current.insert(position, Tokens.NEGATION.build());
-              }
-              tvCurrent.setText(Util.displayReplace(current));
-              tvCurrent.bringPointIntoView(tvCurrent.length());
-            }
+            calculator.pressNegation();
+            tvCurrent.setText(Util.displayReplace(calculator.getCurrent()));
+            tvCurrent.bringPointIntoView(tvCurrent.length());
           }
         });
 
@@ -297,12 +201,9 @@ public class MainActivity extends AppCompatActivity {
         .setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
-            if (Pattern.matches("(.*[\\d\\)]$)", current.toString()) && parenthesesDepth > 0) {
-              parenthesesDepth--;
-              current.append(")");
-              tvCurrent.setText(Util.displayReplace(current));
-              tvCurrent.bringPointIntoView(tvCurrent.length());
-            }
+            calculator.pressParenthesisRight();
+            tvCurrent.setText(Util.displayReplace(calculator.getCurrent()));
+            tvCurrent.bringPointIntoView(tvCurrent.length());
           }
         });
   }

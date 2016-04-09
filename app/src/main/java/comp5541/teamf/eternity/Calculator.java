@@ -34,6 +34,12 @@ public class Calculator {
     return this.current.toString();
   }
 
+  /**
+   * Increments or decrements <b>parenthesis depth</b> by 1. For use with <b>setKey</b> method.
+   *
+   * @param flag
+   *     <b>1</b> to increment by 1; <b>-1</b> to decrement by 1; default has no impact.
+   */
   private void setParenthesesDepth(int flag) {
     switch (flag) {
       case 1:
@@ -118,7 +124,7 @@ public class Calculator {
     }
     try {
       net.objecthunter.exp4j.Expression
-          e = new net.objecthunter.exp4j.ExpressionBuilder(Util.executeReplace(previous))
+          e = new net.objecthunter.exp4j.ExpressionBuilder(Util.executeReplace(previous.toString()))
           .functions(Util.FUNCTIONS).build();
       Double result = e.evaluate();
       if (result == result.intValue()) {
@@ -130,6 +136,7 @@ public class Calculator {
     } catch (Exception err) {
       resetPrevious();
       resetCurrent();
+      throw err;
     }
   }
 
@@ -156,7 +163,7 @@ public class Calculator {
   }
 
 
-  public void pressParenthesisRight(android.view.View v) {
+  public void pressParenthesisRight() {
     if (java.util.regex.Pattern.matches("(.*[\\d\\)]$)", current.toString())
         && parenthesesDepth > 0) {
       parenthesesDepth--;
