@@ -76,17 +76,17 @@ public class Calculator {
     }
   }
 
-  public void pressClearAll() {
+  public void clearAll() {
     resetPrevious();
     resetCurrent();
   }
 
-  public void pressClearExpression() {
+  public void clearExpression() {
     resetCurrent();
   }
 
 
-  public void pressEvaluate() {
+  public void evaluateExpression() {
     // Ensure current is not empty
     if (current.length() == 0) {
       current.append("0");
