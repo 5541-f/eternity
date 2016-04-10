@@ -283,8 +283,7 @@
         android:textSize="20sp"
         android:layout_columnSpan="4"
         android:layout_rowSpan="4"
-        android:textColor="#F0F0F0"
-        android:backgroundTint="#505050" />
+        android:backgroundTint="#d080f0" />
 
     <Button
         android:id="@+id/btnExponent10"
@@ -299,8 +298,7 @@
         android:textSize="20sp"
         android:layout_columnSpan="4"
         android:layout_rowSpan="4"
-        android:textColor="#F0F0F0"
-        android:backgroundTint="#505050" />
+        android:backgroundTint="#d080f0" />
 
     <Button
         android:layout_width="0dp"
@@ -344,8 +342,8 @@
         android:textSize="20sp"
         android:layout_columnSpan="4"
         android:layout_rowSpan="4"
-        android:backgroundTint="#505050"
-        android:textColor="#F0F0F0" />
+        android:backgroundTint="#d080f0"
+        />
 
     <Button
         android:id="@+id/btnExponentNatural"
@@ -360,8 +358,7 @@
         android:textSize="20sp"
         android:layout_columnSpan="4"
         android:layout_rowSpan="4"
-        android:textColor="#F0F0F0"
-        android:backgroundTint="#505050" />
+        android:backgroundTint="#d080f0" />
 
     <Button
         android:id="@+id/btnLogarithm10"
@@ -376,8 +373,7 @@
         android:textSize="20sp"
         android:layout_columnSpan="4"
         android:layout_rowSpan="4"
-        android:textColor="#F0F0F0"
-        android:backgroundTint="#505050" />
+        android:backgroundTint="#d080f0" />
 
     <Button
         android:id="@+id/btnDivision"
