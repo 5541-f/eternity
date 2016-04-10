@@ -2,6 +2,8 @@ package comp5541.teamf.eternity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
+import android.text.Spanned;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
@@ -27,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
   }
 
   private void setPrevious(String string) {
-    tvPrevious.setText(Util.displayReplace(string));
+    tvPrevious.setText(displayReplace(string));
     tvPrevious.bringPointIntoView(tvPrevious.length());
   }
 
@@ -42,8 +44,21 @@ public class MainActivity extends AppCompatActivity {
   }
 
   private void setCurrent(String string) {
-    tvCurrent.setText(Util.displayReplace(string));
+    tvCurrent.setText(displayReplace(string));
     tvCurrent.bringPointIntoView(tvCurrent.length());
+  }
+
+  /**
+   * Method to find and replace tokens for display.
+   * @param s (String)
+   * @return (Spanned)
+   */
+  private Spanned displayReplace(String s) {
+    String displayString = s;
+    for (Tokens sym : Tokens.values()) {
+      displayString = displayString.replaceAll(Pattern.quote(sym.build()), sym.display());
+    }
+    return Html.fromHtml(displayString);
   }
 
   /**

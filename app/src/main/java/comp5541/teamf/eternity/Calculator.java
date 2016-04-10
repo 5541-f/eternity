@@ -124,7 +124,7 @@ public class Calculator {
     }
     try {
       Expression
-          e = new ExpressionBuilder(Util.executeReplace(previous.toString()))
+          e = new ExpressionBuilder(executeReplace(previous.toString()))
           .functions(FUNCTIONS).build();
       Double result = e.evaluate();
       if (result == result.intValue()) {
@@ -138,6 +138,19 @@ public class Calculator {
       resetCurrent();
       throw err;
     }
+  }
+
+  /**
+   * Method to find and replace tokens for execution.
+   * @param s (String)
+   * @return (String)
+   */
+  private String executeReplace(String s) {
+    String executeString = s;
+    for (Tokens sym : Tokens.values()) {
+      executeString = executeString.replaceAll(Pattern.quote(sym.build()), sym.execute());
+    }
+    return executeString;
   }
 
   public void toggleNegation() {
