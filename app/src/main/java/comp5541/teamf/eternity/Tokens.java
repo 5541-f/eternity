@@ -39,7 +39,7 @@ enum Tokens {
       ("±", " -", " -", "(.*?)(\\d+[\\.]?\\d*$)"),
   POINT(".", ".", ".", ".*(?<![\\.\\d])\\d+$"),
   ZERO("0", "0", "0", DIGIT_VALIDATION),
-  ONE("1", "1", "0", DIGIT_VALIDATION),
+  ONE("1", "1", "1", DIGIT_VALIDATION),
   TWO("2", "2", "2", DIGIT_VALIDATION),
   THREE("3", "3", "3", DIGIT_VALIDATION),
   FOUR("4", "4", "4", DIGIT_VALIDATION),

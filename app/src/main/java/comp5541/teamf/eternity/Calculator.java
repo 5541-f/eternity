@@ -1,21 +1,21 @@
 package comp5541.teamf.eternity;
 
+import net.objecthunter.exp4j.Expression;
+import net.objecthunter.exp4j.ExpressionBuilder;
+import net.objecthunter.exp4j.function.Function;
+
 import java.util.regex.Pattern;
 
-/**
- * Created by rsmith on 4/9/2016.
- */
 public class Calculator {
+
+  private StringBuilder current;
+  private StringBuilder previous;
+  private int parenthesesDepth;
 
   public Calculator() {
     this.resetPrevious();
     this.resetCurrent();
   }
-
-  private StringBuilder current;
-  private StringBuilder previous;
-
-  private int parenthesesDepth;
 
   public String getPrevious() {
     return this.previous.toString();
@@ -125,7 +125,7 @@ public class Calculator {
     try {
       net.objecthunter.exp4j.Expression
           e = new net.objecthunter.exp4j.ExpressionBuilder(Util.executeReplace(previous.toString()))
-          .functions(Util.FUNCTIONS).build();
+          .functions(FUNCTIONS).build();
       Double result = e.evaluate();
       if (result == result.intValue()) {
         current =
@@ -169,5 +169,47 @@ public class Calculator {
       parenthesesDepth--;
       current.append(")");
     }
+  }
+
+  /**
+   * Array of custom <b>exp4j</b> functions.
+   */
+  static final Function[] FUNCTIONS = new Function[5];
+
+  /**
+   * Definition of custom <b>exp4j</b> functions with methods from
+   * <b>comp5541.teamf.eternity.Math</b>.
+   */
+  static {
+    FUNCTIONS[0] = new Function("fExpTen") {
+      @Override
+      public double apply(double... args) {
+        return Math.exponent10(args[0]);
+      }
+    };
+    FUNCTIONS[1] = new Function("fExpNat") {
+      @Override
+      public double apply(double... args) {
+        return Math.exponentNatural(args[0]);
+      }
+    };
+    FUNCTIONS[2] = new Function("fLogTen") {
+      @Override
+      public double apply(double... args) {
+        return Math.logarithm10(args[0]);
+      }
+    };
+    FUNCTIONS[3] = new Function("fSine") {
+      @Override
+      public double apply(double... args) {
+        return Math.sine(args[0]);
+      }
+    };
+    FUNCTIONS[4] = new Function("fSqrt") {
+      @Override
+      public double apply(double... args) {
+        return Math.squareRoot(args[0]);
+      }
+    };
   }
 }
