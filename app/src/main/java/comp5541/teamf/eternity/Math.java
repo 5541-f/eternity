@@ -287,7 +287,7 @@ public class Math {
   private static double logarithmNaturalAlgorthmA(double number) {
     Double temp   = 0.0;
     double result = 0;
-    for (int i = 0; i < 1500; i++) {
+    for (int i = 0; i < 500; i++) {
       temp = (1.0 / (2 * i + 1)) * exponentiation((number - 1) / (number + 1), (2 * i + 1));
       if (temp.isInfinite() || temp.isNaN()) {
         break;
