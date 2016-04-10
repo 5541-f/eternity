@@ -187,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
     ((Button) findViewById(R.id.btnNegation)).setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        calculator.pressNegation();
+        calculator.toggleNegation();
         setCurrent(calculator.getCurrent());
       }
     });
