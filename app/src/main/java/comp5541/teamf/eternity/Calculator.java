@@ -10,7 +10,7 @@ public class Calculator {
 
   private StringBuilder current;
   private StringBuilder previous;
-  private int parenthesesDepth;
+  private int           parenthesesDepth;
 
   public Calculator() {
     this.resetPrevious();
@@ -123,13 +123,12 @@ public class Calculator {
       previous = new StringBuilder(current);
     }
     try {
-      Expression
-          e = new ExpressionBuilder(executeReplace(previous.toString()))
-          .functions(FUNCTIONS).build();
+      Expression e = new ExpressionBuilder(executeReplace(previous.toString()))
+          .functions(FUNCTIONS)
+          .build();
       Double result = e.evaluate();
       if (result == result.intValue()) {
-        current =
-            new StringBuilder(((Integer) result.intValue()).toString().replace('-', '±'));
+        current = new StringBuilder(((Integer) result.intValue()).toString().replace('-', '±'));
       } else {
         current = new StringBuilder(result.toString().replace('-', '±'));
       }
@@ -142,7 +141,10 @@ public class Calculator {
 
   /**
    * Method to find and replace tokens for execution.
-   * @param s (String)
+   *
+   * @param s
+   *     (String)
+   *
    * @return (String)
    */
   private String executeReplace(String s) {
