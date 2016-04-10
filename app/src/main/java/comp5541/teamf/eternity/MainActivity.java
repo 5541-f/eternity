@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
         if (calculator.getCurrent().length() < 1) {
           setCurrent("0");
         } else {
-          calculator.pressBackspace();
+          calculator.backspace();
           if (calculator.getCurrent().length() < 1) {
             setCurrent("0");
           } else {
@@ -171,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
       @Override
       public void onClick(View v) {
         try {
-          calculator.pressEvaluate();
+          calculator.evaluateExpression();
           setPrevious(calculator.getPrevious());
           setCurrent(calculator.getCurrent());
         } catch (Exception err) {

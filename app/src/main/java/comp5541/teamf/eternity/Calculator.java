@@ -162,9 +162,8 @@ public class Calculator {
     }
   }
 
-
   public void pressParenthesisRight() {
-    if (java.util.regex.Pattern.matches("(.*[\\d\\)]$)", current.toString())
+    if (Pattern.matches(Tokens.PARENTHESIS_RIGHT.validate(), current.toString())
         && parenthesesDepth > 0) {
       parenthesesDepth--;
       current.append(")");
