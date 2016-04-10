@@ -20,7 +20,7 @@
 
     <string name="EXPONENT_NATURAL_LABEL"><tt><small>ℯˣ</small></tt></string>
     <string name="EXPONENT_10_LABEL"><tt><small>10ˣ</small></tt></string>
-    <string name="LEFT_PARENTHESIS_LABEL"><tt>(</tt></string>
+    <string name="PARENTHESIS_LEFT_LABEL"><tt>(</tt></string>
     <string name="LOGARITHM_LABEL"><tt><small>log₁₀</small></tt></string>
     <string name="SINE_LABEL"><tt><small>sin</small></tt></string>
     <string name="SQRT_LABEL"><tt><small>√</small></tt></string>
@@ -31,7 +31,7 @@
     <string name="DOT_LABEL"><tt>.</tt></string>
     <string name="EXECUTE_LABEL"><tt>=</tt></string>
     <string name="NEGATION_LABEL"><tt>±</tt></string>
-    <string name="RIGHT_PARENTHESIS_LABEL"><tt>)</tt></string>
+    <string name="PARENTHESIS_RIGHT_LABEL"><tt>)</tt></string>
 
     <string name="ERROR_LABEL">ERROR</string>
 </resources>

@@ -66,7 +66,7 @@ public class Calculator {
     if (Pattern.matches(".*[\\)]", current.toString())) {
       parenthesesDepth++;
     }
-    if (Pattern.matches(".*[\\(" + Tokens.FUNCTION_REGEX + "]$", current.toString())) {
+    if (Pattern.matches(".*[\\(" + Tokens.FUNCTIONS + "]$", current.toString())) {
       parenthesesDepth--;
     }
     current.deleteCharAt(current.length() - 1);
@@ -92,7 +92,7 @@ public class Calculator {
       current.append("0");
     }
     // Remove empty left parentheses and functions; append zero if result is empty
-    if (Pattern.matches("[\\(" + Tokens.FUNCTION_REGEX + "]",
+    if (Pattern.matches("[\\(" + Tokens.FUNCTIONS + "]",
                         ((Character) current.charAt(current.length() - 1)).toString())) {
       parenthesesDepth--;
       current.deleteCharAt(current.length() - 1);
@@ -101,7 +101,7 @@ public class Calculator {
       }
     }
     // Remove hanging decimal point or operators; append zero if result is empty
-    if (Pattern.matches("[\\." + Tokens.OPERATOR_REGEX + "]",
+    if (Pattern.matches("[\\." + Tokens.OPERATORS + "]",
                         ((Character) current.charAt(current.length() - 1)).toString())) {
       current.deleteCharAt(current.length() - 1);
       if (current.length() == 0) {
@@ -113,7 +113,7 @@ public class Calculator {
       current.append(Tokens.PARENTHESIS_RIGHT.build());
     }
     // Append to previous if first character is an operator
-    if (Pattern.matches("[" + Tokens.OPERATOR_REGEX + "]",
+    if (Pattern.matches("[" + Tokens.OPERATORS + "]",
                         ((Character) current.charAt(0)).toString())) {
       if (previous.length() == 0) {
         previous.append("0");

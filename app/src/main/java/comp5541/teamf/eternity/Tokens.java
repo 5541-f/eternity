@@ -6,37 +6,30 @@ package comp5541.teamf.eternity;
  * strings are those which are recognized by the exp4j library.
  */
 enum Type {
-  DIGIT, FUNCTION, NEGATION, OPERATOR, POINT, PARENTHESIS_RIGHT
+  DIGIT,
+  FUNCTION,
+  NEGATION,
+  OPERATOR,
+  PARENTHESIS_LEFT,
+  PARENTHESIS_RIGHT,
+  POINT
 }
 
 enum Tokens {
 
-  EXPONENT_10
-      ("⑽", "<tt><small>10ˣ</small></tt>(", "fExpTen(", Type.FUNCTION),
-  EXPONENT_NATURAL
-      ("ℯ", "<tt><small>ℯˣ</small></tt>(", "fExpNat(", Type.FUNCTION),
-  LOGARITHM_10
-      ("㏒", "<tt><small>log₁₀</small></tt>(", "fLogTen(", Type.FUNCTION),
-  SINE
-      ("∿", "<tt><small>sin</small></tt>(", "fSine(", Type.FUNCTION),
-  SQUARE_ROOT
-      ("√", "<tt><small>√</small></tt>(", "fSqrt(", Type.FUNCTION),
-  PARENTHESIS_LEFT
-      ("(", "(", "(", Type.FUNCTION),
-  PARENTHESIS_RIGHT
-      (")", ")", ")", Type.PARENTHESIS_RIGHT),
-  MODULO
-      ("%", " <tt><small>mod</small></tt> ", "%", Type.OPERATOR),
-  ADDITION
-      ("➕", " + ", "+", Type.OPERATOR),
-  SUBTRACTION
-      ("—", " – ", "-", Type.OPERATOR),
-  MULTIPLICATION
-      ("×", " × ", "*", Type.OPERATOR),
-  DIVISION
-      ("÷", " ÷ ", "/", Type.OPERATOR),
-  NEGATION
-      ("±", " -", " -", Type.NEGATION),
+  EXPONENT_10("⑽", "10ˣ", "fExpTen(", Type.FUNCTION),
+  EXPONENT_NATURAL("ℯ", "ℯˣ", "fExpNat(", Type.FUNCTION),
+  LOGARITHM_10("㏒", "log₁₀", "fLogTen(", Type.FUNCTION),
+  SINE("∿", "sin", "fSine(", Type.FUNCTION),
+  SQUARE_ROOT("√", "√", "fSqrt(", Type.FUNCTION),
+  PARENTHESIS_LEFT("(", "(", "(", Type.PARENTHESIS_LEFT),
+  PARENTHESIS_RIGHT(")", ")", ")", Type.PARENTHESIS_RIGHT),
+  MODULO("%", " <tt><small>mod</small></tt> ", "%", Type.OPERATOR),
+  ADDITION("➕", " + ", "+", Type.OPERATOR),
+  SUBTRACTION("—", " – ", "-", Type.OPERATOR),
+  MULTIPLICATION("×", " × ", "*", Type.OPERATOR),
+  DIVISION("÷", " ÷ ", "/", Type.OPERATOR),
+  NEGATION("±", " -", " -", Type.NEGATION),
   POINT(".", ".", ".", Type.POINT),
   ZERO("0", "0", "0", Type.DIGIT),
   ONE("1", "1", "1", Type.DIGIT),
@@ -59,6 +52,9 @@ enum Tokens {
   }
 
   public String display() {
+    if (this.type == Type.FUNCTION) {
+      return "<tt><small>" + this.display + "</small></tt>(";
+    }
     return this.display;
   }
 
@@ -76,10 +72,12 @@ enum Tokens {
         return NEGATION_VALIDATION;
       case OPERATOR:
         return OPERATOR_VALIDATION;
-      case POINT:
-        return POINT_VALIDATION;
+      case PARENTHESIS_LEFT:
+        return FUNCTION_VALIDATION;
       case PARENTHESIS_RIGHT:
         return PARENTHESIS_RIGHT_VALIDATION;
+      case POINT:
+        return POINT_VALIDATION;
       default:
         return "";
     }
@@ -95,7 +93,7 @@ enum Tokens {
   /**
    * String constant of operator build tokens for use in regular expressions.
    */
-  static final String OPERATOR_REGEX      = ADDITION.build()
+  static final String OPERATORS           = ADDITION.build()
                                             + DIVISION.build()
                                             + MODULO.build()
                                             + MULTIPLICATION.build()
@@ -103,17 +101,17 @@ enum Tokens {
   /**
    * String constant of function build tokens for use in regular expressions.
    */
-  static final String FUNCTION_REGEX      = EXPONENT_10.build()
+  static final String FUNCTIONS           = EXPONENT_10.build()
                                             + EXPONENT_NATURAL.build()
                                             + LOGARITHM_10.build()
                                             + SQUARE_ROOT.build()
                                             + SINE.build();
   /** String constant of regular expression for validation of digits. */
-  static final String DIGIT_VALIDATION    = "(^$)|(.*\\d$)|(.*[\\." + OPERATOR_REGEX
-                                            + "\\(" + FUNCTION_REGEX + "]$)";
+  static final String DIGIT_VALIDATION    = "(^$)|(.*\\d$)|(.*[\\." + OPERATORS
+                                            + "\\(" + FUNCTIONS + "]$)";
   /** String constant of regular expression for validation of function tokens. */
-  static final String FUNCTION_VALIDATION = "(^$)|(.*[" + OPERATOR_REGEX
-                                            + "\\(" + FUNCTION_REGEX + "]$)";
+  static final String FUNCTION_VALIDATION = "(^$)|(.*[" + OPERATORS
+                                            + "\\(" + FUNCTIONS + "]$)";
   /** String constant of regular expression for validation of operator tokens. */
   static final String OPERATOR_VALIDATION = "(^$)|(.*\\d$)|(.*\\)$)";
 
