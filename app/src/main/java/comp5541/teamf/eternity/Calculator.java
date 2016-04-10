@@ -52,12 +52,12 @@ public class Calculator {
     }
   }
 
-  public void pressKey(final String validation,
-                       final String character,
-                       final int parentheses) {
-    if (Pattern.matches(validation, current.toString())) {
-      setParenthesesDepth(parentheses);
-      current.append(character);
+  public void insertToken(final Tokens token, final int parentheses) {
+    if (Pattern.matches(token.validate(), current.toString())) {
+      if (parentheses >= 0 || parenthesesDepth >= 1) {
+        setParenthesesDepth(parentheses);
+        current.append(token.build());
+      }
     }
   }
 
@@ -66,7 +66,7 @@ public class Calculator {
     if (Pattern.matches(".*[\\)]", current.toString())) {
       parenthesesDepth++;
     }
-    if (Pattern.matches(".*[\\(" + Util.FUNCTION_REGEX + "]$", current.toString())) {
+    if (Pattern.matches(".*[\\(" + Tokens.FUNCTION_REGEX + "]$", current.toString())) {
       parenthesesDepth--;
     }
     current.deleteCharAt(current.length() - 1);
@@ -92,7 +92,7 @@ public class Calculator {
       current.append("0");
     }
     // Remove empty left parentheses and functions; append zero if result is empty
-    if (Pattern.matches("[\\(" + Util.FUNCTION_REGEX + "]",
+    if (Pattern.matches("[\\(" + Tokens.FUNCTION_REGEX + "]",
                         ((Character) current.charAt(current.length() - 1)).toString())) {
       parenthesesDepth--;
       current.deleteCharAt(current.length() - 1);
@@ -101,7 +101,7 @@ public class Calculator {
       }
     }
     // Remove hanging decimal point or operators; append zero if result is empty
-    if (Pattern.matches("[\\." + Util.OPERATOR_REGEX + "]",
+    if (Pattern.matches("[\\." + Tokens.OPERATOR_REGEX + "]",
                         ((Character) current.charAt(current.length() - 1)).toString())) {
       current.deleteCharAt(current.length() - 1);
       if (current.length() == 0) {
@@ -110,10 +110,10 @@ public class Calculator {
     }
     // Close remaining parentheses
     for (int i = 0; i < parenthesesDepth; parenthesesDepth--) {
-      current.append(")");
+      current.append(Tokens.PARENTHESIS_RIGHT.build());
     }
     // Append to previous if first character is an operator
-    if (Pattern.matches("[" + Util.OPERATOR_REGEX + "]",
+    if (Pattern.matches("[" + Tokens.OPERATOR_REGEX + "]",
                         ((Character) current.charAt(0)).toString())) {
       if (previous.length() == 0) {
         previous.append("0");
@@ -123,8 +123,8 @@ public class Calculator {
       previous = new StringBuilder(current);
     }
     try {
-      net.objecthunter.exp4j.Expression
-          e = new net.objecthunter.exp4j.ExpressionBuilder(Util.executeReplace(previous.toString()))
+      Expression
+          e = new ExpressionBuilder(Util.executeReplace(previous.toString()))
           .functions(FUNCTIONS).build();
       Double result = e.evaluate();
       if (result == result.intValue()) {
@@ -172,7 +172,7 @@ public class Calculator {
   /**
    * Array of custom <b>exp4j</b> functions.
    */
-  static final Function[] FUNCTIONS = new Function[5];
+  private static final Function[] FUNCTIONS = new Function[5];
 
   /**
    * Definition of custom <b>exp4j</b> functions with methods from
