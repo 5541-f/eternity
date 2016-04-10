@@ -62,7 +62,7 @@ public class Calculator {
   }
 
 
-  public void pressBackspace() {
+  public void backspace() {
     if (Pattern.matches(".*[\\)]", current.toString())) {
       parenthesesDepth++;
     }
@@ -140,20 +140,19 @@ public class Calculator {
     }
   }
 
-
-  public void pressNegation() {
-    if (java.util.regex.Pattern.matches("(.*?)(\\d+[\\.]?\\d*$)", current.toString())) {
-      if (java.util.regex.Pattern.matches("(.*?)(±\\d+[\\.]?\\d*$)", current.toString())) {
-        java.util.regex.Pattern
-            p = java.util.regex.Pattern
+  public void toggleNegation() {
+    if (Pattern.matches(Tokens.NEGATION.validate(), current.toString())) {
+      if (Pattern.matches("(.*?)(±\\d+[\\.]?\\d*$)", current.toString())) {
+        Pattern
+            p = Pattern
             .compile("(.*?)(±\\d+[\\.]?\\d*$)");
         java.util.regex.Matcher m = p.matcher(current.toString());
         m.find();
         int position = m.start(2);
         current.deleteCharAt(position);
       } else {
-        java.util.regex.Pattern p =
-            java.util.regex.Pattern.compile("(.*?)(\\d+[\\.]?\\d*$)");
+        Pattern p =
+            Pattern.compile(Tokens.NEGATION.validate());
         java.util.regex.Matcher m = p.matcher(current.toString());
         m.find();
         int position = m.start(2);
