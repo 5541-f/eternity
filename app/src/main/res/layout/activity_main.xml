@@ -55,9 +55,10 @@
         android:layout_rowWeight=".15"
         android:text="@string/ZERO_LABEL"
         android:textAllCaps="false"
-        android:textSize="20sp"
+        android:textSize="25sp"
         android:backgroundTint="#f0d080"
-        android:layout_rowSpan="4" />
+        android:layout_rowSpan="4"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/btn1"
@@ -70,10 +71,11 @@
         android:layout_rowWeight=".15"
         android:text="@string/ONE_LABEL"
         android:textAllCaps="false"
-        android:textSize="20sp"
+        android:textSize="25sp"
         android:backgroundTint="#f0d080"
         android:layout_margin="2dp"
-        android:layout_rowSpan="4" />
+        android:layout_rowSpan="4"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/btn2"
@@ -86,9 +88,10 @@
         android:layout_rowWeight=".15"
         android:text="@string/TWO_LABEL"
         android:textAllCaps="false"
-        android:textSize="20sp"
+        android:textSize="25sp"
         android:backgroundTint="#f0d080"
-        android:layout_rowSpan="4" />
+        android:layout_rowSpan="4"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/btn3"
@@ -101,9 +104,10 @@
         android:layout_rowWeight=".15"
         android:text="@string/THREE_LABEL"
         android:textAllCaps="false"
-        android:textSize="20sp"
+        android:textSize="25sp"
         android:backgroundTint="#f0d080"
-        android:layout_rowSpan="4" />
+        android:layout_rowSpan="4"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/btn4"
@@ -116,10 +120,11 @@
         android:layout_rowWeight=".15"
         android:text="@string/FOUR_LABEL"
         android:textAllCaps="false"
-        android:textSize="20sp"
+        android:textSize="25sp"
         android:backgroundTint="#f0d080"
         android:layout_margin="2dp"
-        android:layout_rowSpan="4" />
+        android:layout_rowSpan="4"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/btn5"
@@ -132,10 +137,11 @@
         android:layout_rowWeight=".15"
         android:text="@string/FIVE_LABEL"
         android:textAllCaps="false"
-        android:textSize="20sp"
+        android:textSize="25sp"
         android:backgroundTint="#f0d080"
         android:layout_margin="2dp"
-        android:layout_rowSpan="4" />
+        android:layout_rowSpan="4"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/btn6"
@@ -148,10 +154,11 @@
         android:layout_rowWeight=".15"
         android:text="@string/SIX_LABEL"
         android:textAllCaps="false"
-        android:textSize="20sp"
+        android:textSize="25sp"
         android:backgroundTint="#f0d080"
         android:layout_margin="2dp"
-        android:layout_rowSpan="4" />
+        android:layout_rowSpan="4"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/btn7"
@@ -164,10 +171,11 @@
         android:layout_rowWeight=".15"
         android:text="@string/SEVEN_LABEL"
         android:textAllCaps="false"
-        android:textSize="20sp"
+        android:textSize="25sp"
         android:backgroundTint="#f0d080"
         android:layout_margin="2dp"
-        android:layout_rowSpan="4" />
+        android:layout_rowSpan="4"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/btn8"
@@ -180,10 +188,11 @@
         android:layout_rowWeight=".15"
         android:text="@string/EIGHT_LABEL"
         android:textAllCaps="false"
-        android:textSize="20sp"
+        android:textSize="25sp"
         android:backgroundTint="#f0d080"
         android:layout_margin="2dp"
-        android:layout_rowSpan="4" />
+        android:layout_rowSpan="4"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/btn9"
@@ -196,10 +205,11 @@
         android:layout_rowWeight=".15"
         android:text="@string/NINE_LABEL"
         android:textAllCaps="false"
-        android:textSize="20sp"
+        android:textSize="25sp"
         android:backgroundTint="#f0d080"
         android:layout_margin="2dp"
-        android:layout_rowSpan="4" />
+        android:layout_rowSpan="4"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/btnAddition"
@@ -212,9 +222,11 @@
         android:layout_rowWeight=".15"
         android:text="@string/ADDITION_LABEL"
         android:textAllCaps="false"
-        android:textSize="20sp"
+        android:textSize="30sp"
         android:backgroundTint="#a0a0f0"
-        android:layout_rowSpan="4" />
+        android:layout_rowSpan="4"
+        android:textAlignment="center"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/btnBackspace"
@@ -229,7 +241,8 @@
         android:textAllCaps="false"
         android:textSize="20sp"
         android:backgroundTint="#d0f080"
-        android:layout_rowSpan="2" />
+        android:layout_rowSpan="2"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/btnClearAll"
@@ -244,7 +257,8 @@
         android:textAllCaps="false"
         android:textSize="20sp"
         android:backgroundTint="#d0f080"
-        android:layout_rowSpan="2" />
+        android:layout_rowSpan="2"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/btnParenthesisLeft"
@@ -256,7 +270,9 @@
         android:layout_rowWeight=".15"
         android:text="@string/PARENTHESIS_LEFT_LABEL"
         android:backgroundTint="#a0a0f0"
-        android:layout_columnSpan="3" />
+        android:layout_columnSpan="3"
+        android:textSize="25sp"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/btnParenthesisRight"
@@ -268,7 +284,9 @@
         android:layout_rowWeight=".15"
         android:text="@string/PARENTHESIS_RIGHT_LABEL"
         android:backgroundTint="#a0a0f0"
-        android:layout_columnSpan="3" />
+        android:layout_columnSpan="3"
+        android:textSize="25sp"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/btnSquareRoot"
@@ -280,10 +298,11 @@
         android:layout_rowWeight=".15"
         android:text="@string/SQRT_LABEL"
         android:textAllCaps="false"
-        android:textSize="20sp"
+        android:textSize="25sp"
         android:layout_columnSpan="4"
         android:layout_rowSpan="4"
-        android:backgroundTint="#d080f0" />
+        android:backgroundTint="#d080f0"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/btnExponent10"
@@ -295,10 +314,11 @@
         android:layout_rowWeight=".15"
         android:text="@string/EXPONENT_10_LABEL"
         android:textAllCaps="false"
-        android:textSize="20sp"
+        android:textSize="25sp"
         android:layout_columnSpan="4"
         android:layout_rowSpan="4"
-        android:backgroundTint="#d080f0" />
+        android:backgroundTint="#d080f0"
+        android:textStyle="bold" />
 
     <Button
         android:layout_width="0dp"
@@ -310,9 +330,10 @@
         android:layout_rowWeight=".15"
         android:layout_columnWeight=".25"
         android:textAllCaps="false"
-        android:textSize="20sp"
+        android:textSize="25sp"
         android:backgroundTint="#a0a0f0"
-        android:layout_columnSpan="4" />
+        android:layout_columnSpan="4"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/btnClearExpression"
@@ -327,7 +348,8 @@
         android:textAllCaps="false"
         android:textSize="20sp"
         android:backgroundTint="#d0f080"
-        android:layout_rowSpan="2" />
+        android:layout_rowSpan="2"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/btnSine"
@@ -339,11 +361,11 @@
         android:layout_rowWeight=".15"
         android:text="@string/SINE_LABEL"
         android:textAllCaps="false"
-        android:textSize="20sp"
+        android:textSize="25sp"
         android:layout_columnSpan="4"
         android:layout_rowSpan="4"
         android:backgroundTint="#d080f0"
-        />
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/btnExponentNatural"
@@ -355,10 +377,11 @@
         android:layout_rowWeight=".15"
         android:text="@string/EXPONENT_NATURAL_LABEL"
         android:textAllCaps="false"
-        android:textSize="20sp"
+        android:textSize="25sp"
         android:layout_columnSpan="4"
         android:layout_rowSpan="4"
-        android:backgroundTint="#d080f0" />
+        android:backgroundTint="#d080f0"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/btnLogarithm10"
@@ -370,10 +393,11 @@
         android:layout_rowWeight=".15"
         android:text="@string/LOGARITHM_LABEL"
         android:textAllCaps="false"
-        android:textSize="20sp"
+        android:textSize="25sp"
         android:layout_columnSpan="4"
         android:layout_rowSpan="4"
-        android:backgroundTint="#d080f0" />
+        android:backgroundTint="#d080f0"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/btnDivision"
@@ -386,9 +410,10 @@
         android:layout_rowWeight=".15"
         android:text="@string/DIVISION_LABEL"
         android:textAllCaps="false"
-        android:textSize="20sp"
+        android:textSize="30sp"
         android:backgroundTint="#a0a0f0"
-        android:layout_rowSpan="4" />
+        android:layout_rowSpan="4"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/btnPoint"
@@ -401,9 +426,10 @@
         android:layout_rowWeight=".15"
         android:text="@string/DOT_LABEL"
         android:textAllCaps="false"
-        android:textSize="20sp"
+        android:textSize="25sp"
         android:backgroundTint="#f0d080"
-        android:layout_rowSpan="4" />
+        android:layout_rowSpan="4"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/btnExecute"
@@ -416,9 +442,11 @@
         android:layout_rowWeight=".2"
         android:text="@string/EXECUTE_LABEL"
         android:textAllCaps="false"
-        android:textSize="20sp"
+        android:textSize="50sp"
         android:backgroundTint="#f0a0a0"
-        android:layout_rowSpan="6" />
+        android:layout_rowSpan="6"
+        android:textAlignment="center"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/btnMultiplication"
@@ -431,9 +459,10 @@
         android:layout_rowWeight=".15"
         android:text="@string/MULTIPLICATION_LABEL"
         android:textAllCaps="false"
-        android:textSize="20sp"
+        android:textSize="30sp"
         android:backgroundTint="#a0a0f0"
-        android:layout_rowSpan="4" />
+        android:layout_rowSpan="4"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/btnNegation"
@@ -446,9 +475,10 @@
         android:layout_rowWeight=".15"
         android:text="@string/NEGATION_LABEL"
         android:textAllCaps="false"
-        android:textSize="20sp"
+        android:textSize="25sp"
         android:backgroundTint="#f0d080"
-        android:layout_rowSpan="4" />
+        android:layout_rowSpan="4"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/btnSubtraction"
@@ -461,8 +491,10 @@
         android:layout_rowWeight=".15"
         android:text="@string/SUBTRACTION_LABEL"
         android:textAllCaps="false"
-        android:textSize="20sp"
+        android:textSize="30sp"
         android:backgroundTint="#a0a0f0"
-        android:layout_rowSpan="4" />
+        android:layout_rowSpan="4"
+        android:textAlignment="center"
+        android:textStyle="bold" />
 
 </GridLayout>

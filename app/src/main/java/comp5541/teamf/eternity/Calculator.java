@@ -6,36 +6,42 @@ import net.objecthunter.exp4j.function.Function;
 
 import java.util.regex.Pattern;
 
+/**
+ * Calculator model.
+ *
+ * UI independent calculator implementation.
+ */
 public class Calculator {
 
-  private StringBuilder current;
-  private StringBuilder previous;
+  private StringBuilder currentExpression;
+  private StringBuilder previousExpression;
+  /** Number of unclosed left parentheses. */
   private int           parenthesesDepth;
 
   public Calculator() {
-    this.resetPrevious();
-    this.resetCurrent();
+    this.resetPreviousExpression();
+    this.resetCurrentExpression();
   }
 
-  public String getPrevious() {
-    return this.previous.toString();
+  public void resetPreviousExpression() {
+    previousExpression = new StringBuilder("0");
   }
 
-  public void resetPrevious() {
-    previous = new StringBuilder("0");
+  public String getPreviousExpression() {
+    return this.previousExpression.toString();
   }
 
-  public void resetCurrent() {
-    current = new StringBuilder();
+  public void resetCurrentExpression() {
+    currentExpression = new StringBuilder();
     parenthesesDepth = 0;
   }
 
-  public String getCurrent() {
-    return this.current.toString();
+  public String getCurrentExpression() {
+    return this.currentExpression.toString();
   }
 
   /**
-   * Increments or decrements <b>parenthesis depth</b> by 1. For use with <b>setKey</b> method.
+   * Increments or decrements <b>parenthesis depth</b> of current expression by 1.
    *
    * @param flag
    *     <b>1</b> to increment by 1; <b>-1</b> to decrement by 1; default has no impact.
@@ -52,135 +58,143 @@ public class Calculator {
     }
   }
 
+  /**
+   * Insert tokens based on common parameters.
+   *
+   * @param token
+   *     Token to be inserted.
+   * @param parentheses
+   *     Impact on depth of unclosed left parentheses. Can be 1, -1, or 0.
+   */
   public void insertToken(final Tokens token, final int parentheses) {
-    if (Pattern.matches(token.validate(), current.toString())) {
+    if (Pattern.matches(token.validate(), currentExpression.toString())) {
       if (parentheses >= 0 || parenthesesDepth >= 1) {
         setParenthesesDepth(parentheses);
-        current.append(token.build());
+        currentExpression.append(token.build());
       }
     }
   }
 
-
+  /** Safely remove tokens from current expression. */
   public void backspace() {
-    if (Pattern.matches(".*[\\)]", current.toString())) {
+    if (Pattern.matches(".*[\\)]", currentExpression.toString())) {
       parenthesesDepth++;
     }
-    if (Pattern.matches(".*[\\(" + Tokens.FUNCTIONS + "]$", current.toString())) {
+    if (Pattern.matches(".*[\\(" + Tokens.FUNCTIONS + "]$", currentExpression.toString())) {
       parenthesesDepth--;
     }
-    current.deleteCharAt(current.length() - 1);
-    if (current.length() > 0
-        && current.charAt(current.length() - 1) == Tokens.NEGATION.build().charAt(0)) {
-      current.deleteCharAt(current.length() - 1);
+    currentExpression.deleteCharAt(currentExpression.length() - 1);
+    if (currentExpression.length() > 0
+        && currentExpression.charAt(currentExpression.length() - 1) == Tokens.NEGATION.build()
+                                                                                      .charAt(0)) {
+      currentExpression.deleteCharAt(currentExpression.length() - 1);
     }
   }
 
+  /** Reset both current expression and previous expression. */
   public void clearAll() {
-    resetPrevious();
-    resetCurrent();
+    resetPreviousExpression();
+    resetCurrentExpression();
   }
 
+  /** Reset current expression only. */
   public void clearExpression() {
-    resetCurrent();
+    resetCurrentExpression();
   }
 
 
+  /** Evaluate current expression. */
   public void evaluateExpression() {
-    // Ensure current is not empty
-    if (current.length() == 0) {
-      current.append("0");
+    // Ensure currentExpression is not empty
+    if (currentExpression.length() == 0) {
+      currentExpression.append("0");
     }
     // Remove empty left parentheses and functions; append zero if result is empty
     if (Pattern.matches("[\\(" + Tokens.FUNCTIONS + "]",
-                        ((Character) current.charAt(current.length() - 1)).toString())) {
+                        ((Character) currentExpression.charAt(
+                            currentExpression.length() - 1)).toString())) {
       parenthesesDepth--;
-      current.deleteCharAt(current.length() - 1);
-      if (current.length() == 0) {
-        current.append("0");
+      currentExpression.deleteCharAt(currentExpression.length() - 1);
+      if (currentExpression.length() == 0) {
+        currentExpression.append("0");
       }
     }
     // Remove hanging decimal point or operators; append zero if result is empty
     if (Pattern.matches("[\\." + Tokens.OPERATORS + "]",
-                        ((Character) current.charAt(current.length() - 1)).toString())) {
-      current.deleteCharAt(current.length() - 1);
-      if (current.length() == 0) {
-        current.append("0");
+                        ((Character) currentExpression.charAt(
+                            currentExpression.length() - 1)).toString())) {
+      currentExpression.deleteCharAt(currentExpression.length() - 1);
+      if (currentExpression.length() == 0) {
+        currentExpression.append("0");
       }
     }
     // Close remaining parentheses
     for (int i = 0; i < parenthesesDepth; parenthesesDepth--) {
-      current.append(Tokens.PARENTHESIS_RIGHT.build());
+      currentExpression.append(Tokens.PARENTHESIS_RIGHT.build());
     }
-    // Append to previous if first character is an operator
+    // Append to previousExpression if first character is an operator
     if (Pattern.matches("[" + Tokens.OPERATORS + "]",
-                        ((Character) current.charAt(0)).toString())) {
-      if (previous.length() == 0) {
-        previous.append("0");
+                        ((Character) currentExpression.charAt(0)).toString())) {
+      if (previousExpression.length() == 0) {
+        previousExpression.append("0");
       }
-      previous.append(current);
+      previousExpression.append(currentExpression);
     } else {
-      previous = new StringBuilder(current);
+      previousExpression = new StringBuilder(currentExpression);
     }
     try {
-      Expression e = new ExpressionBuilder(executeReplace(previous.toString()))
+      Expression e = new ExpressionBuilder(executeReplace(previousExpression.toString()))
           .functions(FUNCTIONS)
           .build();
       Double result = e.evaluate();
       if (result == result.intValue()) {
-        current = new StringBuilder(((Integer) result.intValue()).toString().replace('-', '±'));
+        currentExpression = new StringBuilder(
+            ((Integer) result.intValue()).toString().replace('-', '±'));
       } else {
-        current = new StringBuilder(result.toString().replace('-', '±'));
+        currentExpression = new StringBuilder(result.toString().replace('-', '±'));
       }
     } catch (Exception err) {
-      resetPrevious();
-      resetCurrent();
+      resetPreviousExpression();
+      resetCurrentExpression();
       throw err;
     }
   }
 
   /**
-   * Method to find and replace tokens for execution.
+   * Find and replace tokens for execution.
    *
-   * @param s
-   *     (String)
+   * @param buildString
+   *     String with tokens in build form.
    *
    * @return (String)
    */
-  private String executeReplace(String s) {
-    String executeString = s;
+  private String executeReplace(String buildString) {
+    String executeString = buildString;
     for (Tokens sym : Tokens.values()) {
       executeString = executeString.replaceAll(Pattern.quote(sym.build()), sym.execute());
     }
     return executeString;
   }
 
+  /** Toggle negation on and off for a number at the end of current expression. */
   public void toggleNegation() {
-    if (Pattern.matches(Tokens.NEGATION.validate(), current.toString())) {
-      if (Pattern.matches("(.*?)(±\\d+[\\.]?\\d*$)", current.toString())) {
+    if (Pattern.matches(Tokens.NEGATION.validate(), currentExpression.toString())) {
+      if (Pattern.matches("(.*?)(±\\d+[\\.]?\\d*$)", currentExpression.toString())) {
         Pattern
             p = Pattern
             .compile("(.*?)(±\\d+[\\.]?\\d*$)");
-        java.util.regex.Matcher m = p.matcher(current.toString());
+        java.util.regex.Matcher m = p.matcher(currentExpression.toString());
         m.find();
         int position = m.start(2);
-        current.deleteCharAt(position);
+        currentExpression.deleteCharAt(position);
       } else {
         Pattern p =
             Pattern.compile(Tokens.NEGATION.validate());
-        java.util.regex.Matcher m = p.matcher(current.toString());
+        java.util.regex.Matcher m = p.matcher(currentExpression.toString());
         m.find();
         int position = m.start(2);
-        current.insert(position, Tokens.NEGATION.build());
+        currentExpression.insert(position, Tokens.NEGATION.build());
       }
-    }
-  }
-
-  public void pressParenthesisRight() {
-    if (Pattern.matches(Tokens.PARENTHESIS_RIGHT.validate(), current.toString())
-        && parenthesesDepth > 0) {
-      parenthesesDepth--;
-      current.append(")");
     }
   }
 
@@ -190,8 +204,7 @@ public class Calculator {
   private static final Function[] FUNCTIONS = new Function[5];
 
   /**
-   * Definition of custom <b>exp4j</b> functions with methods from
-   * <b>comp5541.teamf.eternity.Math</b>.
+   * Definition of custom <b>exp4j</b> functions with methods from <b>comp5541.teamf.eternity.Math</b>.
    */
   static {
     FUNCTIONS[0] = new Function("fExpTen") {

@@ -1,9 +1,7 @@
 package comp5541.teamf.eternity;
 
 /**
- * Enum of mathematical tokens depending on use. Display strings are displayed in the UI; build
- * strings are used to build the strings before execution and prevent usage conflicts; execute
- * strings are those which are recognized by the exp4j library.
+ * Enum of types of tokens based on common behaviours.
  */
 enum Type {
   DIGIT,
@@ -15,6 +13,12 @@ enum Type {
   POINT
 }
 
+/**
+ * Enum of mathematical tokens depending on use. Display strings are displayed in the UI; build
+ * strings are used to build the strings before execution and prevent usage conflicts; execute
+ * strings are those which are recognized by the exp4j library; validation strings are those used to
+ * decide if a token can be inserted without resulting in a syntactically invalid expression;.
+ */
 enum Tokens {
 
   EXPONENT_10("⑽", "10ˣ", "fExpTen(", Type.FUNCTION),
@@ -42,9 +46,13 @@ enum Tokens {
   EIGHT("8", "8", "8", Type.DIGIT),
   NINE("9", "9", "9", Type.DIGIT);
 
+  /** Single unicode character to enable consistent representation of token during construction. */
   private final String build;
+  /** Display string of token. */
   private final String display;
+  /** Token string as recognized by exp4j. */
   private final String execute;
+  /** Token type for grouping based on common behaviour. */
   private final Type   type;
 
   public String build() {

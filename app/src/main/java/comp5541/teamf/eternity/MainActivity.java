@@ -11,46 +11,53 @@ import android.widget.TextView;
 
 import java.util.regex.Pattern;
 
+/**
+ * View controller.
+ *
+ * This class binds the UI to an instance of the Calculator model.
+ */
 public class MainActivity extends AppCompatActivity {
 
   private Calculator calculator = new Calculator();
+  /** Displays current expression. */
+  private TextView textViewCurrent;
+  /** Displays previous expression. */
+  private TextView textViewPrevious;
 
-  private TextView tvCurrent;
-  private TextView tvPrevious;
-
-  /**
-   * Sets/resets <b>Previous Expression</b> display and values
-   */
+  /** Resets <b>previous expression</b> display and values. */
   private void setPrevious() {
-    calculator.resetPrevious();
-    tvPrevious = (TextView) findViewById(R.id.tvPrevious);
-    tvPrevious.setMovementMethod(new ScrollingMovementMethod());
+    calculator.resetPreviousExpression();
+    textViewPrevious = (TextView) findViewById(R.id.tvPrevious);
+    textViewPrevious.setMovementMethod(new ScrollingMovementMethod());
     setPrevious("");
   }
 
+  /** Sets <b>previous expression</b> display and values. */
   private void setPrevious(String string) {
-    tvPrevious.setText(displayReplace(string));
-    tvPrevious.bringPointIntoView(tvPrevious.length());
+    textViewPrevious.setText(displayReplace(string));
+    textViewPrevious.bringPointIntoView(textViewPrevious.length());
   }
 
-  /**
-   * Sets/resets <b>Current Expression</b> display and values
-   */
+  /** Resets <b>Current Expression</b> display and values */
   private void setCurrent() {
-    calculator.resetCurrent();
-    tvCurrent = (TextView) findViewById(R.id.tvCurrent);
-    tvCurrent.setMovementMethod(new ScrollingMovementMethod());
+    calculator.resetCurrentExpression();
+    textViewCurrent = (TextView) findViewById(R.id.tvCurrent);
+    textViewCurrent.setMovementMethod(new ScrollingMovementMethod());
     setCurrent("0");
   }
 
+  /** Sets <b>Current Expression</b> display and values */
   private void setCurrent(String string) {
-    tvCurrent.setText(displayReplace(string));
-    tvCurrent.bringPointIntoView(tvCurrent.length());
+    textViewCurrent.setText(displayReplace(string));
+    textViewCurrent.bringPointIntoView(textViewCurrent.length());
   }
 
   /**
-   * Method to find and replace tokens for display.
-   * @param s (String)
+   * Find and replace tokens for display.
+   *
+   * @param s
+   *     (String)
+   *
    * @return (Spanned)
    */
   private Spanned displayReplace(String s) {
@@ -62,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
   }
 
   /**
-   * A method for setting OnClickListeners for buttons with common attributes
+   * Set OnClickListeners for buttons with common attributes.
    *
    * @param token
    *     Build string of the token
@@ -76,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
       @Override
       public void onClick(View v) {
         calculator.insertToken(token, parentheses);
-        setCurrent(calculator.getCurrent());
+        setCurrent(calculator.getCurrentExpression());
       }
     };
   }
@@ -90,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
     this.setCurrent();
 
     // Digits
-    // TODO:redundant 0s
+    // TODO: Reject superficial zeros.
     ((Button) findViewById(R.id.btn0)).setOnClickListener(this.setKey(Tokens.ZERO, 0));
     ((Button) findViewById(R.id.btn1)).setOnClickListener(this.setKey(Tokens.ONE, 0));
     ((Button) findViewById(R.id.btn2)).setOnClickListener(this.setKey(Tokens.TWO, 0));
@@ -102,6 +109,8 @@ public class MainActivity extends AppCompatActivity {
     ((Button) findViewById(R.id.btn8)).setOnClickListener(this.setKey(Tokens.EIGHT, 0));
     ((Button) findViewById(R.id.btn9)).setOnClickListener(this.setKey(Tokens.NINE, 0));
 
+    // Point
+    // TODO: Add 0 if no digits are present
     ((Button) findViewById(R.id.btnPoint)).setOnClickListener(this.setKey(Tokens.POINT, 0));
 
     // Operators
@@ -133,23 +142,25 @@ public class MainActivity extends AppCompatActivity {
     ((Button) findViewById(R.id.btnParenthesisRight)).setOnClickListener(
         this.setKey(Tokens.PARENTHESIS_RIGHT, -1));
 
-    //what to do about 0/empty
+    // TODO: Handle exponents
+    // TODO: Handle negation
     ((Button) findViewById(R.id.btnBackspace)).setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        if (calculator.getCurrent().length() < 1) {
+        if (calculator.getCurrentExpression().length() < 1) {
           setCurrent("0");
         } else {
           calculator.backspace();
-          if (calculator.getCurrent().length() < 1) {
+          if (calculator.getCurrentExpression().length() < 1) {
             setCurrent("0");
           } else {
-            setCurrent(calculator.getCurrent());
+            setCurrent(calculator.getCurrentExpression());
           }
         }
       }
     });
 
+    // Clear all
     ((Button) findViewById(R.id.btnClearAll)).setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -158,6 +169,7 @@ public class MainActivity extends AppCompatActivity {
       }
     });
 
+    // Clear current expression
     ((Button) findViewById(R.id.btnClearExpression)).setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -165,31 +177,34 @@ public class MainActivity extends AppCompatActivity {
       }
     });
 
-    // TODO: leave expression after error?
-    // TODO: negation on return???; done?
-    // TODO: infinity/NaN?
+    // TODO: Leave expression after error?
+    // TODO: Negation on return; done?
+    // TODO: Handle infinity and NaN
+    // TODO: Friendlier error messages
     ((Button) findViewById(R.id.btnExecute)).setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
         try {
           calculator.evaluateExpression();
-          setPrevious(calculator.getPrevious());
-          setCurrent(calculator.getCurrent());
+          setPrevious(calculator.getPreviousExpression());
+          setCurrent(calculator.getCurrentExpression());
         } catch (Exception err) {
           setPrevious();
           setCurrent();
           setPrevious(err.getMessage());
-          tvCurrent.setText(R.string.ERROR_LABEL);
-          tvCurrent.bringPointIntoView(tvCurrent.length());
+          textViewCurrent.setText(R.string.ERROR_LABEL);
+          textViewCurrent.bringPointIntoView(textViewCurrent.length());
         }
       }
     });
 
+    // Toggle negation
+    // TODO: Adding negation before digits
     ((Button) findViewById(R.id.btnNegation)).setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
         calculator.toggleNegation();
-        setCurrent(calculator.getCurrent());
+        setCurrent(calculator.getCurrentExpression());
       }
     });
   }
