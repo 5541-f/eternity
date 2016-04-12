@@ -110,23 +110,27 @@ public class Calculator {
     if (currentExpression.length() == 0) {
       currentExpression.append("0");
     }
-    // Remove empty left parentheses and functions; append zero if result is empty
-    if (Pattern.matches("[\\(" + Tokens.FUNCTIONS + "]",
-                        ((Character) currentExpression.charAt(
-                            currentExpression.length() - 1)).toString())) {
-      parenthesesDepth--;
-      currentExpression.deleteCharAt(currentExpression.length() - 1);
-      if (currentExpression.length() == 0) {
-        currentExpression.append("0");
+    while (Pattern.matches("[\\(" + Tokens.FUNCTIONS + "\\." + Tokens.OPERATORS + "]",
+                           ((Character) currentExpression.charAt(
+                               currentExpression.length() - 1)).toString())) {
+      // Remove empty left parentheses and functions; append zero if result is empty
+      if (Pattern.matches("[\\(" + Tokens.FUNCTIONS + "]",
+                          ((Character) currentExpression.charAt(
+                              currentExpression.length() - 1)).toString())) {
+        parenthesesDepth--;
+        currentExpression.deleteCharAt(currentExpression.length() - 1);
+        if (currentExpression.length() == 0) {
+          currentExpression.append("0");
+        }
       }
-    }
-    // Remove hanging decimal point or operators; append zero if result is empty
-    if (Pattern.matches("[\\." + Tokens.OPERATORS + "]",
-                        ((Character) currentExpression.charAt(
-                            currentExpression.length() - 1)).toString())) {
-      currentExpression.deleteCharAt(currentExpression.length() - 1);
-      if (currentExpression.length() == 0) {
-        currentExpression.append("0");
+      // Remove hanging decimal point or operators; append zero if result is empty
+      if (Pattern.matches("[\\." + Tokens.OPERATORS + "]",
+                          ((Character) currentExpression.charAt(
+                              currentExpression.length() - 1)).toString())) {
+        currentExpression.deleteCharAt(currentExpression.length() - 1);
+        if (currentExpression.length() == 0) {
+          currentExpression.append("0");
+        }
       }
     }
     // Close remaining parentheses
