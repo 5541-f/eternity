@@ -127,7 +127,7 @@ enum Tokens {
                                             + "\\(" + FUNCTIONS + "]$)";
   /** String constant of regular expression for validation of function tokens. */
   static final String FUNCTION_VALIDATION = "(^$)|(.*[" + OPERATORS
-                                            + "\\(" + FUNCTIONS + "]$)";
+                                            + "\\(" + FUNCTIONS + "0-9]$)";
   /** String constant of regular expression for validation of operator tokens. */
   static final String OPERATOR_VALIDATION = "(^$)|(.*\\d$)|(.*\\)$)";
 

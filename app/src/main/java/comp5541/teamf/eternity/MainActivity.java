@@ -205,10 +205,6 @@ public class MainActivity extends AppCompatActivity {
       }
     });
 
-    // TODO: Leave expression after error?
-    // TODO: Negation on return; done?
-    // TODO: Handle infinity and NaN
-    // TODO: Friendlier error messages
     ((Button) findViewById(R.id.btnExecute)).setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
