@@ -215,8 +215,6 @@ public class MainActivity extends AppCompatActivity {
         try {
           calculator.evaluateExpression();
         } catch (Exception err) {
-          textViewPrevious.bringPointIntoView(textViewPrevious.length());
-          textViewCurrent.bringPointIntoView(textViewCurrent.length());
           errorToast.cancel();
           triggerErrorToast(err.getMessage());
         } finally {
