@@ -1,37 +1,37 @@
 <resources>
     <string name="app_name">Eternity</string>
 
-    <string name="ZERO_LABEL"><tt>0</tt></string>
-    <string name="ONE_LABEL"><tt>1</tt></string>
-    <string name="TWO_LABEL"><tt>2</tt></string>
-    <string name="THREE_LABEL"><tt>3</tt></string>
-    <string name="FOUR_LABEL"><tt>4</tt></string>
-    <string name="FIVE_LABEL"><tt>5</tt></string>
-    <string name="SIX_LABEL"><tt>6</tt></string>
-    <string name="SEVEN_LABEL"><tt>7</tt></string>
-    <string name="EIGHT_LABEL"><tt>8</tt></string>
-    <string name="NINE_LABEL"><tt>9</tt></string>
+    <string name="ZERO_LABEL">0</string>
+    <string name="ONE_LABEL">1</string>
+    <string name="TWO_LABEL">2</string>
+    <string name="THREE_LABEL">3</string>
+    <string name="FOUR_LABEL">4</string>
+    <string name="FIVE_LABEL">5</string>
+    <string name="SIX_LABEL">6</string>
+    <string name="SEVEN_LABEL">7</string>
+    <string name="EIGHT_LABEL">8</string>
+    <string name="NINE_LABEL">9</string>
 
-    <string name="ADDITION_LABEL"><tt>+</tt></string>
-    <string name="DIVISION_LABEL"><tt>÷</tt></string>
-    <string name="MODULUS_LABEL"><tt><small>mod</small></tt></string>
-    <string name="MULTIPLICATION_LABEL"><tt>×</tt></string>
+    <string name="ADDITION_LABEL">+</string>
+    <string name="DIVISION_LABEL">÷</string>
+    <string name="MODULUS_LABEL"><small>mod</small></string>
+    <string name="MULTIPLICATION_LABEL">×</string>
     <string name="SUBTRACTION_LABEL">—</string>
 
-    <string name="EXPONENT_NATURAL_LABEL"><tt><small>ℯˣ</small></tt></string>
-    <string name="EXPONENT_10_LABEL"><tt><small>10ˣ</small></tt></string>
-    <string name="PARENTHESIS_LEFT_LABEL"><tt>(</tt></string>
-    <string name="LOGARITHM_LABEL"><tt><small>log₁₀</small></tt></string>
-    <string name="SINE_LABEL"><tt><small>sin</small></tt></string>
-    <string name="SQRT_LABEL"><tt><small>√</small></tt></string>
+    <string name="EXPONENT_NATURAL_LABEL"><small>ℯˣ</small></string>
+    <string name="EXPONENT_10_LABEL"><small>10ˣ</small></string>
+    <string name="PARENTHESIS_LEFT_LABEL">(</string>
+    <string name="LOGARITHM_LABEL"><small>log₁₀</small></string>
+    <string name="SINE_LABEL"><small>sin</small></string>
+    <string name="SQRT_LABEL"><small>√</small></string>
 
-    <string name="BACKSPACE_LABEL"><tt>⌫</tt></string>
-    <string name="CLEAR_ALL_LABEL"><tt>C</tt></string>
-    <string name="CLEAR_EXPRESSION_LABEL"><tt>CE</tt></string>
-    <string name="DOT_LABEL"><tt>.</tt></string>
-    <string name="EXECUTE_LABEL"><tt>=</tt></string>
-    <string name="NEGATION_LABEL"><tt>±</tt></string>
-    <string name="PARENTHESIS_RIGHT_LABEL"><tt>)</tt></string>
+    <string name="BACKSPACE_LABEL">⌫</string>
+    <string name="CLEAR_ALL_LABEL">C</string>
+    <string name="CLEAR_EXPRESSION_LABEL">CE</string>
+    <string name="DOT_LABEL">.</string>
+    <string name="EXECUTE_LABEL">=</string>
+    <string name="NEGATION_LABEL">±</string>
+    <string name="PARENTHESIS_RIGHT_LABEL">)</string>
 
     <string name="ERROR_LABEL">ERROR</string>
 </resources>
