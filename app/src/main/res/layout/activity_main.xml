@@ -55,7 +55,7 @@
         android:layout_rowWeight=".15"
         android:text="@string/ZERO_LABEL"
         android:textAllCaps="false"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:backgroundTint="#f0d080"
         android:layout_rowSpan="4"
         android:textStyle="bold" />
@@ -88,7 +88,7 @@
         android:layout_rowWeight=".15"
         android:text="@string/TWO_LABEL"
         android:textAllCaps="false"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:backgroundTint="#f0d080"
         android:layout_rowSpan="4"
         android:textStyle="bold" />
@@ -104,7 +104,7 @@
         android:layout_rowWeight=".15"
         android:text="@string/THREE_LABEL"
         android:textAllCaps="false"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:backgroundTint="#f0d080"
         android:layout_rowSpan="4"
         android:textStyle="bold" />
@@ -225,7 +225,6 @@
         android:textSize="40sp"
         android:backgroundTint="#a0a0f0"
         android:layout_rowSpan="4"
-        android:textAlignment="center"
         android:textStyle="bold" />
 
     <Button
@@ -445,7 +444,6 @@
         android:textSize="70sp"
         android:backgroundTint="#f0a0a0"
         android:layout_rowSpan="6"
-        android:textAlignment="center"
         android:textStyle="bold" />
 
     <Button
@@ -475,7 +473,7 @@
         android:layout_rowWeight=".15"
         android:text="@string/NEGATION_LABEL"
         android:textAllCaps="false"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:backgroundTint="#f0d080"
         android:layout_rowSpan="4"
         android:textStyle="bold" />
@@ -494,7 +492,6 @@
         android:textSize="40sp"
         android:backgroundTint="#a0a0f0"
         android:layout_rowSpan="4"
-        android:textAlignment="center"
         android:textStyle="bold" />
 
 </GridLayout>
