@@ -21,11 +21,11 @@ enum Type {
  */
 enum Tokens {
 
-  EXPONENT_10("⑽", "10ˣ", "fExpTen(", Type.FUNCTION),
-  EXPONENT_NATURAL("ℯ", "ℯˣ", "fExpNat(", Type.FUNCTION),
-  LOGARITHM_10("㏒", "log₁₀", "fLogTen(", Type.FUNCTION),
-  SINE("∿", "sin", "fSine(", Type.FUNCTION),
-  SQUARE_ROOT("√", "√", "fSqrt(", Type.FUNCTION),
+  EXPONENT_10("⑽", "10ˣ", "exponentTen(", Type.FUNCTION),
+  EXPONENT_NATURAL("ℯ", "ℯˣ", "exponentNatural(", Type.FUNCTION),
+  LOGARITHM_10("㏒", "log₁₀", "logarithmTen(", Type.FUNCTION),
+  SINE("∿", "sin", "sine(", Type.FUNCTION),
+  SQUARE_ROOT("√", "√", "squareRoot(", Type.FUNCTION),
   PARENTHESIS_LEFT("(", "(", "(", Type.PARENTHESIS_LEFT),
   PARENTHESIS_RIGHT(")", ")", ")", Type.PARENTHESIS_RIGHT),
   MODULO("%", " <tt><small>mod</small></tt> ", "%", Type.OPERATOR),

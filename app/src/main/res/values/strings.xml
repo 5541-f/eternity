@@ -16,7 +16,7 @@
     <string name="DIVISION_LABEL"><tt>÷</tt></string>
     <string name="MODULUS_LABEL"><tt><small>mod</small></tt></string>
     <string name="MULTIPLICATION_LABEL"><tt>×</tt></string>
-    <string name="SUBTRACTION_LABEL"><tt>—</tt></string>
+    <string name="SUBTRACTION_LABEL">—</string>
 
     <string name="EXPONENT_NATURAL_LABEL"><tt><small>ℯˣ</small></tt></string>
     <string name="EXPONENT_10_LABEL"><tt><small>10ˣ</small></tt></string>
