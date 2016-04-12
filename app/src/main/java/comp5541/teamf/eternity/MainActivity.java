@@ -1,13 +1,22 @@
 package comp5541.teamf.eternity;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.text.Spanned;
 import android.text.method.ScrollingMovementMethod;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.api.GoogleApiClient;
 
 import java.util.regex.Pattern;
 
@@ -20,9 +29,14 @@ public class MainActivity extends AppCompatActivity {
 
   private Calculator calculator = new Calculator();
   /** Displays current expression. */
-  private TextView textViewCurrent;
+  private TextView       textViewCurrent;
   /** Displays previous expression. */
-  private TextView textViewPrevious;
+  private TextView       textViewPrevious;
+  private LayoutInflater errorLayoutInflater;
+  private View           errorView;
+  private TextView       errorTextView;
+  private Toast          errorToast;
+
 
   /** Resets <b>previous expression</b> display and values. */
   private void setPrevious() {
@@ -88,6 +102,15 @@ public class MainActivity extends AppCompatActivity {
     };
   }
 
+  private void triggerErrorToast(String message) {
+    errorTextView.setText(message);
+    errorToast = new Toast(getApplicationContext());
+    errorToast.setGravity(Gravity.TOP, 0, 240);
+    errorToast.setDuration(Toast.LENGTH_SHORT);
+    errorToast.setView(errorView);
+    errorToast.show();
+  }
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -95,6 +118,11 @@ public class MainActivity extends AppCompatActivity {
 
     this.setPrevious();
     this.setCurrent();
+    errorLayoutInflater = getLayoutInflater();
+    errorView = errorLayoutInflater.inflate(R.layout.toast_layout,
+                                            (ViewGroup) findViewById(R.id.toast_layout_root));
+    errorTextView = (TextView) errorView.findViewById(R.id.text);
+    errorToast = new Toast(getApplicationContext());
 
     // Digits
     // TODO: Reject superficial zeros.
@@ -186,14 +214,14 @@ public class MainActivity extends AppCompatActivity {
       public void onClick(View v) {
         try {
           calculator.evaluateExpression();
+        } catch (Exception err) {
+          textViewPrevious.bringPointIntoView(textViewPrevious.length());
+          textViewCurrent.bringPointIntoView(textViewCurrent.length());
+          errorToast.cancel();
+          triggerErrorToast(err.getMessage());
+        } finally {
           setPrevious(calculator.getPreviousExpression());
           setCurrent(calculator.getCurrentExpression());
-        } catch (Exception err) {
-          setPrevious();
-          setCurrent();
-          setPrevious(err.getMessage());
-          textViewCurrent.setText(R.string.ERROR_LABEL);
-          textViewCurrent.bringPointIntoView(textViewCurrent.length());
         }
       }
     });

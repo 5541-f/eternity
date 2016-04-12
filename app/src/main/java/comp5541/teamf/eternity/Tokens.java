@@ -70,6 +70,14 @@ enum Tokens {
     return this.execute;
   }
 
+  /** String for defining function definition */
+  public String define() {
+    if (this.type == Type.FUNCTION) {
+      return this.execute.substring(0, this.execute.length() - 1);
+    }
+    return "";
+  }
+
   public String validate() {
     switch (this.type) {
       case DIGIT:

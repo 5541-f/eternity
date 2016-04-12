@@ -104,7 +104,8 @@ public class Calculator {
 
 
   /** Evaluate current expression. */
-  public void evaluateExpression() {
+  public void evaluateExpression() throws Exception {
+    String temp = previousExpression.toString();
     // Ensure currentExpression is not empty
     if (currentExpression.length() == 0) {
       currentExpression.append("0");
@@ -147,6 +148,14 @@ public class Calculator {
           .functions(FUNCTIONS)
           .build();
       Double result = e.evaluate();
+      if (result.isNaN()) {
+        previousExpression = new StringBuilder(temp);
+        throw new Exception("Not a real number.");
+      }
+      if (result.isInfinite()) {
+        previousExpression = new StringBuilder(temp);
+        throw new Exception(result.toString());
+      }
       if (result == result.intValue()) {
         currentExpression = new StringBuilder(
             ((Integer) result.intValue()).toString().replace('-', '±'));
@@ -154,8 +163,7 @@ public class Calculator {
         currentExpression = new StringBuilder(result.toString().replace('-', '±'));
       }
     } catch (Exception err) {
-      resetPreviousExpression();
-      resetCurrentExpression();
+      previousExpression = new StringBuilder(temp);
       throw err;
     }
   }
@@ -207,31 +215,31 @@ public class Calculator {
    * Definition of custom <b>exp4j</b> functions with methods from <b>comp5541.teamf.eternity.Math</b>.
    */
   static {
-    FUNCTIONS[0] = new Function("fExpTen") {
+    FUNCTIONS[0] = new Function(Tokens.EXPONENT_10.define()) {
       @Override
       public double apply(double... args) {
         return Math.exponent10(args[0]);
       }
     };
-    FUNCTIONS[1] = new Function("fExpNat") {
+    FUNCTIONS[1] = new Function(Tokens.EXPONENT_NATURAL.define()) {
       @Override
       public double apply(double... args) {
         return Math.exponentNatural(args[0]);
       }
     };
-    FUNCTIONS[2] = new Function("fLogTen") {
+    FUNCTIONS[2] = new Function(Tokens.LOGARITHM_10.define()) {
       @Override
       public double apply(double... args) {
         return Math.logarithm10(args[0]);
       }
     };
-    FUNCTIONS[3] = new Function("fSine") {
+    FUNCTIONS[3] = new Function(Tokens.SINE.define()) {
       @Override
       public double apply(double... args) {
         return Math.sine(args[0]);
       }
     };
-    FUNCTIONS[4] = new Function("fSqrt") {
+    FUNCTIONS[4] = new Function(Tokens.SQUARE_ROOT.define()) {
       @Override
       public double apply(double... args) {
         return Math.squareRoot(args[0]);
