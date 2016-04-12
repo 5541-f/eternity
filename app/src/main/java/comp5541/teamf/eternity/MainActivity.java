@@ -170,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
     ((Button) findViewById(R.id.btnParenthesisRight)).setOnClickListener(
         this.setKey(Tokens.PARENTHESIS_RIGHT, -1));
 
-    // TODO: Handle exponents
+    // TODO: Handle scientific notation
     // TODO: Handle negation
     ((Button) findViewById(R.id.btnBackspace)).setOnClickListener(new View.OnClickListener() {
       @Override
