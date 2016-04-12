@@ -212,7 +212,9 @@ public class MainActivity extends AppCompatActivity {
           calculator.evaluateExpression();
         } catch (Exception err) {
           errorToast.cancel();
-          triggerErrorToast(err.getMessage());
+          triggerErrorToast(err.getMessage() == "Division by zero!"
+                            ? "Cannot divide by zero."
+                            : err.getMessage());
         } finally {
           setPrevious(calculator.getPreviousExpression());
           setCurrent(calculator.getCurrentExpression());
